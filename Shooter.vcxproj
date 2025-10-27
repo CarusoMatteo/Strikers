@@ -137,8 +137,14 @@
     <ClCompile Include="..\.common\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="..\.common\ImGui\imgui_tables.cpp" />
     <ClCompile Include="..\.common\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Source Files\IGameObject.cpp" />
     <ClCompile Include="Source Files\glad.c" />
+    <ClCompile Include="Source Files\IGui.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
+    <ClCompile Include="Source Files\Mesh.cpp" />
+    <ClCompile Include="Source Files\Scene.cpp" />
+    <ClCompile Include="Source Files\ShaderBuilder.cpp" />
+    <ClCompile Include="Source Files\Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h" />
@@ -150,6 +156,13 @@
     <ClInclude Include="..\.common\ImGui\imstb_rectpack.h" />
     <ClInclude Include="..\.common\ImGui\imstb_textedit.h" />
     <ClInclude Include="..\.common\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Header Files\IGameObject.h" />
+    <ClInclude Include="Header Files\IGui.h" />
+    <ClInclude Include="Header Files\Mesh.h" />
+    <ClInclude Include="Header Files\Scene.h" />
+    <ClInclude Include="Header Files\SceneType.h" />
+    <ClInclude Include="Header Files\ShaderBuilder.h" />
+    <ClInclude Include="Header Files\Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
