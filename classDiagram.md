@@ -135,5 +135,5 @@ GameObject --> InputEvents : polls inputEvents vector
 
 Mesh --> Renderer : renders with
 
-InputEvents <..> InputEventsEnum
+InputEvents ..> InputEventsEnum
 ```

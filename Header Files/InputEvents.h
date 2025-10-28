@@ -8,13 +8,15 @@ using std::vector;
 class InputEvents
 {
 public:
-	static vector<bool> inputEvents;
-
 	static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 	static void mouseButtonCallback(GLFWwindow *window, int button, int action, int mods);
 	// Add more callbacks as needed here
 
+	vector<bool> *getInputEvents() { return &inputEvents; }
+
 private:
+	static vector<bool> inputEvents;
+
 	InputEvents() = default;
 	~InputEvents() = default;
 };
