@@ -4,13 +4,15 @@ direction TB
 
 class Window {
 	+ window: GLFWwindow
-	+ setInputCallbacks(scene: SceneEnum)
 
 	- initializeWindow()
 	- initializeGui()
 }
 
-class InputCallbacks {
+class InputEvents {
+<<static>>
+	+ inputEvents : List~bool~
+
 	+ keyCallback(...)
 	%%(window: GLFWwindow, key: int, scancode: int, action: int, mods: int)
 	+ mouseButtonCallback(...)
@@ -88,16 +90,6 @@ class Mesh {
 	- initVbos() # In initVao()
 }
 
-class ShaderBuilder {
-	<<static>>
-	+ buildShader(vertexfilename : string, fragmentfilename : string, ...)
-	%%(vertexfilename : string, fragmentfilename : string, shouldPrintLogs : bool) GLuint
-}
-
-class InputEvents {
-	+ inputEvents : List~bool~
-}
-
 class InputEventsEnum {
 	<<enum>>
 	MOVE_UP
@@ -105,6 +97,14 @@ class InputEventsEnum {
 	MOVE_LEFT
 	MOVE_RIGHT
 	SHOOT
+}
+
+class ShaderBuilder {
+	<<static>>
+	+ buildShader(vertexfilename : string, fragmentfilename : string, ...)
+	%%(vertexfilename : string, fragmentfilename : string, shouldPrintLogs : bool) GLuint
+
+	+ inputEvents : List~bool~
 }
 
 class Renderer {
@@ -130,9 +130,9 @@ GameObject "1" o-- "1" Mesh : gameObjectMesh
 Scene "1" o-- "1" Mesh : backgroundMesh
 Mesh --> ShaderBuilder : builds shaders using
 
-Window --> InputCallbacks : uses
-InputCallbacks --> InputEvents : updates
-GameObject --> InputEvents : polls
+Window --> InputEvents : calls
+GameObject --> InputEvents : polls inputEvents vector
+
 Mesh --> Renderer : renders with
 
 InputEvents <..> InputEventsEnum
