@@ -6,5 +6,6 @@ enum InputEventsType
 	MOVE_DOWN,
 	MOVE_LEFT,
 	MOVE_RIGHT,
-	SHOOT
+	SHOOT,
+	count
 };
