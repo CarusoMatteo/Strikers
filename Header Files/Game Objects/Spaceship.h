@@ -2,6 +2,6 @@
 
 #include "IGameObject.h"
 
-class Spaceship : IGameObject {
-
+class Spaceship : IGameObject
+{
 };

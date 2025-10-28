@@ -2,6 +2,6 @@
 
 #include "IGameObject.h"
 
-class Heart : IGameObject {
-
+class Heart : IGameObject
+{
 };
