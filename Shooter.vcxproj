@@ -140,11 +140,14 @@
     <ClCompile Include="Source Files\IGameObject.cpp" />
     <ClCompile Include="Source Files\glad.c" />
     <ClCompile Include="Source Files\IGui.cpp" />
+    <ClCompile Include="Source Files\InputEvents.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
+    <ClCompile Include="Source Files\Renderer.cpp" />
     <ClCompile Include="Source Files\Scene.cpp" />
     <ClCompile Include="Source Files\ShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Stage.cpp" />
+    <ClCompile Include="Source Files\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h" />
@@ -158,11 +161,15 @@
     <ClInclude Include="..\.common\ImGui\imstb_truetype.h" />
     <ClInclude Include="Header Files\IGameObject.h" />
     <ClInclude Include="Header Files\IGui.h" />
+    <ClInclude Include="Header Files\InputEvents.h" />
+    <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />
+    <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scene.h" />
     <ClInclude Include="Header Files\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />
     <ClInclude Include="Header Files\Stage.h" />
+    <ClInclude Include="Header Files\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
