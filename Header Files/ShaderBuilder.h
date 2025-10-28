@@ -8,9 +8,11 @@ using std::string;
 class ShaderBuilder
 {
 public:
-	static GLuint buildShder(string vertexfilename, string fragmentfilename, bool shouldPrintLogs);
+	static GLuint buildShder(char *vertexfilename, char *fragmentfilename, bool shouldPrintLogs);
 
 private:
 	ShaderBuilder() = default;
 	~ShaderBuilder() = default;
+
+	static char *readShaderSource(const char *shaderFile);
 };
