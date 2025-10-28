@@ -28,6 +28,12 @@
     <Filter Include="Shader Files\Default">
       <UniqueIdentifier>{7edc9568-9f8d-4add-bbd2-8962cffdcd13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game Objects">
+      <UniqueIdentifier>{9b739f77-df33-4682-b8d0-5fa28216e235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{339c24bc-8682-41fa-bf50-0fe3b1c5cbbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\.common\ImGui\imgui.cpp">
@@ -63,9 +69,6 @@
     <ClCompile Include="Source Files\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\IGameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -83,6 +86,15 @@
     </ClCompile>
     <ClCompile Include="Source Files\Window.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Game Objects\Spaceship.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Game Objects\IGameObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Game Objects\Heart.cpp">
+      <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +134,6 @@
     <ClInclude Include="Header Files\SceneType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\IGameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header Files\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -145,6 +154,15 @@
     </ClInclude>
     <ClInclude Include="Header Files\Window.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Game Objects\Spaceship.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Game Objects\IGameObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Game Objects\Heart.h">
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

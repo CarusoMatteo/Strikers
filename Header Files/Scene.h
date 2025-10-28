@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "Mesh.h"
-#include "IGameObject.h"
+#include "./Game Objects/IGameObject.h"
 #include "IGui.h"
 
 using std::vector;
