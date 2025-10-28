@@ -1,8 +1,8 @@
 #include "../Header Files/Stage.h"
 
-Stage::Stage(SceneType startingScene, vec3 clearColor)
+Stage::Stage(SceneType startingScene, vec3 clearColor, string windowTitle)
 {
-	this->window = new Window();
+	this->window = new Window(windowTitle);
 	this->clearColor = clearColor;
 
 	createScenes();

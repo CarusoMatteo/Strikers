@@ -1,10 +1,19 @@
 using namespace std;
 
+#include <string>
+#include <glm/glm.hpp>
 #include "../Header Files/Stage.h"
+
+using glm::vec3;
+using std::string;
 
 int main(void)
 {
-	Stage *stage = new Stage(SceneType::MENU, vec4(0.1f, 0.1f, 0.1f, 1.0f));
+	SceneType startingScene = SceneType::MENU;
+	vec3 clearColor = vec3(0.1f, 0.1f, 0.1f);
+	string windowTitle = "Shooter Game";
+
+	Stage *stage = new Stage(startingScene, clearColor, windowTitle);
 
 	while (!stage->shouldWindowClose())
 	{

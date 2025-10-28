@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <vector>
 #include <glm/glm.hpp>
 #include "Scene.h"
@@ -7,12 +8,13 @@
 #include "Window.h"
 
 using glm::vec4;
+using std::string;
 using std::vector;
 
 class Stage
 {
 public:
-	Stage(SceneType startingScene, vec3 clearColor);
+	Stage(SceneType startingScene, vec3 clearColor, string windowTitle);
 	~Stage() = default;
 
 	void renderCurrentScene();
