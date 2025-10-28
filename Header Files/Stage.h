@@ -3,6 +3,9 @@
 #include <string>
 #include <vector>
 #include <glm/glm.hpp>
+
+#include "Gui/MenuGui.h"
+#include "Gui/GameGui.h"
 #include "Scene.h"
 #include "SceneType.h"
 #include "Window.h"
@@ -15,9 +18,9 @@ class Stage
 {
 public:
 	Stage(SceneType startingScene, vec3 clearColor, string windowTitle);
-	~Stage() = default;
+	~Stage();
 
-	void renderCurrentScene();
+	void renderCurrentScene(double currentTime, double deltaTime);
 	void changeScene(SceneType nextScene);
 	void drawClearColor() const;
 

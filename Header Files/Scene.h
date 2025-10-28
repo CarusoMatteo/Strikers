@@ -3,27 +3,24 @@
 #include <vector>
 #include "Mesh.h"
 #include "./Game Objects/IGameObject.h"
-#include "IGui.h"
+#include "./Gui/IGui.h"
 
 using std::vector;
 
 class Scene
 {
 public:
-	Scene() = default;
-	~Scene() = default;
+	Scene(Mesh *backgroundMesh, vector<IGameObject *> *gameObjects, IGui *gui);
+	~Scene();
 
-	void renderScene();
+	void renderScene(double currentTime, double deltaTime);
 
 private:
 	Mesh *backgroundMesh;
 	vector<IGameObject *> *gameObjects;
 	IGui *gui;
 
-	void buildBackgroundShader();
-	void buildGameObjectShaders();
-
 	void renderBackground();
-	void renderGameObjects();
+	void renderGameObjects(double currentTime, double deltaTime);
 	void renderGui();
 };

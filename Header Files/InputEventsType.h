@@ -1,6 +1,6 @@
 #pragma once
 
-enum InputEventsType
+enum class InputEventsType
 {
 	MOVE_UP,
 	MOVE_DOWN,

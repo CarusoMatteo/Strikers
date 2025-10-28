@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Game Objects">
       <UniqueIdentifier>{339c24bc-8682-41fa-bf50-0fe3b1c5cbbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Gui">
+      <UniqueIdentifier>{3d0c54a2-5f47-429f-a540-1ad1c7297e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gui">
+      <UniqueIdentifier>{f2d4cc07-eeb1-44fb-aa1e-67bf79255b63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\.common\ImGui\imgui.cpp">
@@ -72,9 +78,6 @@
     <ClCompile Include="Source Files\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\IGui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\ShaderBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="Source Files\Game Objects\Heart.cpp">
       <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Gui\GameGui.cpp">
+      <Filter>Source Files\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Gui\IGui.cpp">
+      <Filter>Source Files\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Gui\MenuGui.cpp">
+      <Filter>Source Files\Gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,9 +149,6 @@
     <ClInclude Include="Header Files\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\IGui.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header Files\ShaderBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -163,6 +172,15 @@
     </ClInclude>
     <ClInclude Include="Header Files\Game Objects\Heart.h">
       <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Gui\GameGui.h">
+      <Filter>Header Files\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Gui\IGui.h">
+      <Filter>Header Files\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Gui\MenuGui.h">
+      <Filter>Header Files\Gui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

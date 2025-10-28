@@ -9,18 +9,30 @@ Stage::Stage(SceneType startingScene, vec3 clearColor, string windowTitle)
 	this->changeScene(startingScene);
 }
 
+Stage::~Stage()
+{
+	delete scenes;
+	delete window;
+}
+
 void Stage::createScenes()
 {
 	this->scenes = new vector<Scene *>();
-	Scene *menuScene = new Scene();
-	Scene *gameScene = new Scene();
-	scenes->at(SceneType::MENU) = menuScene;
-	scenes->at(SceneType::GAME) = gameScene;
+	Scene *menuScene = new Scene(
+		new Mesh(),
+		new vector<IGameObject *>(),
+		new MenuGui());
+	Scene *gameScene = new Scene(
+		new Mesh(),
+		new vector<IGameObject *>(),
+		new GameGui());
+	scenes->at(static_cast<size_t>(SceneType::MENU)) = menuScene;
+	scenes->at(static_cast<size_t>(SceneType::GAME)) = gameScene;
 }
 
-void Stage::renderCurrentScene()
+void Stage::renderCurrentScene(double currentTime, double deltaTime)
 {
-	scenes->at(currentScene)->renderScene();
+	scenes->at(static_cast<size_t>(currentScene))->renderScene(currentTime, deltaTime);
 }
 
 void Stage::changeScene(SceneType nextScene)

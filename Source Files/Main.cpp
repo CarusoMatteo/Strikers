@@ -18,7 +18,7 @@ int main(void)
 	while (!stage->shouldWindowClose())
 	{
 		stage->drawClearColor();
-		stage->renderCurrentScene();
+		stage->renderCurrentScene(0.0, 0.0);
 		stage->swapBuffers();
 		stage->pollEvents();
 	}

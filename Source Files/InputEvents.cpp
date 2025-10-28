@@ -1,6 +1,6 @@
 #include "../Header Files/InputEvents.h"
 
-vector<bool> *InputEvents::inputEvents = new vector<bool>(static_cast<size_t>(InputEventsType::count), false);
+vector<bool> *InputEvents::inputEvents = new vector<bool>();
 
 void InputEvents::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {

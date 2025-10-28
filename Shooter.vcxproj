@@ -141,7 +141,9 @@
     <ClCompile Include="Source Files\Game Objects\IGameObject.cpp" />
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp" />
     <ClCompile Include="Source Files\glad.c" />
-    <ClCompile Include="Source Files\IGui.cpp" />
+    <ClCompile Include="Source Files\Gui\GameGui.cpp" />
+    <ClCompile Include="Source Files\Gui\IGui.cpp" />
+    <ClCompile Include="Source Files\Gui\MenuGui.cpp" />
     <ClCompile Include="Source Files\InputEvents.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
@@ -164,7 +166,9 @@
     <ClInclude Include="Header Files\Game Objects\Heart.h" />
     <ClInclude Include="Header Files\Game Objects\IGameObject.h" />
     <ClInclude Include="Header Files\Game Objects\Spaceship.h" />
-    <ClInclude Include="Header Files\IGui.h" />
+    <ClInclude Include="Header Files\Gui\GameGui.h" />
+    <ClInclude Include="Header Files\Gui\IGui.h" />
+    <ClInclude Include="Header Files\Gui\MenuGui.h" />
     <ClInclude Include="Header Files\InputEvents.h" />
     <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />

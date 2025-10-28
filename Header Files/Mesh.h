@@ -13,6 +13,8 @@ public:
 	Mesh() = default;
 	~Mesh() = default;
 
+	void render();
+
 private:
 	GLuint programId;
 	int numberOfTriangles;
