@@ -2,6 +2,6 @@
 
 enum SceneType
 {
-	MAIN_MENU,
+	MENU,
 	GAME
 };

@@ -8,6 +8,10 @@ public:
 	Window() = default;
 	~Window() = default;
 
+	bool shouldWindowClose();
+	void swapBuffers();
+	void pollEvents();
+
 private:
 	GLFWwindow *window;
 
