@@ -15,10 +15,13 @@ void MenuGui::drawGui()
 	// Disables the ini file saving/loading.
 	ImGui::GetIO().IniFilename = nullptr;
 
-	settingsWindow(10, 800);
+	settingsWindow(10, 10);
 
+	// Ends the ImGui frame declaration.
+	ImGui::End();
 	// Renders the ImGui frame
 	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void MenuGui::settingsWindow(float xpos, float ypos)
@@ -31,15 +34,12 @@ void MenuGui::settingsWindow(float xpos, float ypos)
 	ImGui::Begin("Impostazioni", NULL,
 				 ImGuiWindowFlags_NoResize |
 					 ImGuiWindowFlags_AlwaysAutoResize |
-					 ImGuiWindowFlags_NoBackground |
 					 ImGuiWindowFlags_NoMove);
 
 	// Editable background color.
-	ImGui::ColorEdit4("Colore di Sfondo", (float *)this->clearColorRef);
+	ImGui::ColorEdit3("Colore di Sfondo", (float *)this->clearColorRef);
 	// Shows mouse coordinates.
 	ImGui::Text("Coordinate Mouse relative alla finestra GLFW: (%.1f, %.1f)", mousePosition->x, mousePosition->y);
 	// Checkbox to toggle wireframe mode.
 	ImGui::Checkbox("Wireframe", Mesh::getIsWireframeRef());
-	// Ends the ImGui frame declaration.
-	ImGui::End();
 }
