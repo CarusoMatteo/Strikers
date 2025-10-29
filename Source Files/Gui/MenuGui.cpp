@@ -12,6 +12,8 @@ void MenuGui::drawGui()
 	ImGui_ImplOpenGL3_NewFrame();
 	// Starts a new recording for a ImGui frame
 	ImGui::NewFrame();
+	// Disables the ini file saving/loading.
+	ImGui::GetIO().IniFilename = nullptr;
 
 	settingsWindow(10, 800);
 

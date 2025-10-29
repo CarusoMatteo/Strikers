@@ -26,8 +26,8 @@ void Stage::createScenes()
 		new Mesh(),
 		new vector<IGameObject *>(),
 		new GameGui());
-	scenes->at(static_cast<size_t>(SceneType::MENU)) = menuScene;
-	scenes->at(static_cast<size_t>(SceneType::GAME)) = gameScene;
+	scenes->push_back(menuScene); // SceneType::MENU
+	scenes->push_back(gameScene); // SceneType::GAME
 }
 
 void Stage::renderCurrentScene(double currentTime, double deltaTime)

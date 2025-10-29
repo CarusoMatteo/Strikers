@@ -1,6 +1,6 @@
 #include "../Header Files/InputEvents.h"
 
-vector<bool> *InputEvents::buttonActions = new vector<bool>();
+vector<bool> *InputEvents::buttonActions = new vector<bool>(static_cast<size_t>(InputEventsType::count), false);
 dvec2 *InputEvents::cursorPosition = new dvec2(0.0);
 
 void InputEvents::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)

@@ -1,8 +1,11 @@
 #include "../Header Files/Window.h"
 
+#include <iostream>
+using namespace std;
+
 Window::Window(string windowTitle)
 {
-	this->initializeWindow(windowTitle, 0.95, 0.95);
+	this->initializeWindow(windowTitle, 0.8, 0.8);
 	this->initInputEvents();
 	this->initializeGui();
 	this->initOpenGL();
@@ -66,7 +69,7 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 	this->windowHeight = static_cast<int>(mode->height * monitorPercentageHeight);
 
 	// Create a window and its OpenGL context
-	this->window = glfwCreateWindow(this->windowHeight, this->windowWidth, windowTitle.c_str(), monitor, NULL);
+	this->window = glfwCreateWindow(this->windowWidth, this->windowHeight, windowTitle.c_str(), NULL, NULL);
 
 	if (!window)
 	{
