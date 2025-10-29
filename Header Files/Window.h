@@ -2,6 +2,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <stdexcept>
 #include <string>
 
@@ -11,6 +13,7 @@
 
 #include "InputEvents.h"
 
+using glm::mat4;
 using std::string;
 
 class Window
@@ -32,4 +35,5 @@ private:
 	void initInputEvents();
 	void initializeGui();
 	void initOpenGL();
+	glm::mat4 createProjectionMatrix() const;
 };

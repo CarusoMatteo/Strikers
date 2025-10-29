@@ -6,6 +6,13 @@ Window::Window(string windowTitle)
 	this->initInputEvents();
 	this->initializeGui();
 	this->initOpenGL();
+
+	Mesh::setProjectionMatrix(createProjectionMatrix());
+}
+
+glm::mat4 Window::createProjectionMatrix() const
+{
+	return ortho(0.0f, static_cast<float>(this->windowWidth), 0.0f, static_cast<float>(this->windowHeight));
 }
 
 Window::~Window()
@@ -87,6 +94,7 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 
 void Window::initInputEvents()
 {
+	InputEvents::setStartingWindowSize(this->windowWidth, this->windowHeight);
 	glfwSetKeyCallback(window, InputEvents::keyCallback);
 	glfwSetCursorPosCallback(window, InputEvents::cursorPositionCallback);
 	glfwSetFramebufferSizeCallback(window, InputEvents::framebufferSizeCallback);
