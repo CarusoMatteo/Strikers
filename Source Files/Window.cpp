@@ -74,6 +74,8 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 		throw std::runtime_error("Failed to create GLFW window");
 	}
 
+	glfwSetWindowAspectRatio(window, this->windowWidth, this->windowHeight);
+
 	/*
 	 * Creates the current context and associates it to window.
 	 * In OpenGL a rendering context is a state machine that stores all the necessary information and resources for graphic rendering.
@@ -94,10 +96,8 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 
 void Window::initInputEvents()
 {
-	InputEvents::setStartingWindowSize(this->windowWidth, this->windowHeight);
 	glfwSetKeyCallback(window, InputEvents::keyCallback);
 	glfwSetCursorPosCallback(window, InputEvents::cursorPositionCallback);
-	glfwSetFramebufferSizeCallback(window, InputEvents::framebufferSizeCallback);
 }
 
 void Window::initializeGui()

@@ -17,7 +17,6 @@ class InputEvents
 public:
 	static void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
 	static void cursorPositionCallback(GLFWwindow *window, double xpos, double ypos);
-	static void framebufferSizeCallback(GLFWwindow *window, int windowWidth, int windowHeight);
 	// Add more callbacks as needed here
 
 	static vector<bool> *getButtonActions()
@@ -28,16 +27,10 @@ public:
 	{
 		return cursorPosition;
 	}
-	static void setStartingWindowSize(int width, int height)
-	{
-		InputEvents::startingWindowSize = new fvec2(static_cast<float>(width), static_cast<float>(height));
-	}
 
 private:
 	static vector<bool> *buttonActions;
 	static dvec2 *cursorPosition;
-	// Starting [Width, Height] of window (and world).
-	static fvec2 *startingWindowSize;
 
 	InputEvents() = default;
 	~InputEvents() = default;
