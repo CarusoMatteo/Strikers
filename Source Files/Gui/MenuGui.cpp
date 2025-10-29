@@ -4,6 +4,13 @@ MenuGui::MenuGui(vec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
 {
 }
 
+MenuGui::~MenuGui()
+{
+	ImGui_ImplOpenGL3_Shutdown(); // Rilascia risorse renderer OpenGL3
+	ImGui_ImplGlfw_Shutdown();	  // Rilascia risorse integrazione GLFW
+	ImGui::DestroyContext();	  // Distrugge contesto ImGui liberando memoria
+}
+
 void MenuGui::drawGui()
 {
 	// Prepares a new frame for ImGui

@@ -9,7 +9,5 @@ using glm::vec4;
 class IGui
 {
 public:
-	virtual ~IGui() = default;
-
 	virtual void drawGui() = 0;
 };
