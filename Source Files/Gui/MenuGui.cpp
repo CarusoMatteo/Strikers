@@ -2,4 +2,5 @@
 
 void MenuGui::drawGui()
 {
+	// TODO: Method stub
 }

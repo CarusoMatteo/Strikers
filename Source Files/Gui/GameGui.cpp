@@ -2,4 +2,5 @@
 
 void GameGui::drawGui()
 {
+	// TODO: Method stub
 }
