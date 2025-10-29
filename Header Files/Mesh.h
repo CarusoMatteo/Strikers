@@ -18,6 +18,10 @@ public:
 	{
 		Mesh::projectionMatrix = projection;
 	}
+	static bool *getIsWireframeRef()
+	{
+		return &isWireframe;
+	}
 
 private:
 	GLuint programId;
@@ -26,6 +30,8 @@ private:
 	vector<vec4> *colors;
 	GLenum drawMode;
 	vec2 *screenSize;
+
+	static bool isWireframe;
 
 	static mat4 projectionMatrix;
 	GLint projectionMatrixUniformLocation;

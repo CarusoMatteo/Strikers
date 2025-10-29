@@ -21,7 +21,7 @@ void Stage::createScenes()
 	Scene *menuScene = new Scene(
 		new Mesh(),
 		new vector<IGameObject *>(),
-		new MenuGui());
+		new MenuGui(&this->clearColor));
 	Scene *gameScene = new Scene(
 		new Mesh(),
 		new vector<IGameObject *>(),
