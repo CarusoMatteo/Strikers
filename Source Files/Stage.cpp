@@ -19,11 +19,17 @@ void Stage::createScenes()
 {
 	this->scenes = new vector<Scene *>();
 	Scene *menuScene = new Scene(
-		new Mesh(),
+		new Mesh(
+			".\\Shader Files\\Background\\BackgroundVertex.glsl",
+			".\\Shader Files\\Background\\BackgroundVertex.glsl",
+			true),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
 	Scene *gameScene = new Scene(
-		new Mesh(),
+		new Mesh(
+			".\\Shader Files\\Background\\BackgroundVertex.glsl",
+			".\\Shader Files\\Background\\BackgroundVertex.glsl",
+			true),
 		new vector<IGameObject *>(),
 		new GameGui());
 	scenes->push_back(menuScene); // SceneType::MENU

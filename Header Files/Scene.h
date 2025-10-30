@@ -20,7 +20,7 @@ private:
 	vector<IGameObject *> *gameObjects;
 	IGui *gui;
 
-	void renderBackground();
+	void updateGameObjects(double currentTime, double deltaTime);
 	void renderGameObjects(double currentTime, double deltaTime);
 	void renderGui();
 };

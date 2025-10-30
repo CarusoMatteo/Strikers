@@ -5,7 +5,7 @@
 #include <GL/gl.h>
 #include <iostream>
 
-GLuint ShaderBuilder::buildShder(char *vertexfilename, char *fragmentfilename, bool shouldPrintLogs)
+GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmentfilename, bool shouldPrintLogs)
 {
 	int success;
 	char infoLog[512];
@@ -13,10 +13,13 @@ GLuint ShaderBuilder::buildShder(char *vertexfilename, char *fragmentfilename, b
 	// Create shader executables
 	// Read the Vertex Shader code
 	GLchar *VertexShader = ShaderBuilder::readShaderSource(vertexfilename);
-	// Print the VERTEX SHADER CODE to the console if requested
+	if (!VertexShader) {
+		throw new std::runtime_error("Failed to load vertex shader source code.");
+	}
+
 	if (shouldPrintLogs && VertexShader)
 	{
-		std::cout << VertexShader << std::endl;
+		std::cout << "Vertex shader \'" << vertexfilename << "\' loaded succesfully " << std::endl;
 	}
 
 	// Generate an identifier for the vertex shader
@@ -36,10 +39,12 @@ GLuint ShaderBuilder::buildShder(char *vertexfilename, char *fragmentfilename, b
 
 	// Read the Fragment Shader code
 	const GLchar *FragmentShader = ShaderBuilder::readShaderSource(fragmentfilename);
-	// Print the FRAGMENT SHADER CODE to the console if requested
+	if (!FragmentShader) {
+		throw new std::runtime_error("Failed to load vertex shader source code.");
+	}
 	if (shouldPrintLogs && FragmentShader)
 	{
-		std::cout << FragmentShader << std::endl;
+		std::cout << "Fragment shader \'" << vertexfilename << "\' loaded succesfully " << std::endl;
 	}
 
 	// Generate an identifier for the FRAGMENT shader
@@ -74,7 +79,7 @@ char *ShaderBuilder::readShaderSource(const char *shaderFile)
 
 	if (fp == NULL)
 	{
-		return NULL;
+		throw new std::runtime_error("Failed to open shader file.");
 	}
 
 	fseek(fp, 0L, SEEK_END);

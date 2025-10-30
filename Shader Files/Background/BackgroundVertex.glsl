@@ -7,8 +7,8 @@ layout (location = 1) in vec4 aColor;
 // Output a color to the fragment shader
 out vec4 ourColor;
 // Uniform, stays the same for every vertex of the primitive 
-uniform mat4 Projection;
-uniform mat4 Model;
+uniform mat4 projectionMatrix;
+uniform mat4 modelMatrix;
 
 void main()
 {
@@ -18,6 +18,6 @@ void main()
 	 * and subsequently projected into the cube centered at the origin with side length 2,
 	 * with x, y, z ranging from -1 to 1 (premultiplication by the Projection matrix)
 	 */
-	gl_Position = Projection * Model * vec4(aPos, 1.0);
+	gl_Position = projectionMatrix * modelMatrix * vec4(aPos, 1.0);
 	ourColor = aColor; // set ourColor to the input color we got from the vertex data
 }

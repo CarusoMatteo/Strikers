@@ -16,21 +16,25 @@ Scene::~Scene()
 
 void Scene::renderScene(double currentTime, double deltaTime)
 {
-	this->renderBackground();
+	this->updateGameObjects(currentTime, deltaTime);
+	this->backgroundMesh->render(0);
 	this->renderGameObjects(currentTime, deltaTime);
 	this->renderGui();
 }
 
-void Scene::renderBackground()
+void Scene::updateGameObjects(double currentTime, double deltaTime)
 {
-	this->backgroundMesh->render();
+	for (auto &&gameObject : *gameObjects)
+	{
+		gameObject->update(currentTime, deltaTime);
+	}
 }
 
 void Scene::renderGameObjects(double currentTime, double deltaTime)
 {
 	for (auto &&gameObject : *gameObjects)
 	{
-		gameObject->render(currentTime, deltaTime);
+		gameObject->render();
 	}
 }
 
