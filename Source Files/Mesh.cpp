@@ -7,20 +7,16 @@ bool Mesh::drawBoundingBox = false;
 Mesh::Mesh(string vertexShaderName,
 		   string fragmentShaderName,
 		   bool shouldPrintLogs,
-		   int numberOfTriangles,
 		   vector<fvec3> vertices,
 		   vector<fvec4> colors,
 		   GLenum drawMode,
 		   ivec2 screenSize,
 		   fvec3 scaleVector,
-		   mat4 modelMatrix,
-		   int numberOfPointsToDraw) : numberOfTriangles(numberOfTriangles),
-									   vertices(vertices), colors(colors),
-									   drawMode(drawMode),
-									   screenSize(screenSize),
-									   scaleVector(scaleVector),
-									   modelMatrix(modelMatrix),
-									   numberOfPointsToDraw(numberOfPointsToDraw)
+		   mat4 modelMatrix) : vertices(vertices), colors(colors),
+							   drawMode(drawMode),
+							   screenSize(screenSize),
+							   scaleVector(scaleVector),
+							   modelMatrix(modelMatrix)
 {
 	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
 	this->initBoundingBox();
@@ -48,7 +44,7 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 					 &this->screenSizeUniformLocation, this->screenSize,
 					 &this->currentTimeUniformLocation, currentTime,
 					 &this->scaleVector, rotationAngleDegrees,
-					 this->vaoAddress, this->drawMode, this->numberOfTriangles);
+					 this->vaoAddress, this->drawMode, this->vertices.size());
 }
 
 void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)

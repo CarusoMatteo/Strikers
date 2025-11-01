@@ -4,7 +4,6 @@ Mesh *MeshBuilder::buildPlane(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,
-	int numberOfTriangles,
 	ivec2 screenSize,
 	fvec3 scaleVector,
 	fvec4 colorTop,
@@ -26,14 +25,13 @@ Mesh *MeshBuilder::buildPlane(
 		vertexShaderName,
 		fragmentShaderName,
 		shouldPrintLogs,
-		numberOfTriangles,
 		vertices,
 		colors,
 		GL_TRIANGLE_FAN,
 		screenSize,
 		scaleVector,
-		modelMatrix,
-		vertices.size()); // TODO: Potrebbe essere sbagliato, perché il numero di punti da disegnare era il problema.
+		modelMatrix);
+	// TODO: Potrebbe essere sbagliato, perché il numero di punti da disegnare era il problema.
 	return mesh;
 }
 

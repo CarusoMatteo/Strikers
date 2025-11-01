@@ -24,7 +24,6 @@ void Stage::createScenes()
 			".\\Shader Files\\Default\\DefaultVertex.glsl",
 			".\\Shader Files\\Default\\DefaultFragment.glsl",
 			true,
-			2,
 			this->window->getWindowSize(),
 			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
 			fvec4(0, 0, 1, 1),

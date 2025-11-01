@@ -19,14 +19,12 @@ public:
 		string vertexShaderName,
 		string fragmentShaderName,
 		bool shouldPrintLogs,
-		int numberOfTriangles,
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		GLenum drawMode,
 		ivec2 screenSize,
 		fvec3 scaleVector,
-		mat4 modelMatrix,
-		int numberOfPointsToDraw);
+		mat4 modelMatrix);
 	~Mesh();
 
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
@@ -55,8 +53,6 @@ private:
 	static bool isWireframe;
 	static bool drawBoundingBox;
 
-	int numberOfPointsToDraw;
-
 	// Shader compilation information
 
 	GLuint programId;
@@ -64,7 +60,6 @@ private:
 	GLuint verticesVboAddress;
 	GLuint colorsVboAddress;
 
-	int numberOfTriangles;
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 

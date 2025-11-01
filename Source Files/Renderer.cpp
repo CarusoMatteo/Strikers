@@ -1,5 +1,8 @@
 #include "../Header Files/Renderer.h"
 
+#include <iostream>
+using namespace std;
+
 void Renderer::render(
 	unsigned int shaderProgramId,
 	GLuint *projectionMatrixUniformLocation,
@@ -12,11 +15,11 @@ void Renderer::render(
 	float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int numberOfTriangles)
+	int vertexCount)
 {
 	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, screenSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
-	Renderer::renderWithBoundingBox(vaoAddress, renderMode, numberOfTriangles);
+	Renderer::renderWithBoundingBox(vaoAddress, renderMode, vertexCount);
 
 	GLenum err = glGetError();
 	if (err != GL_NO_ERROR)
@@ -72,12 +75,12 @@ void Renderer::applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float r
 	 */
 }
 
-void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int numberOfPoints)
+void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int vertexCount)
 {
 	if (Mesh::shouldDrawWireframe())
 	{
 		// Draw in wireframe mode
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 	}
 	else
 	{
@@ -93,10 +96,10 @@ void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int n
 	 * starting from the first vertex (0), for (numVertices - 4) vertices in total
 	 * The subtraction of 4 is to exclude the vertices of the bounding box.
 	 */
-	glDrawArrays(renderMode, 0, numberOfPoints + 4);
+	glDrawArrays(renderMode, 0, vertexCount - 4);
 	if (Mesh::shouldDrawBoundingBox())
 	{
 		// Draw the bounding box with a line loop connecting the last 4 vertices
-		glDrawArrays(GL_LINE_LOOP, numberOfPoints +4, numberOfPoints +8);
+		glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);
 	}
 }
