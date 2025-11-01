@@ -47,7 +47,7 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 	}
 	if (shouldPrintLogs && FragmentShader)
 	{
-		std::cout << "Fragment shader \'" << vertexfilename << "\' loaded succesfully " << std::endl;
+		std::cout << "Fragment shader \'" << fragmentfilename << "\' loaded succesfully " << std::endl;
 	}
 
 	// Generate an identifier for the FRAGMENT shader

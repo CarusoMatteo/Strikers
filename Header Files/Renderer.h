@@ -24,7 +24,7 @@ public:
 					   float rotationAngleDegrees,
 					   GLuint vaoAddress,
 					   GLenum renderMode,
-					   int numberOfPoints);
+					   int numberOfTriangles);
 
 private:
 	Renderer() = default;
@@ -38,5 +38,5 @@ private:
 
 	static void applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float rotationAngleDegrees);
 
-	static void renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int numberOfPoints);
+	static void renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int numberOfTriangles);
 };

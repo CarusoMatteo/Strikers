@@ -4,11 +4,12 @@ Mesh *MeshBuilder::buildPlane(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,
-	int numberOfPoints,
+	int numberOfTriangles,
 	ivec2 screenSize,
 	fvec3 scaleVector,
 	fvec4 colorTop,
-	fvec4 colorBottom)
+	fvec4 colorBottom,
+	mat4 modelMatrix)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
@@ -25,11 +26,13 @@ Mesh *MeshBuilder::buildPlane(
 		vertexShaderName,
 		fragmentShaderName,
 		shouldPrintLogs,
-		numberOfPoints,
+		numberOfTriangles,
 		vertices,
 		colors,
 		GL_TRIANGLE_FAN,
-		screenSize, scaleVector);
+		screenSize,
+		scaleVector,
+		modelMatrix);
 	return mesh;
 }
 

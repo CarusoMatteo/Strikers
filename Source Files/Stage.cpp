@@ -22,14 +22,17 @@ void Stage::createScenes()
 	Scene *menuScene = new Scene(
 		MeshBuilder::buildPlane(
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			true, 2,
+			".\\Shader Files\\Background\\BackgroundFragment.glsl",
+			true,
+			2,
 			this->window->getWindowSize(),
-			fvec3(1.0f, 1.0f, 1.0f),
+			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
 			fvec4(0, 0, 1, 1),
-			fvec4(1, 1, 1, 1)),
+			fvec4(1, 1, 1, 1),
+			mat4(1.0f)),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
+	/*
 	Scene *gameScene = new Scene(
 		MeshBuilder::buildPlane(
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
@@ -41,14 +44,20 @@ void Stage::createScenes()
 			fvec4(1, 1, 1, 1)),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
+	*/
 
 	scenes->push_back(menuScene); // SceneType::MENU
-	scenes->push_back(gameScene); // SceneType::GAME
+								  // scenes->push_back(gameScene); // SceneType::GAME
 }
 
-void Stage::renderCurrentScene(double currentTime, double deltaTime)
+void Stage::updateGameObjects(double deltaTime)
 {
-	scenes->at(static_cast<size_t>(currentScene))->renderScene(currentTime, deltaTime);
+	scenes->at(static_cast<size_t>(currentScene))->updateGameObjects(deltaTime);
+}
+
+void Stage::renderCurrentScene(double currentTime)
+{
+	scenes->at(static_cast<size_t>(currentScene))->renderScene(currentTime);
 }
 
 void Stage::changeScene(SceneType nextScene)

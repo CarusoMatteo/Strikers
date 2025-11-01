@@ -15,12 +15,19 @@ int main(void)
 
 	Stage *stage = new Stage(startingScene, clearColor, windowTitle);
 
+	float lastFrameTime = 0.0f;
 	while (!stage->shouldWindowClose())
 	{
+		float currentTime = static_cast<float>(glfwGetTime());
+		float deltaTime = currentTime - lastFrameTime;
+
 		stage->drawClearColor();
-		stage->renderCurrentScene(0.0, 0.0);
+		stage->updateGameObjects(deltaTime);
+		stage->renderCurrentScene(currentTime);
 		stage->swapBuffers();
 		stage->pollEvents();
+
+		lastFrameTime = currentTime;
 	}
 
 	delete stage;

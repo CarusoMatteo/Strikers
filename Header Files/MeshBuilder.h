@@ -15,11 +15,12 @@ public:
 	static Mesh *buildPlane(string vertexShaderName,
 							string fragmentShaderName,
 							bool shouldPrintLogs,
-							int numberOfPoints,
+							int numberOfTriangles,
 							ivec2 screenSize,
 							fvec3 scaleVector,
 							fvec4 colorTop,
-							fvec4 colorBottom);
+							fvec4 colorBottom,
+							mat4 modelMatrix);
 	/*
 	static Mesh *buildTriangle();
 	static Mesh *buildTriangle();

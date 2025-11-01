@@ -19,15 +19,16 @@ public:
 		string vertexShaderName,
 		string fragmentShaderName,
 		bool shouldPrintLogs,
-		int numberOfPoints,
+		int numberOfTriangles,
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		GLenum drawMode,
 		ivec2 screenSize,
-		fvec3 scaleVector);
+		fvec3 scaleVector,
+		mat4 modelMatrix);
 	~Mesh();
 
-	void render(float rotationAngleDegrees, float timeElapsed);
+	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	static void setProjectionMatrix(mat4 projection)
 	{
 		Mesh::projectionMatrix = projection;
@@ -58,7 +59,7 @@ private:
 	GLuint verticesVboAddress;
 	GLuint colorsVboAddress;
 
-	int numberOfPoints;
+	int numberOfTriangles;
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 
@@ -74,17 +75,19 @@ private:
 
 	fvec3 scaleVector;
 
-	GLuint timeElapsedUniformLocation;
+	GLuint currentTimeUniformLocation;
 	GLuint screenSizeUniformLocation;
 
-	vec4 boundingBoxMinObject;
-	vec4 boundingBoxMaxObject;
-	vec4 boundingBoxMinWorld;
-	vec4 boundingBoxMaxWorld;
+	fvec4 boundingBoxMinObject;
+	fvec4 boundingBoxMaxObject;
+	fvec4 boundingBoxMinWorld;
+	fvec4 boundingBoxMaxWorld;
 
 	void buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs);
 	void initVao();
 	void initVbos();
 	void initUniformReferences();
 	void initBoundingBox();
+
+	void updateBoundingBoxWorld();
 };

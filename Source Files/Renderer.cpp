@@ -12,11 +12,11 @@ void Renderer::render(
 	float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int numberOfPoints)
+	int numberOfTriangles)
 {
 	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, screenSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
-	Renderer::renderWithBoundingBox(vaoAddress, renderMode, numberOfPoints);
+	Renderer::renderWithBoundingBox(vaoAddress, renderMode, numberOfTriangles);
 }
 
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
@@ -34,10 +34,10 @@ void Renderer::renderWithUniforms(unsigned int shaderProgramId,
 	glUniformMatrix4fv(*modelMatrixUniformLocation, 1, GL_FALSE, value_ptr(*modelMatrix));
 
 	// if (resolution.x > 0.0f && resolution.y > 0.0f) Should always be valid?
-	// Pass the resolution to the "iResolution" uniform
+	// Pass the resolution to the "screenSize" uniform
 	glUniform2f(*screenSizeUniformLocation, screenSize.x, screenSize.y);
 
-	// Pass the current time to the "iTime" uniform
+	// Pass the current time to the "currentTime" uniform
 	// if (currentTime > 0.0f)
 	glUniform1f(*currentTimeUniformLocation, currentTime);
 }
