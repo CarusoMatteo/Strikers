@@ -101,6 +101,7 @@ void Window::initInputEvents()
 {
 	glfwSetKeyCallback(window, InputEvents::keyCallback);
 	glfwSetCursorPosCallback(window, InputEvents::cursorPositionCallback);
+	glfwSetFramebufferSizeCallback(window, InputEvents::framebufferSizeCallback);
 }
 
 void Window::initializeGui()

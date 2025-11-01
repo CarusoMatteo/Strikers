@@ -63,3 +63,7 @@ void InputEvents::cursorPositionCallback(GLFWwindow *window, double xpos, double
 	// Invert y-coordinate to match OpenGL's coordinate system
 	InputEvents::cursorPosition->y = height - ypos;
 }
+
+void InputEvents::framebufferSizeCallback(GLFWwindow *window, int width, int height)
+{
+}
