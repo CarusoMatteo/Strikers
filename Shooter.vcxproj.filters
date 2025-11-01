@@ -111,6 +111,9 @@
     <ClCompile Include="Source Files\MeshBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Game Objects\Background.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h">
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="Header Files\MeshBuilder.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Game Objects\Background.h">
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

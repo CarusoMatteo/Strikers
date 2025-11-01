@@ -1,15 +1,12 @@
 #include "../Header Files/Scene.h"
 
-Scene::Scene(Mesh *backgroundMesh, vector<IGameObject *> *gameObjects, IGui *gui)
+Scene::Scene(Background *background, vector<IGameObject *> *gameObjects, IGui *gui) : background(background), gameObjects(gameObjects), gui(gui)
 {
-	this->backgroundMesh = backgroundMesh;
-	this->gameObjects = gameObjects;
-	this->gui = gui;
 }
 
 Scene::~Scene()
 {
-	delete this->backgroundMesh;
+	delete this->background;
 	delete this->gameObjects;
 	delete this->gui;
 }
@@ -24,7 +21,7 @@ void Scene::updateGameObjects(float deltaTime)
 
 void Scene::renderScene(float currentTime)
 {
-	this->backgroundMesh->render(currentTime);
+	this->background->render(currentTime);
 	this->renderGameObjects(currentTime);
 	this->renderGui();
 }

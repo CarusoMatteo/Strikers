@@ -3,6 +3,7 @@
 #include <vector>
 #include "Mesh.h"
 #include "./Game Objects/IGameObject.h"
+#include "./Game Objects/Background.h"
 #include "./Gui/IGui.h"
 
 using std::vector;
@@ -10,14 +11,14 @@ using std::vector;
 class Scene
 {
 public:
-	Scene(Mesh *backgroundMesh, vector<IGameObject *> *gameObjects, IGui *gui);
+	Scene(Background *background, vector<IGameObject *> *gameObjects, IGui *gui);
 	~Scene();
 
 	void updateGameObjects(float deltaTime);
 	void renderScene(float currentTime);
 
 private:
-	Mesh *backgroundMesh;
+	Background *background;
 	vector<IGameObject *> *gameObjects;
 	IGui *gui;
 
