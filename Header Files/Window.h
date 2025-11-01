@@ -25,6 +25,12 @@ public:
 	bool shouldWindowClose();
 	void swapBuffers();
 	void pollEvents();
+	ivec2 getWindowSize()
+	{
+		int currentWidth, currentHeight;
+		glfwGetWindowSize(this->window, &currentWidth, &currentHeight);
+		return ivec2(this->windowWidth, this->windowHeight);
+	}
 
 private:
 	GLFWwindow *window;

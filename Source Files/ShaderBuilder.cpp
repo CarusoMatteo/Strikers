@@ -13,7 +13,8 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 	// Create shader executables
 	// Read the Vertex Shader code
 	GLchar *VertexShader = ShaderBuilder::readShaderSource(vertexfilename);
-	if (!VertexShader) {
+	if (!VertexShader)
+	{
 		throw new std::runtime_error("Failed to load vertex shader source code.");
 	}
 
@@ -35,11 +36,13 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 		glGetShaderInfoLog(vertexShaderId, 512, NULL, infoLog);
 		std::cout << "Error: Vertex shader compilation failed.\n"
 				  << infoLog << std::endl;
+		throw new std::runtime_error("Vertex shader compilation failed.");
 	}
 
 	// Read the Fragment Shader code
 	const GLchar *FragmentShader = ShaderBuilder::readShaderSource(fragmentfilename);
-	if (!FragmentShader) {
+	if (!FragmentShader)
+	{
 		throw new std::runtime_error("Failed to load vertex shader source code.");
 	}
 	if (shouldPrintLogs && FragmentShader)
@@ -59,6 +62,7 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 		glGetShaderInfoLog(fragmentShaderId, 512, NULL, infoLog);
 		std::cout << "Error: Fragment shader compilation failed.\n"
 				  << infoLog << std::endl;
+		throw new std::runtime_error("Fragment shader compilation failed.");
 	}
 
 	// Create an identifier for a program and attach the two compiled shaders to it

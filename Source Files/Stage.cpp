@@ -18,20 +18,30 @@ Stage::~Stage()
 void Stage::createScenes()
 {
 	this->scenes = new vector<Scene *>();
+
 	Scene *menuScene = new Scene(
-		new Mesh(
+		MeshBuilder::buildPlane(
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			true),
+			true, 2,
+			this->window->getWindowSize(),
+			fvec3(1.0f, 1.0f, 1.0f),
+			fvec4(0, 0, 1, 1),
+			fvec4(1, 1, 1, 1)),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
 	Scene *gameScene = new Scene(
-		new Mesh(
+		MeshBuilder::buildPlane(
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
 			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			true),
+			true, 2,
+			this->window->getWindowSize(),
+			fvec3(1.0f, 1.0f, 1.0f),
+			fvec4(0, 0, 1, 1),
+			fvec4(1, 1, 1, 1)),
 		new vector<IGameObject *>(),
-		new GameGui());
+		new MenuGui(&this->clearColor));
+
 	scenes->push_back(menuScene); // SceneType::MENU
 	scenes->push_back(gameScene); // SceneType::GAME
 }

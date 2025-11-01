@@ -9,6 +9,7 @@
 #include "Scene.h"
 #include "SceneType.h"
 #include "Window.h"
+#include "MeshBuilder.h"
 
 using glm::vec4;
 using std::string;

@@ -2,9 +2,19 @@
 
 glm::mat4 Mesh::projectionMatrix;
 bool Mesh::isWireframe = false;
+bool Mesh::drawBoundingBox = false;
 
-Mesh::Mesh(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
+Mesh::Mesh(string vertexShaderName,
+		   string fragmentShaderName,
+		   bool shouldPrintLogs,
+		   int numberOfPoints,
+		   vector<fvec3> vertices,
+		   vector<fvec4> colors,
+		   GLenum drawMode,
+		   ivec2 screenSize,
+		   fvec3 scaleVector) : numberOfPoints(numberOfPoints), vertices(vertices), colors(colors), drawMode(drawMode), screenSize(screenSize), scaleVector(scaleVector)
 {
+	this->initBoundingBox();
 	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
 	this->initVao();
 	this->initVbos();
@@ -19,12 +29,13 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &this->vaoAddress);
 }
 
-void Mesh::render(float rotationAngleDegrees)
+void Mesh::render(float rotationAngleDegrees, float timeElapsed)
 {
-	// TODO: Mehod stub
 	Renderer::render(this->programId,
-					 this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
-					 this->modelMatrixUniformLocation, &this->modelMatrix, this->screenSize,
+					 &this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
+					 &this->modelMatrixUniformLocation, &this->modelMatrix,
+					 &this->screenSizeUniformLocation, this->screenSize,
+					 &this->timeElapsedUniformLocation, timeElapsed,
 					 &this->scaleVector, rotationAngleDegrees,
 					 this->vaoAddress, this->drawMode, this->numberOfPoints);
 }
@@ -64,6 +75,11 @@ void Mesh::initUniformReferences()
 	this->projectionMatrixUniformLocation = glGetUniformLocation(this->programId, "projectionMatrix");
 	this->modelMatrixUniformLocation = glGetUniformLocation(this->programId, "modelMatrix");
 
-	// this->timeElapsedUniformLocation = glGetUniformLocation(this->programId, "iResolution");
-	// this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "iTime");
+	this->timeElapsedUniformLocation = glGetUniformLocation(this->programId, "timeElapsed");
+	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "screenSize");
+}
+
+void Mesh::initBoundingBox()
+{
+	// TODO: Method stub
 }

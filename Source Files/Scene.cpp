@@ -16,8 +16,9 @@ Scene::~Scene()
 
 void Scene::renderScene(double currentTime, double deltaTime)
 {
+	// TODO: Update time logic
 	this->updateGameObjects(currentTime, deltaTime);
-	this->backgroundMesh->render(0);
+	this->backgroundMesh->render(0, currentTime);
 	this->renderGameObjects(currentTime, deltaTime);
 	this->renderGui();
 }

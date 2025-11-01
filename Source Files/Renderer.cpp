@@ -1,49 +1,53 @@
 #include "../Header Files/Renderer.h"
 
-double Renderer::lastFrameTime = 0.0;
-
-// TODO: Define methods
-
-void Renderer::render(unsigned int shaderProgramId,
-					  GLuint projectionMatrixUniformLocation, mat4 *projectionMatrix,
-					  GLuint modelMatrixUniformLocation, mat4 *modelMatrix,
-					  vec2 resolution,
-					  vec3 *scaleVector, float rotationAngleDegrees,
-					  GLuint vaoAddress, GLenum renderMode, int numberOfPoints)
+void Renderer::render(
+	unsigned int shaderProgramId,
+	GLuint *projectionMatrixUniformLocation,
+	mat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation,
+	mat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 screenSize,
+	GLuint *currentTimeUniformLocation, float currentTime,
+	vec3 *scaleVector,
+	float rotationAngleDegrees,
+	GLuint vaoAddress,
+	GLenum renderMode,
+	int numberOfPoints)
 {
-	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, resolution);
+	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, screenSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
 	Renderer::renderWithBoundingBox(vaoAddress, renderMode, numberOfPoints);
 }
 
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
-								  GLuint projectionMatrixUniformLocation, mat4 *projectionMatrix,
-								  GLuint modelMatrixUniformLocation, mat4 *modelMatrix,
-								  vec2 resolution)
+								  GLuint *projectionMatrixUniformLocation, mat4 *projectionMatrix,
+								  GLuint *modelMatrixUniformLocation, mat4 *modelMatrix,
+								  GLuint *screenSizeUniformLocation, fvec2 screenSize,
+								  GLuint *currentTimeUniformLocation, float currentTime)
 {
 	// Enable selected shader program
 	glUseProgram(shaderProgramId);
 
 	// Pass the projection matrix to the "projectionMatrix" uniform
-	glUniformMatrix4fv(projectionMatrixUniformLocation, 1, GL_FALSE, value_ptr(*projectionMatrix));
+	glUniformMatrix4fv(*projectionMatrixUniformLocation, 1, GL_FALSE, value_ptr(*projectionMatrix));
 	// Pass the model matrix to the "modelMatrix" uniform
-	glUniformMatrix4fv(modelMatrixUniformLocation, 1, GL_FALSE, value_ptr(*modelMatrix));
+	glUniformMatrix4fv(*modelMatrixUniformLocation, 1, GL_FALSE, value_ptr(*modelMatrix));
 
 	// if (resolution.x > 0.0f && resolution.y > 0.0f) Should always be valid?
 	// Pass the resolution to the "iResolution" uniform
-	// glUniform2f(glGetUniformLocation(shaderProgramId, "iResolution"), resolution.x, resolution.y);
+	glUniform2f(*screenSizeUniformLocation, screenSize.x, screenSize.y);
 
 	// Pass the current time to the "iTime" uniform
 	// if (currentTime > 0.0f)
-	// glUniform1f(glGetUniformLocation(shaderProgramId, "iTime"), currentTime);
+	glUniform1f(*currentTimeUniformLocation, currentTime);
 }
 
 void Renderer::applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float rotationAngleDegrees)
 {
-	modelMatrix = new mat4(1.0f);
-	modelMatrix = &translate(*modelMatrix, fvec3(0));
-	modelMatrix = &rotate(*modelMatrix, glm::radians(rotationAngleDegrees), fvec3(0, 0, 1));
-	modelMatrix = &scale(*modelMatrix, *scaleVector);
+	*modelMatrix = mat4(1.0f);
+	*modelMatrix = translate(*modelMatrix, fvec3(0));
+	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationAngleDegrees), fvec3(0, 0, 1));
+	*modelMatrix = scale(*modelMatrix, *scaleVector);
 
 	/*
 	 * // Se richiesto, restituisce matrice senza scala tramite puntatore

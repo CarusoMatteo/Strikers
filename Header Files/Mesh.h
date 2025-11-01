@@ -15,10 +15,19 @@ using namespace glm;
 class Mesh
 {
 public:
-	Mesh(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs);
+	Mesh(
+		string vertexShaderName,
+		string fragmentShaderName,
+		bool shouldPrintLogs,
+		int numberOfPoints,
+		vector<fvec3> vertices,
+		vector<fvec4> colors,
+		GLenum drawMode,
+		ivec2 screenSize,
+		fvec3 scaleVector);
 	~Mesh();
 
-	void render(float rotationAngleDegrees);
+	void render(float rotationAngleDegrees, float timeElapsed);
 	static void setProjectionMatrix(mat4 projection)
 	{
 		Mesh::projectionMatrix = projection;
@@ -49,34 +58,33 @@ private:
 	GLuint verticesVboAddress;
 	GLuint colorsVboAddress;
 
-	/// @brief Position in world space.
-	vec3 position;
 	int numberOfPoints;
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 
 	GLenum drawMode;
-	vec2 screenSize;
+	ivec2 screenSize;
 
 	/// @brief Projection matrix to place object in world space.
 	static mat4 projectionMatrix;
-	GLint projectionMatrixUniformLocation;
+	GLuint projectionMatrixUniformLocation;
 
 	mat4 modelMatrix;
-	GLint modelMatrixUniformLocation;
+	GLuint modelMatrixUniformLocation;
 
-	vec3 scaleVector;
+	fvec3 scaleVector;
 
-	// GLint timeElapsedUniformLocation;
-	// GLint screenSizeUniformLocation;
+	GLuint timeElapsedUniformLocation;
+	GLuint screenSizeUniformLocation;
 
 	vec4 boundingBoxMinObject;
 	vec4 boundingBoxMaxObject;
 	vec4 boundingBoxMinWorld;
 	vec4 boundingBoxMaxWorld;
 
-	void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs);
-	void Mesh::initVao();
-	void Mesh::initVbos();
-	void Mesh::initUniformReferences();
+	void buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs);
+	void initVao();
+	void initVbos();
+	void initUniformReferences();
+	void initBoundingBox();
 };

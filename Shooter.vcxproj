@@ -147,6 +147,7 @@
     <ClCompile Include="Source Files\InputEvents.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
+    <ClCompile Include="Source Files\MeshBuilder.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
     <ClCompile Include="Source Files\Scene.cpp" />
     <ClCompile Include="Source Files\ShaderBuilder.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Header Files\InputEvents.h" />
     <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />
+    <ClInclude Include="Header Files\MeshBuilder.h" />
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scene.h" />
     <ClInclude Include="Header Files\SceneType.h" />

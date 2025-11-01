@@ -2,8 +2,8 @@
 
 out vec4 FragColor;
 
-uniform vec2 iResolution; // Risoluzione della finestra
-uniform float iTime;	  // Tempo trascorso, per animazione
+uniform vec2 screenSize;   // Risoluzione della finestra
+uniform float timeElapsed; // Tempo trascorso, per animazione
 
 // Funzione hash semplice per randomizzare posizione orizzontale
 float hash(float n)
@@ -14,7 +14,7 @@ float hash(float n)
 void main()
 {
 	// Normalizza coordinate schermo (0,0 in basso a sinistra)
-	vec2 uv = gl_FragCoord.xy / iResolution.xy;
+	vec2 uv = gl_FragCoord.xy / screenSize.xy;
 
 	// Parametri della pioggia
 	float speed = 1;
@@ -33,7 +33,7 @@ void main()
 		float y = hash(float(i) * 12.9898);
 
 		// Offset verticale in base al tempo (goccia che scorre verso il basso)
-		float x = mod(iTime * speed + hash(float(i) * 78.233), 1.0);
+		float x = mod(timeElapsed * speed + hash(float(i) * 78.233), 1.0);
 
 		// Calcolo distanza orizzontale dal pixel corrente alla posizione della goccia
 		float xDist = abs(uv.x - x);
