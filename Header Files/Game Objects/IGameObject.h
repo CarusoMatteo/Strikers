@@ -11,8 +11,8 @@ class IGameObject
 public:
 	virtual ~IGameObject() = default;
 
-	virtual void update(double deltaTime) = 0;
-	virtual void render(double currentTime) = 0;
+	virtual void update(float deltaTime) = 0;
+	virtual void render(float currentTime) = 0;
 
 protected:
 	vec4 position;

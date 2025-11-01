@@ -14,7 +14,7 @@ Scene::~Scene()
 	delete this->gui;
 }
 
-void Scene::updateGameObjects(double deltaTime)
+void Scene::updateGameObjects(float deltaTime)
 {
 	for (auto &&gameObject : *gameObjects)
 	{
@@ -22,14 +22,14 @@ void Scene::updateGameObjects(double deltaTime)
 	}
 }
 
-void Scene::renderScene(double currentTime)
+void Scene::renderScene(float currentTime)
 {
 	this->backgroundMesh->render(currentTime);
 	this->renderGameObjects(currentTime);
 	this->renderGui();
 }
 
-void Scene::renderGameObjects(double currentTime)
+void Scene::renderGameObjects(float currentTime)
 {
 	for (auto &&gameObject : *gameObjects)
 	{

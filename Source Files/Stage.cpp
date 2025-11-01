@@ -49,12 +49,12 @@ void Stage::createScenes()
 								  // scenes->push_back(gameScene); // SceneType::GAME
 }
 
-void Stage::updateGameObjects(double deltaTime)
+void Stage::updateGameObjects(float deltaTime)
 {
 	scenes->at(static_cast<size_t>(currentScene))->updateGameObjects(deltaTime);
 }
 
-void Stage::renderCurrentScene(double currentTime)
+void Stage::renderCurrentScene(float currentTime)
 {
 	scenes->at(static_cast<size_t>(currentScene))->renderScene(currentTime);
 }

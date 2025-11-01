@@ -44,7 +44,7 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 					 &this->screenSizeUniformLocation, this->screenSize,
 					 &this->currentTimeUniformLocation, currentTime,
 					 &this->scaleVector, rotationAngleDegrees,
-					 this->vaoAddress, this->drawMode, this->vertices.size());
+					 this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 
 void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
@@ -88,7 +88,7 @@ void Mesh::initUniformReferences()
 
 void Mesh::initBoundingBox()
 {
-	int n = this->vertices.size();
+	int n = static_cast<int>(this->vertices.size());
 	float minx = this->vertices[0].x; // Assumiamo che il primo elemento sia il minimo iniziale
 	float miny = this->vertices[0].y; // Assumiamo che il primo elemento sia il minimo iniziale
 

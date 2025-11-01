@@ -13,14 +13,14 @@ public:
 	Scene(Mesh *backgroundMesh, vector<IGameObject *> *gameObjects, IGui *gui);
 	~Scene();
 
-	void updateGameObjects(double deltaTime);
-	void renderScene(double currentTime);
+	void updateGameObjects(float deltaTime);
+	void renderScene(float currentTime);
 
 private:
 	Mesh *backgroundMesh;
 	vector<IGameObject *> *gameObjects;
 	IGui *gui;
 
-	void renderGameObjects(double currentTime);
+	void renderGameObjects(float currentTime);
 	void renderGui();
 };

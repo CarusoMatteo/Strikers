@@ -21,8 +21,8 @@ public:
 	Stage(SceneType startingScene, vec3 clearColor, string windowTitle);
 	~Stage();
 
-	void updateGameObjects(double deltaTime);
-	void renderCurrentScene(double currentTime);
+	void updateGameObjects(float deltaTime);
+	void renderCurrentScene(float currentTime);
 	void changeScene(SceneType nextScene);
 	void drawClearColor() const;
 
