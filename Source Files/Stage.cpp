@@ -21,8 +21,8 @@ void Stage::createScenes()
 
 	Scene *menuScene = new Scene(
 		MeshBuilder::buildPlane(
-			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			".\\Shader Files\\Background\\BackgroundFragment.glsl",
+			".\\Shader Files\\Default\\DefaultVertex.glsl",
+			".\\Shader Files\\Default\\DefaultFragment.glsl",
 			true,
 			2,
 			this->window->getWindowSize(),

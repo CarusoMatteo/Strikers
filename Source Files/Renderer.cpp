@@ -17,6 +17,13 @@ void Renderer::render(
 	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, screenSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
 	Renderer::renderWithBoundingBox(vaoAddress, renderMode, numberOfTriangles);
+
+	GLenum err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		std::cout << "GL Error: " << err << std::endl;
+		throw std::runtime_error("OpenGL error occurred during rendering.");
+	}
 }
 
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
@@ -86,10 +93,10 @@ void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int n
 	 * starting from the first vertex (0), for (numVertices - 4) vertices in total
 	 * The subtraction of 4 is to exclude the vertices of the bounding box.
 	 */
-	glDrawArrays(renderMode, 0, numberOfPoints - 4);
+	glDrawArrays(renderMode, 0, numberOfPoints + 4);
 	if (Mesh::shouldDrawBoundingBox())
 	{
 		// Draw the bounding box with a line loop connecting the last 4 vertices
-		glDrawArrays(GL_LINE_LOOP, numberOfPoints - 4, 4);
+		glDrawArrays(GL_LINE_LOOP, numberOfPoints +4, numberOfPoints +8);
 	}
 }

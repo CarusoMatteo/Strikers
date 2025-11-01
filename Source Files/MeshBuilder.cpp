@@ -32,7 +32,8 @@ Mesh *MeshBuilder::buildPlane(
 		GL_TRIANGLE_FAN,
 		screenSize,
 		scaleVector,
-		modelMatrix);
+		modelMatrix,
+		vertices.size()); // TODO: Potrebbe essere sbagliato, perché il numero di punti da disegnare era il problema.
 	return mesh;
 }
 

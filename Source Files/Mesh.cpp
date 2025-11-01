@@ -13,12 +13,14 @@ Mesh::Mesh(string vertexShaderName,
 		   GLenum drawMode,
 		   ivec2 screenSize,
 		   fvec3 scaleVector,
-		   mat4 modelMatrix) : numberOfTriangles(numberOfTriangles),
-							   vertices(vertices), colors(colors),
-							   drawMode(drawMode),
-							   screenSize(screenSize),
-							   scaleVector(scaleVector),
-							   modelMatrix(modelMatrix)
+		   mat4 modelMatrix,
+		   int numberOfPointsToDraw) : numberOfTriangles(numberOfTriangles),
+									   vertices(vertices), colors(colors),
+									   drawMode(drawMode),
+									   screenSize(screenSize),
+									   scaleVector(scaleVector),
+									   modelMatrix(modelMatrix),
+									   numberOfPointsToDraw(numberOfPointsToDraw)
 {
 	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
 	this->initBoundingBox();
@@ -121,6 +123,16 @@ void Mesh::initBoundingBox()
 
 	this->boundingBoxMinObject = fvec4(minx, miny, 0.0, 1.0);
 	this->boundingBoxMaxObject = fvec4(maxx, maxy, 0.0, 1.0);
+
+	// Add bounding box vertices to the vertices vector
+	this->vertices.push_back(vec3(this->boundingBoxMinObject.x, this->boundingBoxMinObject.y, 0.0));
+	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(vec3(this->boundingBoxMaxObject.x, this->boundingBoxMinObject.y, 0.0));
+	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(vec3(this->boundingBoxMaxObject.x, this->boundingBoxMaxObject.y, 0.0));
+	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(vec3(this->boundingBoxMinObject.x, this->boundingBoxMaxObject.y, 0.0));
+	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
 }
 
 void Mesh::updateBoundingBoxWorld()

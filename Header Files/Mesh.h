@@ -25,15 +25,14 @@ public:
 		GLenum drawMode,
 		ivec2 screenSize,
 		fvec3 scaleVector,
-		mat4 modelMatrix);
+		mat4 modelMatrix,
+		int numberOfPointsToDraw);
 	~Mesh();
 
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	static void setProjectionMatrix(mat4 projection)
 	{
 		Mesh::projectionMatrix = projection;
-		// TODO?
-		// Mesh::projectionMatrixUniformLocation = glGetUniformLocation(0, "projectionMatrix");
 	}
 	static bool *getIsWireframeRef()
 	{
@@ -43,6 +42,10 @@ public:
 	{
 		return isWireframe;
 	}
+	static bool *shouldDrawBoundingBoxRef()
+	{
+		return &drawBoundingBox;
+	}
 	static bool shouldDrawBoundingBox()
 	{
 		return drawBoundingBox;
@@ -51,6 +54,8 @@ public:
 private:
 	static bool isWireframe;
 	static bool drawBoundingBox;
+
+	int numberOfPointsToDraw;
 
 	// Shader compilation information
 
