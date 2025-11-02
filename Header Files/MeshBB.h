@@ -23,6 +23,7 @@ public:
 		vector<fvec4> colors,
 		GLenum drawMode,
 		ivec2 screenSize,
+		fvec3 position,
 		fvec3 scaleVector,
 		fmat4 modelMatrix);
 	~MeshBB();
@@ -78,6 +79,7 @@ private:
 	fmat4 modelMatrix;
 	GLuint modelMatrixUniformLocation;
 
+	fvec3 position;
 	fvec3 scaleVector;
 
 	GLuint currentTimeUniformLocation;

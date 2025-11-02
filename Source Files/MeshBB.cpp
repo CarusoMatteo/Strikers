@@ -11,12 +11,15 @@ MeshBB::MeshBB(string vertexShaderName,
 			   vector<fvec4> colors,
 			   GLenum drawMode,
 			   ivec2 windowSize,
+			   fvec3 position,
 			   fvec3 scaleVector,
-			   fmat4 modelMatrix) : vertices(vertices), colors(colors),
-								   drawMode(drawMode),
-								   windowSize(windowSize),
-								   scaleVector(scaleVector),
-								   modelMatrix(modelMatrix)
+			   fmat4 modelMatrix) : vertices(vertices),
+									colors(colors),
+									drawMode(drawMode),
+									windowSize(windowSize),
+									position(position),
+									scaleVector(scaleVector),
+									modelMatrix(modelMatrix)
 {
 	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
 	this->initBoundingBox();
@@ -40,7 +43,7 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 					 &this->modelMatrixUniformLocation, &this->modelMatrix,
 					 &this->screenSizeUniformLocation, this->windowSize,
 					 &this->currentTimeUniformLocation, currentTime,
-					 &this->scaleVector, rotationAngleDegrees,
+					 &this->position, &this->scaleVector, rotationAngleDegrees,
 					 this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 

@@ -5,6 +5,7 @@ MeshBB *MeshBuilder::buildPlane(
 	string fragmentShaderName,
 	bool shouldPrintLogs,
 	ivec2 windowSize,
+	fvec3 position,
 	fvec3 scaleVector,
 	fvec4 colorBottomLeft,
 	fvec4 colorBottomRight,
@@ -31,6 +32,7 @@ MeshBB *MeshBuilder::buildPlane(
 		colors,
 		GL_TRIANGLE_FAN,
 		windowSize,
+		position,
 		scaleVector,
 		modelMatrix);
 }
@@ -43,6 +45,7 @@ MeshBB *MeshBuilder::buildHeart(
 	fvec2 center,
 	fvec2 radius,
 	ivec2 windowSize,
+	fvec3 position,
 	fvec3 scaleVector,
 	fvec4 colorCenter,
 	fvec4 colorBorder,
@@ -73,6 +76,7 @@ MeshBB *MeshBuilder::buildHeart(
 		colors,
 		GL_TRIANGLE_FAN,
 		windowSize,
+		position,
 		scaleVector,
 		modelMatrix);
 }

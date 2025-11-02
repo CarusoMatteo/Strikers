@@ -24,13 +24,27 @@ void Stage::createScenes()
 			".\\Shader Files\\Background\\BackgroundFragment.glsl",
 			true,
 			this->window->getWindowSize(),
+			fvec3(0, 0, 0),
 			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
 			fvec4(1, 0, 0, 1),
 			fvec4(0, 1, 0, 1),
 			fvec4(0, 0, 1, 1),
 			fvec4(1, 1, 1, 1),
 			fmat4(1.0f))),
-		new vector<IGameObject *>(),
+		new vector<IGameObject *>{new Heart(
+			MeshBuilder::buildHeart(
+				".\\Shader Files\\Heart\\HeartVertex.glsl",
+				".\\Shader Files\\Heart\\HeartFragment.glsl",
+				true,
+				100,
+				fvec2(0, 0),
+				fvec2(0.5f, 0.5f),
+				this->window->getWindowSize(),
+				fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0.0),
+				fvec3(10, 10, 1),
+				fvec4(1, 0, 0, 1),
+				fvec4(0.5f, 0, 0, 1),
+				fmat4(1)))},
 		new MenuGui(&this->clearColor));
 
 	scenes.at(static_cast<size_t>(SceneType::GAME)) = std::make_unique<Scene>(
@@ -39,6 +53,7 @@ void Stage::createScenes()
 			".\\Shader Files\\Default\\DefaultFragment.glsl",
 			true,
 			this->window->getWindowSize(),
+			fvec3(0, 0, 0),
 			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
 			fvec4(1, 1, 0, 1),
 			fvec4(0, 1, 1, 1),

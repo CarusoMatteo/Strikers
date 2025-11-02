@@ -35,7 +35,7 @@ private:
 								   GLuint *screenSizeUniformLocation, fvec2 windowSize,
 								   GLuint *currentTimeUniformLocation, float currentTime);
 
-	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *scaleVector, float rotationAngleDegrees);
+	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
 
 	static void renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int numberOfTriangles);
 };

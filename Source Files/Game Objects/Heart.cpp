@@ -1,6 +1,6 @@
 #include "../../Header Files/Game Objects/Heart.h"
 
-Heart::Heart(fvec3 position, MeshBB *mesh) : position(position), mesh(mesh)
+Heart::Heart(MeshBB *mesh) : mesh(mesh)
 {
 }
 

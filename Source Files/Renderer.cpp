@@ -15,7 +15,7 @@ void Renderer::render(
 	int vertexCount)
 {
 	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, windowSize, currentTimeUniformLocation, currentTime);
-	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
+	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
 	Renderer::renderWithBoundingBox(vaoAddress, renderMode, vertexCount);
 
 	GLenum err = glGetError();
@@ -49,11 +49,11 @@ void Renderer::renderWithUniforms(unsigned int shaderProgramId,
 	glUniform1f(*currentTimeUniformLocation, currentTime);
 }
 
-void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *scaleVector, float rotationAngleDegrees)
+void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis)
 {
 	*modelMatrix = fmat4(1.0f);
-	*modelMatrix = translate(*modelMatrix, fvec3(0));
-	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationAngleDegrees), fvec3(0, 0, 1));
+	*modelMatrix = translate(*modelMatrix, *position);
+	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationAngleDegrees), *rotationAxis);
 	*modelMatrix = scale(*modelMatrix, *scaleVector);
 
 	/*
