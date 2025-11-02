@@ -11,15 +11,14 @@ Stage::Stage(SceneType startingScene, vec3 clearColor, string windowTitle)
 
 Stage::~Stage()
 {
-	delete scenes;
-	delete window;
+	delete this->window;
 }
 
 void Stage::createScenes()
 {
-	this->scenes = new Scenes{};
+	this->scenes = Scenes{};
 
-	Scene *menuScene = new Scene(
+	scenes.at(static_cast<size_t>(SceneType::MENU)) = std::make_unique<Scene>(
 		new Background(MeshBuilder::buildPlane(
 			".\\Shader Files\\Default\\DefaultVertex.glsl",
 			".\\Shader Files\\Default\\DefaultFragment.glsl",
@@ -33,33 +32,31 @@ void Stage::createScenes()
 			mat4(1.0f))),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
-	/*
-	Scene *gameScene = new Scene(
-		MeshBuilder::buildPlane(
-			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			".\\Shader Files\\Background\\BackgroundVertex.glsl",
-			true, 2,
+
+	scenes.at(static_cast<size_t>(SceneType::GAME)) = std::make_unique<Scene>(
+		new Background(MeshBuilder::buildPlane(
+			".\\Shader Files\\Default\\DefaultVertex.glsl",
+			".\\Shader Files\\Default\\DefaultFragment.glsl",
+			true,
 			this->window->getWindowSize(),
-			fvec3(1.0f, 1.0f, 1.0f),
-			fvec4(0, 0, 1, 1),
-			fvec4(1, 1, 1, 1)),
+			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
+			fvec4(1, 1, 0, 1),
+			fvec4(0, 1, 1, 1),
+			fvec4(1, 0, 1, 1),
+			fvec4(0, 0, 0, 1),
+			mat4(1.0f))),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
-	*/
-
-	scenes->at(static_cast<size_t>(SceneType::MENU)) = menuScene; // SceneType::MENU
-
-	// scenes->at(static_cast<size_t>(SceneType::MENU)) = gameScene // SceneType::GAME
 }
 
 void Stage::updateGameObjects(float deltaTime)
 {
-	scenes->at(static_cast<size_t>(currentScene))->updateGameObjects(deltaTime);
+	scenes.at(static_cast<size_t>(currentScene))->updateGameObjects(deltaTime);
 }
 
 void Stage::renderCurrentScene(float currentTime)
 {
-	scenes->at(static_cast<size_t>(currentScene))->renderScene(currentTime);
+	scenes.at(static_cast<size_t>(currentScene))->renderScene(currentTime);
 }
 
 void Stage::changeScene(SceneType nextScene)

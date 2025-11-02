@@ -1,7 +1,7 @@
 #include "../Header Files/InputEvents.h"
 
-ButtonStates *InputEvents::buttonStates = new ButtonStates{}; // false by default
-dvec2 *InputEvents::cursorPosition = new dvec2(0.0);
+ButtonStates InputEvents::buttonStates = ButtonStates{}; // false by default
+dvec2 InputEvents::cursorPosition = dvec2(0.0);
 
 void InputEvents::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -15,37 +15,37 @@ void InputEvents::keyCallback(GLFWwindow *window, int key, int scancode, int act
 
 	case GLFW_KEY_W | GLFW_KEY_UP:
 		if (action == GLFW_PRESS)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_UP)) = true;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_UP)) = true;
 		else if (action == GLFW_RELEASE)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_UP)) = false;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_UP)) = false;
 		break;
 
 	case GLFW_KEY_S | GLFW_KEY_DOWN:
 		if (action == GLFW_PRESS)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_DOWN)) = true;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_DOWN)) = true;
 		else if (action == GLFW_RELEASE)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_DOWN)) = false;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_DOWN)) = false;
 		break;
 
 	case GLFW_KEY_A | GLFW_KEY_LEFT:
 		if (action == GLFW_PRESS)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_LEFT)) = true;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_LEFT)) = true;
 		else if (action == GLFW_RELEASE)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_LEFT)) = false;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_LEFT)) = false;
 		break;
 
 	case GLFW_KEY_D | GLFW_KEY_RIGHT:
 		if (action == GLFW_PRESS)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_RIGHT)) = true;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_RIGHT)) = true;
 		else if (action == GLFW_RELEASE)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::MOVE_RIGHT)) = false;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::MOVE_RIGHT)) = false;
 		break;
 
 	case GLFW_KEY_SPACE:
 		if (action == GLFW_PRESS)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::SHOOT)) = true;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::SHOOT)) = true;
 		else if (action == GLFW_RELEASE)
-			InputEvents::buttonStates->at(static_cast<size_t>(InputEventsType::SHOOT)) = false;
+			InputEvents::buttonStates.at(static_cast<size_t>(InputEventsType::SHOOT)) = false;
 		break;
 
 	default:
@@ -59,9 +59,9 @@ void InputEvents::cursorPositionCallback(GLFWwindow *window, double xpos, double
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 
-	InputEvents::cursorPosition->x = xpos;
+	InputEvents::cursorPosition.x = xpos;
 	// Invert y-coordinate to match OpenGL's coordinate system
-	InputEvents::cursorPosition->y = height - ypos;
+	InputEvents::cursorPosition.y = height - ypos;
 }
 
 void InputEvents::framebufferSizeCallback(GLFWwindow *window, int width, int height)

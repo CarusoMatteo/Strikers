@@ -2,6 +2,7 @@
 
 #include <string>
 #include <array>
+#include <memory>
 #include <glm/glm.hpp>
 
 #include "Gui/MenuGui.h"
@@ -14,7 +15,7 @@
 using glm::vec4;
 using std::array;
 using std::string;
-using Scenes = std::array<Scene *, static_cast<size_t>(SceneType::count)>;
+using Scenes = std::array<std::unique_ptr<Scene>, static_cast<size_t>(SceneType::count)>;
 
 class Stage
 {
@@ -32,7 +33,7 @@ public:
 	void pollEvents();
 
 private:
-	Scenes *scenes;
+	Scenes scenes;
 	// clearColor's alpha is always 1.0f
 	vec3 clearColor;
 	SceneType currentScene;

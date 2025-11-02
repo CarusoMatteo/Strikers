@@ -11,7 +11,7 @@
 
 using namespace glm;
 using std::array;
-using ButtonStates = std::array<bool, static_cast<size_t>(InputEventsType::count)>;
+using ButtonStates = array<bool, static_cast<size_t>(InputEventsType::count)>;
 
 class InputEvents
 {
@@ -23,16 +23,16 @@ public:
 
 	static ButtonStates *getButtonStates()
 	{
-		return buttonStates;
+		return &buttonStates;
 	}
 	static dvec2 *getCursorPosition()
 	{
-		return cursorPosition;
+		return &cursorPosition;
 	}
 
 private:
-	static ButtonStates *buttonStates;
-	static dvec2 *cursorPosition;
+	static ButtonStates buttonStates;
+	static dvec2 cursorPosition;
 
 	InputEvents() = default;
 	~InputEvents() = default;
