@@ -51,7 +51,7 @@ public:
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	void updateScreenSize(ivec2 newScreenSize)
 	{
-		this->screenSize = newScreenSize;
+		this->windowSize = newScreenSize;
 	}
 
 private:
@@ -69,7 +69,7 @@ private:
 	vector<fvec4> colors;
 
 	GLenum drawMode;
-	ivec2 screenSize;
+	ivec2 windowSize;
 
 	/// @brief Projection matrix to place object in world space.
 	static mat4 projectionMatrix;

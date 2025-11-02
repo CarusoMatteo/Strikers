@@ -4,7 +4,7 @@ MeshBB *MeshBuilder::buildPlane(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,
-	ivec2 screenSize,
+	ivec2 windowSize,
 	fvec3 scaleVector,
 	fvec4 colorBottomLeft,
 	fvec4 colorBottomRight,
@@ -30,7 +30,7 @@ MeshBB *MeshBuilder::buildPlane(
 		vertices,
 		colors,
 		GL_TRIANGLE_FAN,
-		screenSize,
+		windowSize,
 		scaleVector,
 		modelMatrix);
 	return mesh;

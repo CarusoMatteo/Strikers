@@ -10,11 +10,11 @@ MeshBB::MeshBB(string vertexShaderName,
 			   vector<fvec3> vertices,
 			   vector<fvec4> colors,
 			   GLenum drawMode,
-			   ivec2 screenSize,
+			   ivec2 windowSize,
 			   fvec3 scaleVector,
 			   mat4 modelMatrix) : vertices(vertices), colors(colors),
 								   drawMode(drawMode),
-								   screenSize(screenSize),
+								   windowSize(windowSize),
 								   scaleVector(scaleVector),
 								   modelMatrix(modelMatrix)
 {
@@ -38,7 +38,7 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 	Renderer::render(this->programId,
 					 &this->projectionMatrixUniformLocation, &MeshBB::projectionMatrix,
 					 &this->modelMatrixUniformLocation, &this->modelMatrix,
-					 &this->screenSizeUniformLocation, this->screenSize,
+					 &this->screenSizeUniformLocation, this->windowSize,
 					 &this->currentTimeUniformLocation, currentTime,
 					 &this->scaleVector, rotationAngleDegrees,
 					 this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
@@ -79,7 +79,7 @@ void MeshBB::initUniformReferences()
 	this->modelMatrixUniformLocation = glGetUniformLocation(this->programId, "modelMatrix");
 
 	this->currentTimeUniformLocation = glGetUniformLocation(this->programId, "currentTime");
-	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "screenSize");
+	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "windowSize");
 }
 
 void MeshBB::initBoundingBox()

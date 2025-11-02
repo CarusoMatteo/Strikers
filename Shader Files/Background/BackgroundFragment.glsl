@@ -2,7 +2,7 @@
 
 out vec4 FragColor;
 
-uniform vec2 screenSize;   // Risoluzione della finestra
+uniform vec2 windowSize;   // Risoluzione della finestra
 uniform float currentTime; // Tempo trascorso, per animazione
 
 // Funzione hash semplice per randomizzare posizione orizzontale
@@ -14,7 +14,7 @@ float hash(float n)
 void main()
 {
 	// Normalizza coordinate schermo (0,0 in basso a sinistra)
-	vec2 uv = gl_FragCoord.xy / screenSize.xy;
+	vec2 uv = gl_FragCoord.xy / windowSize.xy;
 
 	// Parametri della pioggia
 	float speed = 1;

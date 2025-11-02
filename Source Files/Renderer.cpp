@@ -9,7 +9,7 @@ void Renderer::render(
 	mat4 *projectionMatrix,
 	GLuint *modelMatrixUniformLocation,
 	mat4 *modelMatrix,
-	GLuint *screenSizeUniformLocation, fvec2 screenSize,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	vec3 *scaleVector,
 	float rotationAngleDegrees,
@@ -17,7 +17,7 @@ void Renderer::render(
 	GLenum renderMode,
 	int vertexCount)
 {
-	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, screenSize, currentTimeUniformLocation, currentTime);
+	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, windowSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, scaleVector, rotationAngleDegrees);
 	Renderer::renderWithBoundingBox(vaoAddress, renderMode, vertexCount);
 
@@ -32,7 +32,7 @@ void Renderer::render(
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
 								  GLuint *projectionMatrixUniformLocation, mat4 *projectionMatrix,
 								  GLuint *modelMatrixUniformLocation, mat4 *modelMatrix,
-								  GLuint *screenSizeUniformLocation, fvec2 screenSize,
+								  GLuint *screenSizeUniformLocation, fvec2 windowSize,
 								  GLuint *currentTimeUniformLocation, float currentTime)
 {
 	// Enable selected shader program
@@ -44,8 +44,8 @@ void Renderer::renderWithUniforms(unsigned int shaderProgramId,
 	glUniformMatrix4fv(*modelMatrixUniformLocation, 1, GL_FALSE, value_ptr(*modelMatrix));
 
 	// if (resolution.x > 0.0f && resolution.y > 0.0f) Should always be valid?
-	// Pass the resolution to the "screenSize" uniform
-	glUniform2f(*screenSizeUniformLocation, screenSize.x, screenSize.y);
+	// Pass the resolution to the "windowSize" uniform
+	glUniform2f(*screenSizeUniformLocation, windowSize.x, windowSize.y);
 
 	// Pass the current time to the "currentTime" uniform
 	// if (currentTime > 0.0f)

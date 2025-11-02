@@ -20,7 +20,7 @@ public:
 					   mat4 *projectionMatrix,
 					   GLuint *modelMatrixUniformLocation,
 					   mat4 *modelMatrix,
-					   GLuint *screenSizeUniformLocation, fvec2 screenSize,
+					   GLuint *screenSizeUniformLocation, fvec2 windowSize,
 					   GLuint *currentTimeUniformLocation, float currentTime,
 					   vec3 *scaleVector,
 					   float rotationAngleDegrees,
@@ -35,7 +35,7 @@ private:
 	static void renderWithUniforms(unsigned int shaderProgramId,
 								   GLuint *projectionMatrixUniformLocation, mat4 *projectionMatrix,
 								   GLuint *modelMatrixUniformLocation, mat4 *modelMatrix,
-								   GLuint *screenSizeUniformLocation, fvec2 screenSize,
+								   GLuint *screenSizeUniformLocation, fvec2 windowSize,
 								   GLuint *currentTimeUniformLocation, float currentTime);
 
 	static void applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float rotationAngleDegrees);
