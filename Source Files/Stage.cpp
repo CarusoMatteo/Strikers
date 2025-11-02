@@ -26,6 +26,8 @@ void Stage::createScenes()
 			true,
 			this->window->getWindowSize(),
 			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
+			fvec4(1, 0, 0, 1),
+			fvec4(0, 1, 0, 1),
 			fvec4(0, 0, 1, 1),
 			fvec4(1, 1, 1, 1),
 			mat4(1.0f))),

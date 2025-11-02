@@ -6,20 +6,22 @@ Mesh *MeshBuilder::buildPlane(
 	bool shouldPrintLogs,
 	ivec2 screenSize,
 	fvec3 scaleVector,
-	fvec4 colorTop,
-	fvec4 colorBottom,
+	fvec4 colorBottomLeft,
+	fvec4 colorBottomRight,
+	fvec4 colorTopLeft,
+	fvec4 colorTopRight,
 	mat4 modelMatrix)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 	vertices.push_back(vec3(0.0, 0.0, 0.0));
-	colors.push_back(colorTop);
+	colors.push_back(colorBottomLeft);
 	vertices.push_back(vec3(1.0, 0.0, 0.0));
-	colors.push_back(colorBottom);
+	colors.push_back(colorBottomRight);
 	vertices.push_back(vec3(1.0, 1.0, 0.0));
-	colors.push_back(colorTop);
+	colors.push_back(colorTopRight);
 	vertices.push_back(vec3(0.0, 1.0, 0.0));
-	colors.push_back(colorBottom);
+	colors.push_back(colorTopLeft);
 
 	Mesh *mesh = new Mesh(
 		vertexShaderName,
@@ -31,41 +33,5 @@ Mesh *MeshBuilder::buildPlane(
 		screenSize,
 		scaleVector,
 		modelMatrix);
-	// TODO: Potrebbe essere sbagliato, perché il numero di punti da disegnare era il problema.
 	return mesh;
 }
-
-/*
-
-Mesh *MeshBuilder::buildTriangle()
-{
-	Mesh mesh = Mesh();
-	return mesh;
-}
-
-
-Mesh *MeshBuilder::buildCircle()
-{
-	Mesh mesh = Mesh();
-	return mesh;
-}
-
-Mesh *MeshBuilder::buildHeart()
-{
-	Mesh mesh = Mesh();
-	return mesh;
-}
-
-Mesh *MeshBuilder::buildButterfly()
-{
-	Mesh mesh = Mesh();
-	return mesh;
-}
-
-Mesh *MeshBuilder::buildSpaceship()
-{
-	Mesh mesh = Mesh();
-	return mesh;
-}
-
-*/

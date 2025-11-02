@@ -10,12 +10,7 @@ Window::Window(string windowTitle)
 	this->initializeGui();
 	this->initOpenGL();
 
-	Mesh::setProjectionMatrix(createProjectionMatrix());
-}
-
-glm::mat4 Window::createProjectionMatrix() const
-{
-	return ortho(0.0f, static_cast<float>(this->windowWidth), 0.0f, static_cast<float>(this->windowHeight));
+	Mesh::setProjectionMatrix(createProjectionMatrix(this->windowWidth, this->windowHeight));
 }
 
 Window::~Window()
@@ -127,4 +122,9 @@ void Window::initOpenGL()
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+mat4 Window::createProjectionMatrix(int windowWidth, int windowHeight)
+{
+	return ortho(0.0f, static_cast<float>(windowWidth), 0.0f, static_cast<float>(windowHeight));
 }

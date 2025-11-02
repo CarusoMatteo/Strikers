@@ -18,8 +18,10 @@ public:
 							bool shouldPrintLogs,
 							ivec2 screenSize,
 							fvec3 scaleVector,
-							fvec4 colorTop,
-							fvec4 colorBottom,
+							fvec4 colorBottomLeft,
+							fvec4 colorBottomRight,
+							fvec4 colorTopLeft,
+							fvec4 colorTopRight,
 							mat4 modelMatrix);
 	/*
 	static Mesh *buildTriangle(string vertexShaderName,

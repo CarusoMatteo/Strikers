@@ -66,4 +66,5 @@ void InputEvents::cursorPositionCallback(GLFWwindow *window, double xpos, double
 
 void InputEvents::framebufferSizeCallback(GLFWwindow *window, int width, int height)
 {
+	glViewport(0, 0, width, height);
 }

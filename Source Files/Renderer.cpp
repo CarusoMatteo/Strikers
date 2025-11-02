@@ -80,7 +80,7 @@ void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int v
 	if (Mesh::shouldDrawWireframe())
 	{
 		// Draw in wireframe mode
-		glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 	else
 	{

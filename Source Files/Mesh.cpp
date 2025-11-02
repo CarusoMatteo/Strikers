@@ -22,9 +22,6 @@ Mesh::Mesh(string vertexShaderName,
 	this->initBoundingBox();
 	this->initVao();
 	this->initVbos();
-
-	this->modelMatrix = scale(this->modelMatrix, this->scaleVector);
-
 	this->initUniformReferences();
 }
 
@@ -49,7 +46,6 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 
 void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
 {
-	// GLenum ErrorCheckValue = glGetError();
 	this->programId = ShaderBuilder::buildShder(vertexShaderName.c_str(), fragmentShaderName.c_str(), shouldPrintLogs);
 }
 

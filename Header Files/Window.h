@@ -41,5 +41,5 @@ private:
 	void initInputEvents();
 	void initializeGui();
 	void initOpenGL();
-	glm::mat4 createProjectionMatrix() const;
+	static mat4 createProjectionMatrix(int windowWidth, int windowHeight);
 };

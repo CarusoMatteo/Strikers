@@ -49,11 +49,6 @@ public:
 		return drawBoundingBox;
 	}
 
-	void updateScaleVector(vec3 newScaleVector)
-	{
-		this->scaleVector = newScaleVector;
-	}
-
 private:
 	static bool isWireframe;
 	static bool drawBoundingBox;
