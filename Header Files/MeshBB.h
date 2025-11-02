@@ -27,7 +27,6 @@ public:
 		mat4 modelMatrix);
 	~MeshBB();
 
-	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	static void setProjectionMatrix(mat4 projection)
 	{
 		MeshBB::projectionMatrix = projection;
@@ -47,6 +46,12 @@ public:
 	static bool shouldDrawBoundingBox()
 	{
 		return drawBoundingBox;
+	}
+
+	void render(float currentTime, float rotationAngleDegrees = 0.0f);
+	void updateScreenSize(ivec2 newScreenSize)
+	{
+		this->screenSize = newScreenSize;
 	}
 
 private:

@@ -4,6 +4,8 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+#include "../InputEvents.h"
+
 using glm::vec4;
 
 class Background : public IGameObject

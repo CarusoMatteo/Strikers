@@ -10,6 +10,7 @@ Window::Window(string windowTitle)
 	this->initializeGui();
 	this->initOpenGL();
 
+	InputEvents::setCurrentWindowSize(ivec2(this->windowWidth, this->windowHeight));
 	MeshBB::setProjectionMatrix(createProjectionMatrix(this->windowWidth, this->windowHeight));
 }
 

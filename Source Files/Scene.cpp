@@ -13,6 +13,7 @@ Scene::~Scene()
 
 void Scene::updateGameObjects(float deltaTime)
 {
+	this->background->update(deltaTime);
 	for (auto &&gameObject : *gameObjects)
 	{
 		gameObject->update(deltaTime);

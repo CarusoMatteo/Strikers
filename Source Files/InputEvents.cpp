@@ -2,6 +2,7 @@
 
 ButtonStates InputEvents::buttonStates = ButtonStates{}; // false by default
 dvec2 InputEvents::cursorPosition = dvec2(0.0);
+ivec2 InputEvents::currentWindowSize = ivec2(0, 0);
 
 void InputEvents::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -66,5 +67,6 @@ void InputEvents::cursorPositionCallback(GLFWwindow *window, double xpos, double
 
 void InputEvents::framebufferSizeCallback(GLFWwindow *window, int width, int height)
 {
+	InputEvents::currentWindowSize = ivec2(width, height);
 	glViewport(0, 0, width, height);
 }

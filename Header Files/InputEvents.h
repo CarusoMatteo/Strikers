@@ -29,10 +29,19 @@ public:
 	{
 		return &cursorPosition;
 	}
+	static ivec2 getCurrentWindowSize()
+	{
+		return currentWindowSize;
+	}
+	static void setCurrentWindowSize(ivec2 newSize)
+	{
+		currentWindowSize = newSize;
+	}
 
 private:
 	static ButtonStates buttonStates;
 	static dvec2 cursorPosition;
+	static ivec2 currentWindowSize;
 
 	InputEvents() = default;
 	~InputEvents() = default;

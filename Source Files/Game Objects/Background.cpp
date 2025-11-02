@@ -11,6 +11,7 @@ Background::~Background()
 
 void Background::update(float deltaTime)
 {
+	this->mesh->updateScreenSize(InputEvents::getCurrentWindowSize());
 }
 
 void Background::render(float currentTime)

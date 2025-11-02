@@ -20,8 +20,8 @@ void Stage::createScenes()
 
 	scenes.at(static_cast<size_t>(SceneType::MENU)) = std::make_unique<Scene>(
 		new Background(MeshBuilder::buildPlane(
-			".\\Shader Files\\Default\\DefaultVertex.glsl",
-			".\\Shader Files\\Default\\DefaultFragment.glsl",
+			".\\Shader Files\\Background\\BackgroundVertex.glsl",
+			".\\Shader Files\\Background\\BackgroundFragment.glsl",
 			true,
 			this->window->getWindowSize(),
 			fvec3(this->window->getWindowSize().x, this->window->getWindowSize().y, 1.0f),
