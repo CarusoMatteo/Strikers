@@ -2,8 +2,9 @@
 
 #include "IGameObject.h"
 
-class Heart : IGameObject
+class Heart : public IGameObject
 {
+public:
 	Heart(MeshBB *mesh);
 	~Heart() override;
 
