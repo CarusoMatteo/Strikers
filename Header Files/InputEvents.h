@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <array>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <GLFW/glfw3.h>
@@ -10,7 +10,8 @@
 #include "Mesh.h"
 
 using namespace glm;
-using std::vector;
+using std::array;
+using ButtonStates = std::array<bool, static_cast<size_t>(InputEventsType::count)>;
 
 class InputEvents
 {
@@ -20,9 +21,9 @@ public:
 	static void framebufferSizeCallback(GLFWwindow *window, int width, int height);
 	// Add more callbacks as needed here
 
-	static vector<bool> *getButtonActions()
+	static ButtonStates *getButtonStates()
 	{
-		return buttonActions;
+		return buttonStates;
 	}
 	static dvec2 *getCursorPosition()
 	{
@@ -30,7 +31,7 @@ public:
 	}
 
 private:
-	static vector<bool> *buttonActions;
+	static ButtonStates *buttonStates;
 	static dvec2 *cursorPosition;
 
 	InputEvents() = default;

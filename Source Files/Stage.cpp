@@ -17,7 +17,7 @@ Stage::~Stage()
 
 void Stage::createScenes()
 {
-	this->scenes = new vector<Scene *>();
+	this->scenes = new Scenes{};
 
 	Scene *menuScene = new Scene(
 		new Background(MeshBuilder::buildPlane(
@@ -47,8 +47,9 @@ void Stage::createScenes()
 		new MenuGui(&this->clearColor));
 	*/
 
-	scenes->push_back(menuScene); // SceneType::MENU
-								  // scenes->push_back(gameScene); // SceneType::GAME
+	scenes->at(static_cast<size_t>(SceneType::MENU)) = menuScene; // SceneType::MENU
+
+	// scenes->at(static_cast<size_t>(SceneType::MENU)) = gameScene // SceneType::GAME
 }
 
 void Stage::updateGameObjects(float deltaTime)

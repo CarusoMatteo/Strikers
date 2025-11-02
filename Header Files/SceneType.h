@@ -4,6 +4,5 @@ enum class SceneType
 {
 	MENU,
 	GAME,
-	SIZE,
 	count
 };

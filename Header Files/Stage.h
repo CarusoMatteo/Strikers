@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <vector>
+#include <array>
 #include <glm/glm.hpp>
 
 #include "Gui/MenuGui.h"
@@ -12,8 +12,9 @@
 #include "MeshBuilder.h"
 
 using glm::vec4;
+using std::array;
 using std::string;
-using std::vector;
+using Scenes = std::array<Scene *, static_cast<size_t>(SceneType::count)>;
 
 class Stage
 {
@@ -31,7 +32,7 @@ public:
 	void pollEvents();
 
 private:
-	vector<Scene *> *scenes;
+	Scenes *scenes;
 	// clearColor's alpha is always 1.0f
 	vec3 clearColor;
 	SceneType currentScene;
