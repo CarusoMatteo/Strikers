@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <glm/glm.hpp>
-#include "../Mesh.h"
+#include "../MeshBB.h"
 
 using glm::vec4;
 

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "Mesh.h"
+#include "MeshBB.h"
 
 using namespace glm;
 using std::vector;

@@ -77,7 +77,7 @@ void Renderer::applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float r
 
 void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int vertexCount)
 {
-	if (Mesh::shouldDrawWireframe())
+	if (MeshBB::shouldDrawWireframe())
 	{
 		// Draw in wireframe mode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -97,7 +97,7 @@ void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int v
 	 * The subtraction of 4 is to exclude the vertices of the bounding box.
 	 */
 	glDrawArrays(renderMode, 0, vertexCount - 4);
-	if (Mesh::shouldDrawBoundingBox())
+	if (MeshBB::shouldDrawBoundingBox())
 	{
 		// Draw the bounding box with a line loop connecting the last 4 vertices
 		glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);

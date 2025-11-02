@@ -1,22 +1,22 @@
-#include "../Header Files/Mesh.h"
+#include "../Header Files/MeshBB.h"
 
-glm::mat4 Mesh::projectionMatrix;
-bool Mesh::isWireframe = false;
-bool Mesh::drawBoundingBox = false;
+glm::mat4 MeshBB::projectionMatrix;
+bool MeshBB::isWireframe = false;
+bool MeshBB::drawBoundingBox = false;
 
-Mesh::Mesh(string vertexShaderName,
-		   string fragmentShaderName,
-		   bool shouldPrintLogs,
-		   vector<fvec3> vertices,
-		   vector<fvec4> colors,
-		   GLenum drawMode,
-		   ivec2 screenSize,
-		   fvec3 scaleVector,
-		   mat4 modelMatrix) : vertices(vertices), colors(colors),
-							   drawMode(drawMode),
-							   screenSize(screenSize),
-							   scaleVector(scaleVector),
-							   modelMatrix(modelMatrix)
+MeshBB::MeshBB(string vertexShaderName,
+			   string fragmentShaderName,
+			   bool shouldPrintLogs,
+			   vector<fvec3> vertices,
+			   vector<fvec4> colors,
+			   GLenum drawMode,
+			   ivec2 screenSize,
+			   fvec3 scaleVector,
+			   mat4 modelMatrix) : vertices(vertices), colors(colors),
+								   drawMode(drawMode),
+								   screenSize(screenSize),
+								   scaleVector(scaleVector),
+								   modelMatrix(modelMatrix)
 {
 	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
 	this->initBoundingBox();
@@ -25,7 +25,7 @@ Mesh::Mesh(string vertexShaderName,
 	this->initUniformReferences();
 }
 
-Mesh::~Mesh()
+MeshBB::~MeshBB()
 {
 	glDeleteProgram(this->programId);
 	glDeleteBuffers(1, &this->verticesVboAddress);
@@ -33,10 +33,10 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &this->vaoAddress);
 }
 
-void Mesh::render(float currentTime, float rotationAngleDegrees)
+void MeshBB::render(float currentTime, float rotationAngleDegrees)
 {
 	Renderer::render(this->programId,
-					 &this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
+					 &this->projectionMatrixUniformLocation, &MeshBB::projectionMatrix,
 					 &this->modelMatrixUniformLocation, &this->modelMatrix,
 					 &this->screenSizeUniformLocation, this->screenSize,
 					 &this->currentTimeUniformLocation, currentTime,
@@ -44,18 +44,18 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 					 this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 
-void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
+void MeshBB::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
 {
 	this->programId = ShaderBuilder::buildShder(vertexShaderName.c_str(), fragmentShaderName.c_str(), shouldPrintLogs);
 }
 
-void Mesh::initVao()
+void MeshBB::initVao()
 {
 	glGenVertexArrays(1, &this->vaoAddress);
 	glBindVertexArray(this->vaoAddress);
 }
 
-void Mesh::initVbos()
+void MeshBB::initVbos()
 {
 	// Generates and makes active the VBO for the vertices
 	glGenBuffers(1, &this->verticesVboAddress);
@@ -73,7 +73,7 @@ void Mesh::initVbos()
 	glEnableVertexAttribArray(1);
 }
 
-void Mesh::initUniformReferences()
+void MeshBB::initUniformReferences()
 {
 	this->projectionMatrixUniformLocation = glGetUniformLocation(this->programId, "projectionMatrix");
 	this->modelMatrixUniformLocation = glGetUniformLocation(this->programId, "modelMatrix");
@@ -82,7 +82,7 @@ void Mesh::initUniformReferences()
 	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "screenSize");
 }
 
-void Mesh::initBoundingBox()
+void MeshBB::initBoundingBox()
 {
 	int n = static_cast<int>(this->vertices.size());
 	float minx = this->vertices[0].x; // Assumiamo che il primo elemento sia il minimo iniziale
@@ -127,7 +127,7 @@ void Mesh::initBoundingBox()
 	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
 }
 
-void Mesh::updateBoundingBoxWorld()
+void MeshBB::updateBoundingBoxWorld()
 {
 	this->boundingBoxMinWorld = this->modelMatrix * this->boundingBoxMinObject;
 	this->boundingBoxMaxWorld = this->modelMatrix * this->boundingBoxMaxObject;

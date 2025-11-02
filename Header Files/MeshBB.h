@@ -12,10 +12,10 @@ using std::string;
 using std::vector;
 using namespace glm;
 
-class Mesh
+class MeshBB
 {
 public:
-	Mesh(
+	MeshBB(
 		string vertexShaderName,
 		string fragmentShaderName,
 		bool shouldPrintLogs,
@@ -25,12 +25,12 @@ public:
 		ivec2 screenSize,
 		fvec3 scaleVector,
 		mat4 modelMatrix);
-	~Mesh();
+	~MeshBB();
 
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	static void setProjectionMatrix(mat4 projection)
 	{
-		Mesh::projectionMatrix = projection;
+		MeshBB::projectionMatrix = projection;
 	}
 	static bool *getIsWireframeRef()
 	{

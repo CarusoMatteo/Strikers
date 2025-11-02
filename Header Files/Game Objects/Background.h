@@ -9,12 +9,12 @@ using glm::vec4;
 class Background : public IGameObject
 {
 public:
-	Background(Mesh *mesh);
-	~Background() override = default;
+	Background(MeshBB *mesh);
+	~Background() override;
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 
 private:
-	Mesh *mesh;
+	MeshBB *mesh;
 };

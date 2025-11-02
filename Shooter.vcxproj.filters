@@ -75,7 +75,7 @@
     <ClCompile Include="Source Files\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Mesh.cpp">
+    <ClCompile Include="Source Files\MeshBB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\ShaderBuilder.cpp">
@@ -152,7 +152,7 @@
     <ClInclude Include="Header Files\SceneType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Mesh.h">
+    <ClInclude Include="Header Files\MeshBB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\ShaderBuilder.h">

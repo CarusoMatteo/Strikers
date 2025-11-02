@@ -3,7 +3,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 
-#include "Mesh.h"
+#include "MeshBB.h"
 
 using glm::fvec3;
 using glm::fvec4;
@@ -13,16 +13,16 @@ class MeshBuilder
 {
 public:
 	// No numberOfTriangles parameter because it is always 2 for a plane
-	static Mesh *buildPlane(string vertexShaderName,
-							string fragmentShaderName,
-							bool shouldPrintLogs,
-							ivec2 screenSize,
-							fvec3 scaleVector,
-							fvec4 colorBottomLeft,
-							fvec4 colorBottomRight,
-							fvec4 colorTopLeft,
-							fvec4 colorTopRight,
-							mat4 modelMatrix);
+	static MeshBB *buildPlane(string vertexShaderName,
+							  string fragmentShaderName,
+							  bool shouldPrintLogs,
+							  ivec2 screenSize,
+							  fvec3 scaleVector,
+							  fvec4 colorBottomLeft,
+							  fvec4 colorBottomRight,
+							  fvec4 colorTopLeft,
+							  fvec4 colorTopRight,
+							  mat4 modelMatrix);
 	/*
 	static Mesh *buildTriangle(string vertexShaderName,
 							string fragmentShaderName,
