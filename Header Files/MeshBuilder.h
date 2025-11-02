@@ -22,7 +22,7 @@ public:
 							  fvec4 colorBottomRight,
 							  fvec4 colorTopLeft,
 							  fvec4 colorTopRight,
-							  mat4 modelMatrix);
+							  fmat4 modelMatrix);
 
 	static MeshBB *buildHeart(string vertexShaderName,
 							  string fragmentShaderName,
@@ -34,7 +34,7 @@ public:
 							  fvec3 scaleVector,
 							  fvec4 colorCenter,
 							  fvec4 colorBorder,
-							  mat4 modelMatrix);
+							  fmat4 modelMatrix);
 	/*
 	static Mesh *buildTriangle(string vertexShaderName,
 							string fragmentShaderName,
@@ -44,7 +44,7 @@ public:
 							fvec3 scaleVector,
 							fvec4 colorTop,
 							fvec4 colorBottom,
-							mat4 modelMatrix);
+							fmat4 modelMatrix);
 	static Mesh *buildTriangle();
 	static Mesh *buildCircle();
 	static Mesh *buildHeart();

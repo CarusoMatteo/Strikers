@@ -13,7 +13,7 @@
 
 #include "InputEvents.h"
 
-using glm::mat4;
+using glm::fmat4;
 using std::string;
 
 class Window
@@ -41,5 +41,5 @@ private:
 	void initInputEvents();
 	void initializeGui();
 	void initOpenGL();
-	static mat4 createProjectionMatrix(int windowWidth, int windowHeight);
+	static fmat4 createProjectionMatrix(int windowWidth, int windowHeight);
 };

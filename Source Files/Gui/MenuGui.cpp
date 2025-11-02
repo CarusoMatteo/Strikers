@@ -1,6 +1,6 @@
 #include "../../Header Files/Gui/MenuGui.h"
 
-MenuGui::MenuGui(vec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
+MenuGui::MenuGui(fvec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
 {
 }
 

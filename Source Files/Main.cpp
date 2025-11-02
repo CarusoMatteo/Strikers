@@ -4,13 +4,13 @@ using namespace std;
 #include <glm/glm.hpp>
 #include "../Header Files/Stage.h"
 
-using glm::vec3;
+using glm::fvec3;
 using std::string;
 
 int main(void)
 {
 	SceneType startingScene = SceneType::MENU;
-	vec3 clearColor = vec3(0.1f, 0.1f, 0.1f);
+	fvec3 clearColor = fvec3(0.1f, 0.1f, 0.1f);
 	string windowTitle = "Shooter Game";
 
 	Stage *stage = new Stage(startingScene, clearColor, windowTitle);

@@ -7,12 +7,15 @@
 
 #include "Gui/MenuGui.h"
 #include "Gui/GameGui.h"
+#include "./Game Objects/Heart.h"
 #include "Scene.h"
 #include "SceneType.h"
 #include "Window.h"
 #include "MeshBuilder.h"
 
-using glm::vec4;
+using glm::fmat4;
+using glm::fvec3;
+using glm::fvec4;
 using std::array;
 using std::string;
 using Scenes = std::array<std::unique_ptr<Scene>, static_cast<size_t>(SceneType::count)>;
@@ -20,7 +23,7 @@ using Scenes = std::array<std::unique_ptr<Scene>, static_cast<size_t>(SceneType:
 class Stage
 {
 public:
-	Stage(SceneType startingScene, vec3 clearColor, string windowTitle);
+	Stage(SceneType startingScene, fvec3 clearColor, string windowTitle);
 	~Stage();
 
 	void updateGameObjects(float deltaTime);
@@ -35,7 +38,7 @@ public:
 private:
 	Scenes scenes;
 	// clearColor's alpha is always 1.0f
-	vec3 clearColor;
+	fvec3 clearColor;
 	SceneType currentScene;
 	Window *window;
 

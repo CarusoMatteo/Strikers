@@ -1,6 +1,6 @@
 #include "../Header Files/MeshBB.h"
 
-glm::mat4 MeshBB::projectionMatrix;
+glm::fmat4 MeshBB::projectionMatrix;
 bool MeshBB::isWireframe = false;
 bool MeshBB::drawBoundingBox = false;
 
@@ -12,7 +12,7 @@ MeshBB::MeshBB(string vertexShaderName,
 			   GLenum drawMode,
 			   ivec2 windowSize,
 			   fvec3 scaleVector,
-			   mat4 modelMatrix) : vertices(vertices), colors(colors),
+			   fmat4 modelMatrix) : vertices(vertices), colors(colors),
 								   drawMode(drawMode),
 								   windowSize(windowSize),
 								   scaleVector(scaleVector),
@@ -117,14 +117,14 @@ void MeshBB::initBoundingBox()
 	this->boundingBoxMaxObject = fvec4(maxx, maxy, 0.0, 1.0);
 
 	// Add bounding box vertices to the vertices vector
-	this->vertices.push_back(vec3(this->boundingBoxMinObject.x, this->boundingBoxMinObject.y, 0.0));
-	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-	this->vertices.push_back(vec3(this->boundingBoxMaxObject.x, this->boundingBoxMinObject.y, 0.0));
-	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-	this->vertices.push_back(vec3(this->boundingBoxMaxObject.x, this->boundingBoxMaxObject.y, 0.0));
-	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
-	this->vertices.push_back(vec3(this->boundingBoxMinObject.x, this->boundingBoxMaxObject.y, 0.0));
-	this->colors.push_back(vec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(fvec3(this->boundingBoxMinObject.x, this->boundingBoxMinObject.y, 0.0));
+	this->colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(fvec3(this->boundingBoxMaxObject.x, this->boundingBoxMinObject.y, 0.0));
+	this->colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(fvec3(this->boundingBoxMaxObject.x, this->boundingBoxMaxObject.y, 0.0));
+	this->colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	this->vertices.push_back(fvec3(this->boundingBoxMinObject.x, this->boundingBoxMaxObject.y, 0.0));
+	this->colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
 }
 
 void MeshBB::updateBoundingBoxWorld()

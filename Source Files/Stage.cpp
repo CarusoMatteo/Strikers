@@ -1,6 +1,6 @@
 #include "../Header Files/Stage.h"
 
-Stage::Stage(SceneType startingScene, vec3 clearColor, string windowTitle)
+Stage::Stage(SceneType startingScene, fvec3 clearColor, string windowTitle)
 {
 	this->window = new Window(windowTitle);
 	this->clearColor = clearColor;
@@ -29,7 +29,7 @@ void Stage::createScenes()
 			fvec4(0, 1, 0, 1),
 			fvec4(0, 0, 1, 1),
 			fvec4(1, 1, 1, 1),
-			mat4(1.0f))),
+			fmat4(1.0f))),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
 
@@ -44,7 +44,7 @@ void Stage::createScenes()
 			fvec4(0, 1, 1, 1),
 			fvec4(1, 0, 1, 1),
 			fvec4(0, 0, 0, 1),
-			mat4(1.0f))),
+			fmat4(1.0f))),
 		new vector<IGameObject *>(),
 		new MenuGui(&this->clearColor));
 }

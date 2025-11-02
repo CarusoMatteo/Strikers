@@ -5,14 +5,11 @@ using namespace std;
 
 void Renderer::render(
 	unsigned int shaderProgramId,
-	GLuint *projectionMatrixUniformLocation,
-	mat4 *projectionMatrix,
-	GLuint *modelMatrixUniformLocation,
-	mat4 *modelMatrix,
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *currentTimeUniformLocation, float currentTime,
-	vec3 *scaleVector,
-	float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int vertexCount)
@@ -30,8 +27,8 @@ void Renderer::render(
 }
 
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
-								  GLuint *projectionMatrixUniformLocation, mat4 *projectionMatrix,
-								  GLuint *modelMatrixUniformLocation, mat4 *modelMatrix,
+								  GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+								  GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 								  GLuint *screenSizeUniformLocation, fvec2 windowSize,
 								  GLuint *currentTimeUniformLocation, float currentTime)
 {
@@ -52,9 +49,9 @@ void Renderer::renderWithUniforms(unsigned int shaderProgramId,
 	glUniform1f(*currentTimeUniformLocation, currentTime);
 }
 
-void Renderer::applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float rotationAngleDegrees)
+void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *scaleVector, float rotationAngleDegrees)
 {
-	*modelMatrix = mat4(1.0f);
+	*modelMatrix = fmat4(1.0f);
 	*modelMatrix = translate(*modelMatrix, fvec3(0));
 	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationAngleDegrees), fvec3(0, 0, 1));
 	*modelMatrix = scale(*modelMatrix, *scaleVector);
@@ -66,9 +63,9 @@ void Renderer::applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float r
 	 * Useful if I have an object that has the same position and rotation but different scale (e.g. laser).
 	 * 	if (restituisciSenzaScala && outModelNoScale != nullptr)
 	 * 	{
-	 * 		glm::mat4 modelNoScale = glm::mat4(1.0f);
-	 * 		modelNoScale = glm::translate(modelNoScale, glm::vec3(forma->position.x + dx, forma->position.y + dy, 0.0f));
-	 * 		modelNoScale = glm::rotate(modelNoScale, glm::radians(angoloUsato), glm::vec3(0, 0, 1));
+	 * 		fmat4 modelNoScale = fmat4(1.0f);
+	 * 		modelNoScale = translate(modelNoScale, fvec3(forma->position.x + dx, forma->position.y + dy, 0.0f));
+	 * 		modelNoScale = rotate(modelNoScale, fradians(angoloUsato), fvec3(0, 0, 1));
 	 * 		// nessuna scala qui
 	 * 		*outModelNoScale = modelNoScale;
 	 * 	}

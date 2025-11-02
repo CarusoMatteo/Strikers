@@ -24,10 +24,10 @@ public:
 		GLenum drawMode,
 		ivec2 screenSize,
 		fvec3 scaleVector,
-		mat4 modelMatrix);
+		fmat4 modelMatrix);
 	~MeshBB();
 
-	static void setProjectionMatrix(mat4 projection)
+	static void setProjectionMatrix(fmat4 projection)
 	{
 		MeshBB::projectionMatrix = projection;
 	}
@@ -72,10 +72,10 @@ private:
 	ivec2 windowSize;
 
 	/// @brief Projection matrix to place object in world space.
-	static mat4 projectionMatrix;
+	static fmat4 projectionMatrix;
 	GLuint projectionMatrixUniformLocation;
 
-	mat4 modelMatrix;
+	fmat4 modelMatrix;
 	GLuint modelMatrixUniformLocation;
 
 	fvec3 scaleVector;

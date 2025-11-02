@@ -16,29 +16,26 @@ class Renderer
 {
 public:
 	static void render(unsigned int shaderProgramId,
-					   GLuint *projectionMatrixUniformLocation,
-					   mat4 *projectionMatrix,
-					   GLuint *modelMatrixUniformLocation,
-					   mat4 *modelMatrix,
+					   GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+					   GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 					   GLuint *screenSizeUniformLocation, fvec2 windowSize,
 					   GLuint *currentTimeUniformLocation, float currentTime,
-					   vec3 *scaleVector,
-					   float rotationAngleDegrees,
+					   fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 					   GLuint vaoAddress,
 					   GLenum renderMode,
-					   int numberOfTriangles);
+					   int vertexCount);
 
 private:
 	Renderer() = default;
 	~Renderer() = default;
 
 	static void renderWithUniforms(unsigned int shaderProgramId,
-								   GLuint *projectionMatrixUniformLocation, mat4 *projectionMatrix,
-								   GLuint *modelMatrixUniformLocation, mat4 *modelMatrix,
+								   GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+								   GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 								   GLuint *screenSizeUniformLocation, fvec2 windowSize,
 								   GLuint *currentTimeUniformLocation, float currentTime);
 
-	static void applyTransformaiton(mat4 *modelMatrix, vec3 *scaleVector, float rotationAngleDegrees);
+	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *scaleVector, float rotationAngleDegrees);
 
 	static void renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int numberOfTriangles);
 };

@@ -4,8 +4,6 @@
 #include <glm/glm.hpp>
 #include "../MeshBB.h"
 
-using glm::vec4;
-
 class IGui
 {
 public:

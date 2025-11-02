@@ -6,7 +6,7 @@
 
 #include "../InputEvents.h"
 
-using glm::vec4;
+using glm::fvec4;
 
 class Background : public IGameObject
 {

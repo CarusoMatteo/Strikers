@@ -10,17 +10,17 @@ MeshBB *MeshBuilder::buildPlane(
 	fvec4 colorBottomRight,
 	fvec4 colorTopLeft,
 	fvec4 colorTopRight,
-	mat4 modelMatrix)
+	fmat4 modelMatrix)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
-	vertices.push_back(vec3(0.0, 0.0, 0.0));
+	vertices.push_back(fvec3(0.0, 0.0, 0.0));
 	colors.push_back(colorBottomLeft);
-	vertices.push_back(vec3(1.0, 0.0, 0.0));
+	vertices.push_back(fvec3(1.0, 0.0, 0.0));
 	colors.push_back(colorBottomRight);
-	vertices.push_back(vec3(1.0, 1.0, 0.0));
+	vertices.push_back(fvec3(1.0, 1.0, 0.0));
 	colors.push_back(colorTopRight);
-	vertices.push_back(vec3(0.0, 1.0, 0.0));
+	vertices.push_back(fvec3(0.0, 1.0, 0.0));
 	colors.push_back(colorTopLeft);
 
 	return new MeshBB(
@@ -46,7 +46,7 @@ MeshBB *MeshBuilder::buildHeart(
 	fvec3 scaleVector,
 	fvec4 colorCenter,
 	fvec4 colorBorder,
-	mat4 modelMatrix)
+	fmat4 modelMatrix)
 {
 	float pi = static_cast<float>(3.14159265358979323846);
 	vector<fvec3> vertices;
@@ -61,7 +61,7 @@ MeshBB *MeshBuilder::buildHeart(
 		float t = i * step;
 		float xx = center.x + radius.x * (16 * powf(sin(t), 3));
 		float yy = center.y + radius.y * ((13 * cos(t) - 5 * cos(2 * t) - 2 * cos(3 * t) - cos(4 * t)));
-		vertices.push_back(vec3(xx, yy, 0.0));
+		vertices.push_back(fvec3(xx, yy, 0.0));
 		colors.push_back(colorBorder);
 	}
 

@@ -125,7 +125,7 @@ void Window::initOpenGL()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-mat4 Window::createProjectionMatrix(int windowWidth, int windowHeight)
+fmat4 Window::createProjectionMatrix(int windowWidth, int windowHeight)
 {
 	return ortho(0.0f, static_cast<float>(windowWidth), 0.0f, static_cast<float>(windowHeight));
 }
