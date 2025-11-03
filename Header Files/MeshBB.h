@@ -34,11 +34,10 @@ public:
 private:
 	static bool drawBoundingBox;
 
-	fvec4 boundingBoxMinObject;
-	fvec4 boundingBoxMaxObject;
+	fvec4 getBoundingBoxMinObject();
+	fvec4 getBoundingBoxMaxObject();
 	fvec4 boundingBoxMinWorld;
 	fvec4 boundingBoxMaxWorld;
 
-	void initBoundingBox();
 	void updateBoundingBoxWorld();
 };

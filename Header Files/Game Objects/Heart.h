@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IGameObject.h"
+
 #include <glm/glm.hpp>
 
 using glm::fvec3;

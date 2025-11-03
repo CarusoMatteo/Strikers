@@ -123,16 +123,25 @@ void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, b
 	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
 	glBindVertexArray(vaoAddress);
 
-	/*
-	 * Draw the vertices of the shape as specified by renderMode,
-	 * starting from the first vertex (0), for (numVertices - 4) vertices in total
-	 * The subtraction of 4 is to exclude the vertices of the bounding box.
-	 */
-	glDrawArrays(renderMode, 0, vertexCount - 4);
-	if (meshHasBB && MeshBB::shouldDrawBoundingBox())
+	if (meshHasBB)
 	{
-		// Draw the bounding box with a line loop connecting the last 4 vertices
-		glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);
+		/*
+		 * Draw the vertices of the shape as specified by renderMode,
+		 * starting from the first vertex (0), for (numVertices - 4) vertices in total
+		 * The subtraction of 4 is to exclude the vertices of the bounding box.
+		 */
+		glDrawArrays(renderMode, 0, vertexCount - 4);
+		if (MeshBB::shouldDrawBoundingBox())
+		{
+			// Draw the bounding box with a line loop connecting the last 4 vertices
+			glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);
+		}
+	}
+	else if (!meshHasBB)
+	{
+		// Draw the vertices of the shape as specified by renderMode,
+		// starting from the first vertex (0), for vertexCount vertices in total
+		glDrawArrays(renderMode, 0, vertexCount);
 	}
 }
 

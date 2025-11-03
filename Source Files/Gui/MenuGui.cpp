@@ -1,5 +1,9 @@
 #include "../../Header Files/Gui/MenuGui.h"
 
+#include "../../Header Files/Mesh.h"
+#include "../../Header Files/MeshBB.h"
+#include "../../Header Files/InputEvents.h"
+
 MenuGui::MenuGui(fvec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
 {
 }

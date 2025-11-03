@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <array>
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -9,6 +10,7 @@ using glm::fvec2;
 using glm::fvec3;
 using glm::fvec4;
 using glm::ivec2;
+using std::array;
 using std::string;
 using std::vector;
 
@@ -47,4 +49,6 @@ public:
 private:
 	MeshBuilder() = default;
 	~MeshBuilder() = default;
+
+	static void initBoundingBox(vector<fvec3> &vertices, vector<fvec4> &colors);
 };

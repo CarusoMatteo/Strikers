@@ -70,6 +70,8 @@ MeshBB *MeshBuilder::buildHeart(
 		colors.push_back(colorBorder);
 	}
 
+	MeshBuilder::initBoundingBox(vertices, colors);
+
 	return new MeshBB(
 		vertexShaderName,
 		fragmentShaderName,
@@ -81,4 +83,49 @@ MeshBB *MeshBuilder::buildHeart(
 		position,
 		scaleVector,
 		modelMatrix);
+}
+
+void MeshBuilder::initBoundingBox(vector<fvec3> &vertices, vector<fvec4> &colors)
+{
+	int n = static_cast<int>(vertices.size());
+	float minx = vertices[0].x; // Assumiamo che il primo elemento sia il minimo iniziale
+	float miny = vertices[0].y; // Assumiamo che il primo elemento sia il minimo iniziale
+
+	float maxx = vertices[0].x; // Assumiamo che il primo elemento sia il massimo iniziale
+	float maxy = vertices[0].y; // Assumiamo che il primo elemento sia il massimo iniziale
+
+	for (int i = 1; i < n; i++)
+	{
+		if (vertices[i].x < minx)
+		{
+			minx = vertices[i].x;
+		}
+		if (vertices[i].x > maxx)
+		{
+			maxx = vertices[i].x;
+		}
+
+		if (vertices[i].y < miny)
+		{
+			miny = vertices[i].y;
+		}
+
+		if (vertices[i].y > maxy)
+		{
+			maxy = vertices[i].y;
+		}
+	}
+
+	fvec4 boundingBoxMinObject = fvec4(minx, miny, 0.0, 1.0);
+	fvec4 boundingBoxMaxObject = fvec4(maxx, maxy, 0.0, 1.0);
+
+	// Add bounding box vertices to the vertices vector
+	vertices.push_back(fvec3(boundingBoxMinObject.x, boundingBoxMinObject.y, 0.0));
+	colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	vertices.push_back(fvec3(boundingBoxMaxObject.x, boundingBoxMinObject.y, 0.0));
+	colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	vertices.push_back(fvec3(boundingBoxMaxObject.x, boundingBoxMaxObject.y, 0.0));
+	colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
+	vertices.push_back(fvec3(boundingBoxMinObject.x, boundingBoxMaxObject.y, 0.0));
+	colors.push_back(fvec4(1.0, 0.0, 0.0, 1.0));
 }

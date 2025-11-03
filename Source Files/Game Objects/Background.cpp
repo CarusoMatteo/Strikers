@@ -1,5 +1,7 @@
 #include "../../Header Files/Game Objects/Background.h"
 
+#include "../../Header Files/InputEvents.h"
+
 Background::Background(Mesh *mesh) : mesh(mesh)
 {
 }
