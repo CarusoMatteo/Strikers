@@ -1,4 +1,5 @@
 #pragma once
+#include "IGameObject.h"
 
 #include <string>
 #include <vector>

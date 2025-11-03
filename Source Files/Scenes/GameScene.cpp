@@ -37,20 +37,13 @@ Background *GameScene::createBackground(ivec2 windowSize)
 		colorTopLeft,
 		colorTopRight);
 
-	/*
-	 * return Background(MeshBuilder::buildBackgroundMesh(
-	 *  vertex,
-	 *  fragment,
-	 *	windowSize,
-	 * 	position,
-	 * 	scaleVector,
-	 * 	colorBottomLeft,
-	 * 	colorBottomRight,
-	 * 	colorTopLeft,
-	 * 	colorTopRight,
-	 * 	fmat4(1)));
-	 */
-	return nullptr;
+	return new Background(
+		vertex,
+		fragment,
+		shape,
+		position,
+		scaleVector,
+		windowSize);
 }
 
 Heart *GameScene::createHeart(ivec2 windowSize)
@@ -59,7 +52,6 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 	string fragment = ".\\Shader Files\\Heart\\HeartFragment.glsl";
 
 	int numberOfTriangles = 100;
-	fvec2 center = fvec2(0, 0);
 	fvec2 radius = fvec2(1, 1);
 
 	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 3.0, 0.0);
@@ -68,33 +60,25 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 	fvec4 colorCenter = fvec4(1, 0, 0, 1);
 	fvec4 colorBorder = fvec4(0.5f, 0, 0, 1);
 
-	Shape shapeData = ShapeMaker::makeHeart(
+	Shape shape = ShapeMaker::makeHeart(
 		numberOfTriangles,
 		radius,
 		colorCenter,
 		colorBorder);
 
-	/*
-	return Heart(MeshBuilder::buildHeartBB(
+	return new Heart(
 		vertex,
 		fragment,
-		numberOfTriangles,
-		center,
-		radius,
-		windowSize,
+		shape,
 		position,
 		scaleVector,
-		colorCenter,
-		colorBorder,
-		fmat4(1)));
-	*/
-	return nullptr;
+		windowSize);
 }
 
 Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 {
-	string vertex = ".\\Shader Files\\Heart\\HeartVertex.glsl";
-	string fragment = ".\\Shader Files\\Heart\\HeartFragment.glsl";
+	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
+	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
 
 	float width = 2;
 	float height = 1;
@@ -110,27 +94,18 @@ Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 	Shape shapeData = ShapeMaker::makeRectangle(
 		width,
 		height,
-		colorTopLeft,
-		colorTopRight,
-		colorBottomLeft,
-		colorBottomRight);
-
-	/*
-	return Spaceship(MeshBuilder::buildRectangleBB(
-		vertex,
-		fragment,
-		width,
-		height,
-		windowSize,
-		position,
-		scaleVector,
-		colorTopLeft,
-		colorTopRight,
 		colorBottomLeft,
 		colorBottomRight,
-		fmat4(1)));
-	*/
-	return nullptr;
+		colorTopLeft,
+		colorTopRight);
+
+	return new Spaceship(
+		vertex,
+		fragment,
+		shapeData,
+		position,
+		scaleVector,
+		windowSize);
 }
 
 GameScene::~GameScene()

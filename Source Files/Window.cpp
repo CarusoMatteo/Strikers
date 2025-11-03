@@ -3,6 +3,9 @@
 #include "../Header Files/Mesh.h"
 #include "../Header Files/InputEvents.h"
 
+#include <iostream>
+using namespace std;
+
 Window::Window(string windowTitle)
 {
 	this->initializeWindow(windowTitle, 0.8, 0.8);
@@ -16,6 +19,7 @@ Window::Window(string windowTitle)
 
 Window::~Window()
 {
+	cout << "Destroying Window..." << endl;
 	// Free ImGui resources
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();

@@ -13,11 +13,11 @@ Heart::Heart(
 	this->mesh = new MeshBB(
 		vertexName,
 		fragmentName,
-		shape.vertices,
-		shape.colors,
+		shape.first,
+		shape.second,
 		position,
 		scaleVector,
-		GL_TRIANGLES,
+		GL_TRIANGLE_FAN,
 		windowSize,
 		fmat4(1));
 }

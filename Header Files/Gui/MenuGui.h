@@ -10,7 +10,6 @@ class MenuGui : public IGui
 {
 public:
 	MenuGui(fvec3 *clearColorRef);
-	~MenuGui();
 	void drawGui() override;
 
 private:
