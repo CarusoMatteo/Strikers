@@ -5,11 +5,12 @@
 #include <glm/glm.hpp>
 
 using glm::fvec3;
+class MeshBB;
 
 class Heart : public IGameObject
 {
 public:
-	Heart(MeshBB *mesh);
+	Heart();
 	~Heart() override;
 
 	void update(float deltaTime) override;

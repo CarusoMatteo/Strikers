@@ -4,22 +4,21 @@
 #include "../../Header Files/Game Objects/Heart.h"
 #include "../../Header Files/Game Objects/Spaceship.h"
 #include "../../Header Files/Gui/MenuGui.h"
-#include "../../Header Files/MeshBuilder.h"
 #include "../../Header Files/ShapeMaker.h"
 
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef)
 {
-	this->background = &GameScene::createBackground(windowSize);
-	Heart heart = GameScene::createHeart(windowSize);
-	Spaceship spaceship = GameScene::createSpaceship(windowSize);
+	this->background = GameScene::createBackground(windowSize);
+	Heart *heart = GameScene::createHeart(windowSize);
+	Spaceship *spaceship = GameScene::createSpaceship(windowSize);
 
-	this->gameObjects = new vector<IGameObject>{
+	this->gameObjects = new vector<IGameObject *>{
 		heart,
 		spaceship};
 	this->gui = new MenuGui(clearColorRef);
 }
 
-Background GameScene::createBackground(ivec2 windowSize)
+Background *GameScene::createBackground(ivec2 windowSize)
 {
 	string vertex = ".\\Shader Files\\Background\\BackgroundVertex.glsl";
 	string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
@@ -32,27 +31,29 @@ Background GameScene::createBackground(ivec2 windowSize)
 	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
 	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
 
-	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeBackgroundPlane(
+	Shape shape = ShapeMaker::makeBackgroundPlane(
 		colorBottomLeft,
 		colorBottomRight,
 		colorTopLeft,
 		colorTopRight);
 
-	return Background(MeshBuilder::buildBackgroundMesh(
-		vertex,
-		fragment,
-		true,
-		windowSize,
-		position,
-		scaleVector,
-		colorBottomLeft,
-		colorBottomRight,
-		colorTopLeft,
-		colorTopRight,
-		fmat4(1)));
+	/*
+	 * return Background(MeshBuilder::buildBackgroundMesh(
+	 *  vertex,
+	 *  fragment,
+	 *	windowSize,
+	 * 	position,
+	 * 	scaleVector,
+	 * 	colorBottomLeft,
+	 * 	colorBottomRight,
+	 * 	colorTopLeft,
+	 * 	colorTopRight,
+	 * 	fmat4(1)));
+	 */
+	return nullptr;
 }
 
-Heart GameScene::createHeart(ivec2 windowSize)
+Heart *GameScene::createHeart(ivec2 windowSize)
 {
 	string vertex = ".\\Shader Files\\Heart\\HeartVertex.glsl";
 	string fragment = ".\\Shader Files\\Heart\\HeartFragment.glsl";
@@ -67,16 +68,16 @@ Heart GameScene::createHeart(ivec2 windowSize)
 	fvec4 colorCenter = fvec4(1, 0, 0, 1);
 	fvec4 colorBorder = fvec4(0.5f, 0, 0, 1);
 
-	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeHeart(
+	Shape shapeData = ShapeMaker::makeHeart(
 		numberOfTriangles,
 		radius,
 		colorCenter,
 		colorBorder);
 
+	/*
 	return Heart(MeshBuilder::buildHeartBB(
 		vertex,
 		fragment,
-		true,
 		numberOfTriangles,
 		center,
 		radius,
@@ -86,9 +87,11 @@ Heart GameScene::createHeart(ivec2 windowSize)
 		colorCenter,
 		colorBorder,
 		fmat4(1)));
+	*/
+	return nullptr;
 }
 
-Spaceship GameScene::createSpaceship(ivec2 windowSize)
+Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 {
 	string vertex = ".\\Shader Files\\Heart\\HeartVertex.glsl";
 	string fragment = ".\\Shader Files\\Heart\\HeartFragment.glsl";
@@ -104,7 +107,7 @@ Spaceship GameScene::createSpaceship(ivec2 windowSize)
 	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
 	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
 
-	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeRectangle(
+	Shape shapeData = ShapeMaker::makeRectangle(
 		width,
 		height,
 		colorTopLeft,
@@ -112,10 +115,10 @@ Spaceship GameScene::createSpaceship(ivec2 windowSize)
 		colorBottomLeft,
 		colorBottomRight);
 
+	/*
 	return Spaceship(MeshBuilder::buildRectangleBB(
-		".\\Shader Files\\Default\\DefaultVertex.glsl",
-		".\\Shader Files\\Default\\DefaultFragment.glsl",
-		true,
+		vertex,
+		fragment,
 		width,
 		height,
 		windowSize,
@@ -126,6 +129,8 @@ Spaceship GameScene::createSpaceship(ivec2 windowSize)
 		colorBottomLeft,
 		colorBottomRight,
 		fmat4(1)));
+	*/
+	return nullptr;
 }
 
 GameScene::~GameScene()
@@ -140,7 +145,7 @@ void GameScene::updateGameObjects(float deltaTime)
 	this->background->update(deltaTime);
 	for (auto &&gameObject : *gameObjects)
 	{
-		gameObject.update(deltaTime);
+		gameObject->update(deltaTime);
 	}
 }
 
@@ -155,7 +160,7 @@ void GameScene::renderGameObjects(float currentTime)
 {
 	for (auto &&gameObject : *gameObjects)
 	{
-		gameObject.render(currentTime);
+		gameObject->render(currentTime);
 	}
 }
 

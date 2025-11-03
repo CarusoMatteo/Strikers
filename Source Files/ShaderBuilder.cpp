@@ -1,6 +1,8 @@
 #include "../Header Files/ShaderBuilder.h"
 
-GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmentfilename, bool shouldPrintLogs)
+bool ShaderBuilder::shouldPrintLogs = false;
+
+GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmentfilename)
 {
 	int success;
 	char infoLog[512];
@@ -13,7 +15,7 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 		throw new std::runtime_error("Failed to load vertex shader source code.");
 	}
 
-	if (shouldPrintLogs && VertexShader)
+	if (ShaderBuilder::shouldPrintLogs && VertexShader)
 	{
 		std::cout << "Vertex shader \'" << vertexfilename << "\' loaded succesfully " << std::endl;
 	}
@@ -40,7 +42,7 @@ GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmen
 	{
 		throw new std::runtime_error("Failed to load vertex shader source code.");
 	}
-	if (shouldPrintLogs && FragmentShader)
+	if (ShaderBuilder::shouldPrintLogs && FragmentShader)
 	{
 		std::cout << "Fragment shader \'" << fragmentfilename << "\' loaded succesfully " << std::endl;
 	}

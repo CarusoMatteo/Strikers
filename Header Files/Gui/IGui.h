@@ -7,8 +7,6 @@
 class IGui
 {
 public:
+	virtual ~IGui() = default;
 	virtual void drawGui() = 0;
-
-protected:
-	IGui() = default;
 };

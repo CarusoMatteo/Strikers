@@ -139,7 +139,6 @@
     <ClCompile Include="..\.common\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Source Files\Game Objects\Background.cpp" />
     <ClCompile Include="Source Files\Game Objects\Heart.cpp" />
-    <ClCompile Include="Source Files\Game Objects\IGameObject.cpp" />
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp" />
     <ClCompile Include="Source Files\glad.c" />
     <ClCompile Include="Source Files\Gui\GameGui.cpp" />
@@ -149,10 +148,10 @@
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
     <ClCompile Include="Source Files\MeshBB.cpp" />
-    <ClCompile Include="Source Files\MeshBuilder.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
     <ClCompile Include="Source Files\Scenes\GameScene.cpp" />
     <ClCompile Include="Source Files\ShaderBuilder.cpp" />
+    <ClCompile Include="Source Files\ShapeMaker.cpp" />
     <ClCompile Include="Source Files\Stage.cpp" />
     <ClCompile Include="Source Files\Window.cpp" />
   </ItemGroup>
@@ -177,12 +176,13 @@
     <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />
     <ClInclude Include="Header Files\MeshBB.h" />
-    <ClInclude Include="Header Files\MeshBuilder.h" />
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scene.h" />
     <ClInclude Include="Header Files\Scenes\GameScene.h" />
     <ClInclude Include="Header Files\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />
+    <ClInclude Include="Header Files\Shape.h" />
+    <ClInclude Include="Header Files\ShapeMaker.h" />
     <ClInclude Include="Header Files\Stage.h" />
     <ClInclude Include="Header Files\Window.h" />
   </ItemGroup>

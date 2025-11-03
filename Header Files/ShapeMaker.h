@@ -4,6 +4,8 @@
 #include <vector>
 #include <glm/glm.hpp>
 
+#include "Shape.h"
+
 using glm::fvec2;
 using glm::fvec3;
 using glm::fvec4;
@@ -13,20 +15,20 @@ using std::vector;
 class ShapeMaker
 {
 public:
-	static pair<vector<fvec3>, vector<fvec4>> makeBackgroundPlane(
+	static Shape makeBackgroundPlane(
 		// int numberOfTriangles = 2,
 		fvec4 colorBottomLeft,
 		fvec4 colorBottomRight,
 		fvec4 colorTopLeft,
 		fvec4 colorTopRight);
 
-	static pair<vector<fvec3>, vector<fvec4>> makeHeart(
+	static Shape makeHeart(
 		int numberOfTriangles,
 		fvec2 radius,
 		fvec4 colorCenter,
 		fvec4 colorBorder);
 
-	static pair<vector<fvec3>, vector<fvec4>> makeRectangle(
+	static Shape makeRectangle(
 		// int numberOfTriangles = 2,
 		float width,
 		float height,

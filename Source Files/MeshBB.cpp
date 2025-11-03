@@ -6,22 +6,20 @@ bool MeshBB::drawBoundingBox = false;
 
 MeshBB::MeshBB(string vertexShaderName,
 			   string fragmentShaderName,
-			   bool shouldPrintLogs,
 			   vector<fvec3> vertices,
 			   vector<fvec4> colors,
-			   GLenum drawMode,
-			   ivec2 windowSize,
 			   fvec3 position,
 			   fvec3 scaleVector,
+			   GLenum drawMode,
+			   ivec2 windowSize,
 			   fmat4 modelMatrix) : Mesh(vertexShaderName,
 										 fragmentShaderName,
-										 shouldPrintLogs,
 										 vertices,
 										 colors,
-										 drawMode,
-										 windowSize,
 										 position,
 										 scaleVector,
+										 drawMode,
+										 windowSize,
 										 modelMatrix)
 {
 	this->updateBoundingBoxWorld();

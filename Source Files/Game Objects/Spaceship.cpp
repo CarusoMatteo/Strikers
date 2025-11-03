@@ -1,8 +1,9 @@
 #include "../../Header Files/Game Objects/Spaceship.h"
 
+#include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
-Spaceship::Spaceship(MeshBB *mesh) : mesh(mesh)
+Spaceship::Spaceship()
 {
 }
 

@@ -5,24 +5,24 @@
 glm::fmat4 Mesh::projectionMatrix;
 bool Mesh::isWireframe = false;
 
-Mesh::Mesh(string vertexShaderName,
-		   string fragmentShaderName,
-		   bool shouldPrintLogs,
-		   vector<fvec3> vertices,
-		   vector<fvec4> colors,
-		   GLenum drawMode,
-		   ivec2 windowSize,
-		   fvec3 position,
-		   fvec3 scaleVector,
-		   fmat4 modelMatrix) : vertices(vertices),
-								colors(colors),
-								drawMode(drawMode),
-								windowSize(windowSize),
-								position(position),
-								scaleVector(scaleVector),
-								modelMatrix(modelMatrix)
+Mesh::Mesh(
+	string vertexShaderName,
+	string fragmentShaderName,
+	vector<fvec3> vertices,
+	vector<fvec4> colors,
+	fvec3 position,
+	fvec3 scaleVector,
+	GLenum drawMode,
+	ivec2 windowSize,
+	fmat4 modelMatrix) : vertices(vertices),
+						 colors(colors),
+						 position(position),
+						 scaleVector(scaleVector),
+						 drawMode(drawMode),
+						 windowSize(windowSize),
+						 modelMatrix(modelMatrix)
 {
-	this->buildShader(vertexShaderName, fragmentShaderName, shouldPrintLogs);
+	this->buildShader(vertexShaderName, fragmentShaderName);
 	this->initVao();
 	this->initVbos();
 	this->initUniformReferences();
@@ -48,9 +48,9 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 
-void Mesh::buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs)
+void Mesh::buildShader(string vertexShaderName, string fragmentShaderName)
 {
-	this->programId = ShaderBuilder::buildShder(vertexShaderName.c_str(), fragmentShaderName.c_str(), shouldPrintLogs);
+	this->programId = ShaderBuilder::buildShder(vertexShaderName.c_str(), fragmentShaderName.c_str());
 }
 
 void Mesh::initVao()

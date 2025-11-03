@@ -27,12 +27,12 @@ public:
 
 private:
 	Background *background;
-	vector<IGameObject> *gameObjects;
+	vector<IGameObject *> *gameObjects;
 	IGui *gui;
 
-	static Background createBackground(ivec2 windowSize);
-	static Heart createHeart(ivec2 windowSize);
-	static Spaceship createSpaceship(ivec2 windowSize);
+	static Background *createBackground(ivec2 windowSize);
+	static Heart *createHeart(ivec2 windowSize);
+	static Spaceship *createSpaceship(ivec2 windowSize);
 	void renderGameObjects(float currentTime);
 
 	void renderGui();

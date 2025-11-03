@@ -1,7 +1,5 @@
 #pragma once
 
-#include "../MeshBB.h"
-
 class IGameObject
 {
 public:
@@ -9,7 +7,4 @@ public:
 
 	virtual void update(float deltaTime) = 0;
 	virtual void render(float currentTime) = 0;
-
-protected:
-	IGameObject() = default;
 };

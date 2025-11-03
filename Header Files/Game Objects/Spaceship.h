@@ -2,10 +2,12 @@
 
 #include "IGameObject.h"
 
+class MeshBB;
+
 class Spaceship : public IGameObject
 {
 public:
-	Spaceship(MeshBB *mesh);
+	Spaceship();
 	~Spaceship() override;
 
 	void update(float deltaTime) override;

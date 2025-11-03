@@ -11,11 +11,12 @@ using std::string;
 class ShaderBuilder
 {
 public:
-	static GLuint buildShder(const char *vertexfilename, const char *fragmentfilename, bool shouldPrintLogs);
+	static GLuint buildShder(const char *vertexfilename, const char *fragmentfilename);
 
 private:
 	ShaderBuilder() = default;
 	~ShaderBuilder() = default;
 
+	static bool shouldPrintLogs;
 	static char *readShaderSource(const char *shaderFile);
 };

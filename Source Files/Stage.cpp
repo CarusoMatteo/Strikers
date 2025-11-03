@@ -7,7 +7,6 @@
 #include "../Header Files/Game Objects/Spaceship.h"
 #include "../Header Files/Scenes/GameScene.h"
 #include "../Header Files/Window.h"
-#include "../Header Files/MeshBuilder.h"
 
 Stage::Stage(SceneType startingScene, fvec3 clearColor, string windowTitle)
 {

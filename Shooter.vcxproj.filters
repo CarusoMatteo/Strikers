@@ -93,9 +93,6 @@
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Game Objects\IGameObject.cpp">
-      <Filter>Source Files\Game Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\Game Objects\Heart.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
     <ClCompile Include="Source Files\Gui\MenuGui.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\MeshBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\Game Objects\Background.cpp">
       <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
@@ -122,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="Source Files\Scenes\GameScene.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\ShapeMaker.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +185,6 @@
     <ClInclude Include="Header Files\Gui\MenuGui.h">
       <Filter>Header Files\Gui</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\MeshBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Header Files\Game Objects\Background.h">
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
@@ -208,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="Header Files\Scenes\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\ShapeMaker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Shape.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

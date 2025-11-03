@@ -1,9 +1,27 @@
 #include "../../Header Files/Game Objects/Background.h"
 
+#include "../../Header Files/ShapeMaker.h"
+#include "../../Header Files/Mesh.h"
 #include "../../Header Files/InputEvents.h"
 
-Background::Background(Mesh *mesh) : mesh(mesh)
+Background::Background(
+	string vertexName,
+	string fragmentName,
+	Shape shape,
+	fvec3 position,
+	fvec3 scaleVector,
+	ivec2 windowSize)
 {
+	this->mesh = new Mesh(
+		vertexName,
+		fragmentName,
+		shape.first,
+		shape.second,
+		position,
+		scaleVector,
+		GL_TRIANGLE_FAN,
+		windowSize,
+		fmat4(1));
 }
 
 Background::~Background()

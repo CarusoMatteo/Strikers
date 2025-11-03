@@ -2,7 +2,7 @@
 
 float pi = 3.14159265358979323846f;
 
-pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeBackgroundPlane(
+Shape ShapeMaker::makeBackgroundPlane(
 	fvec4 colorBottomLeft,
 	fvec4 colorBottomRight,
 	fvec4 colorTopLeft,
@@ -20,7 +20,7 @@ pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeBackgroundPlane(
 		colorTopRight);
 }
 
-pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeHeart(
+Shape ShapeMaker::makeHeart(
 	int numberOfTriangles,
 	fvec2 radius,
 	fvec4 colorCenter,
@@ -44,10 +44,10 @@ pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeHeart(
 
 	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
 
-	return pair<vector<fvec3>, vector<fvec4>>(vertices, colors);
+	return Shape(vertices, colors);
 }
 
-pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeRectangle(
+Shape ShapeMaker::makeRectangle(
 	float width,
 	float height,
 	fvec4 colorBottomLeft,
@@ -69,7 +69,7 @@ pair<vector<fvec3>, vector<fvec4>> ShapeMaker::makeRectangle(
 
 	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
 
-	return pair<vector<fvec3>, vector<fvec4>>(vertices, colors);
+	return Shape(vertices, colors);
 }
 
 void ShapeMaker::addBoundingBoxVertices(vector<fvec3> *vertices, vector<fvec4> *colors)

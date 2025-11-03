@@ -1,6 +1,8 @@
 #include "../../Header Files/Game Objects/Heart.h"
 
-Heart::Heart(MeshBB *mesh) : mesh(mesh)
+#include "../../Header Files/MeshBB.h"
+
+Heart::Heart()
 {
 }
 

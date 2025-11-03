@@ -11,13 +11,12 @@ public:
 	MeshBB(
 		string vertexShaderName,
 		string fragmentShaderName,
-		bool shouldPrintLogs,
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
-		GLenum drawMode,
-		ivec2 screenSize,
 		fvec3 position,
 		fvec3 scaleVector,
+		GLenum drawMode,
+		ivec2 windowSize,
 		fmat4 modelMatrix);
 
 	static bool *shouldDrawBoundingBoxRef()
