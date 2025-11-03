@@ -4,6 +4,7 @@
 #include "../Header Files/Gui/GameGui.h"
 #include "../Header Files/Game Objects/Background.h"
 #include "../Header Files/Game Objects/Heart.h"
+#include "../Header Files/Game Objects/Spaceship.h"
 #include "../Header Files/Scene.h"
 #include "../Header Files/Window.h"
 #include "../Header Files/MeshBuilder.h"
@@ -39,20 +40,35 @@ void Stage::createScenes()
 			fvec4(0, 0, 1, 1),
 			fvec4(1, 1, 1, 1),
 			fmat4(1.0f))),
-		new vector<IGameObject *>{new Heart(
-			MeshBuilder::buildHeart(
-				".\\Shader Files\\Heart\\HeartVertex.glsl",
-				".\\Shader Files\\Heart\\HeartFragment.glsl",
-				true,
-				100,
-				fvec2(0, 0),
-				fvec2(0.5f, 0.5f),
-				this->window->getWindowSize(),
-				fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0.0),
-				fvec3(10, 10, 1),
-				fvec4(1, 0, 0, 1),
-				fvec4(0.5f, 0, 0, 1),
-				fmat4(1)))},
+		new vector<IGameObject *>{
+			new Heart(
+				MeshBuilder::buildHeart(
+					".\\Shader Files\\Heart\\HeartVertex.glsl",
+					".\\Shader Files\\Heart\\HeartFragment.glsl",
+					true,
+					100,
+					fvec2(0, 0),
+					fvec2(0.5f, 0.5f),
+					this->window->getWindowSize(),
+					fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0.0),
+					fvec3(10, 10, 1),
+					fvec4(1, 0, 0, 1),
+					fvec4(0.5f, 0, 0, 1),
+					fmat4(1))),
+			new Spaceship(
+				MeshBuilder::buildHeart(
+					".\\Shader Files\\Default\\DefaultVertex.glsl",
+					".\\Shader Files\\Default\\DefaultFragment.glsl",
+					true,
+					100,
+					fvec2(0, 0),
+					fvec2(0.5f, 0.5f),
+					this->window->getWindowSize(),
+					fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0.0),
+					fvec3(10, 10, 1),
+					fvec4(0, 0, 1, 1),
+					fvec4(0, 0, 0.5f, 1),
+					fmat4(1)))},
 		new MenuGui(&this->clearColor));
 
 	scenes.at(static_cast<size_t>(SceneType::GAME)) = std::make_unique<Scene>(

@@ -44,6 +44,15 @@ public:
 		this->windowSize = newScreenSize;
 	}
 
+	fvec3 getPosition() const
+	{
+		return this->position;
+	}
+	void setPosition(fvec3 newPosition)
+	{
+		this->position = newPosition;
+	}
+
 protected:
 	static bool isWireframe;
 
