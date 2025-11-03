@@ -1,7 +1,10 @@
 #pragma once
 
 #include <string>
+#include <stdexcept>
+#include <iostream>
 #include <glad/glad.h>
+#include <GL/gl.h>
 
 using std::string;
 

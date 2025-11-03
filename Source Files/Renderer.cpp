@@ -1,5 +1,8 @@
 #include "../Header Files/Renderer.h"
 
+#include "../Header Files/Mesh.h"
+#include "../Header Files/MeshBB.h"
+
 void Renderer::renderWithBB(
 	unsigned int shaderProgramId,
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,

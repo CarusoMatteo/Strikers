@@ -1,7 +1,5 @@
 using namespace std;
 
-#include <string>
-#include <glm/glm.hpp>
 #include "../Header Files/Stage.h"
 
 using glm::fvec3;

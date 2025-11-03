@@ -1,8 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "MeshBB.h"
-#include "./Game Objects/IGameObject.h"
+
 #include "./Game Objects/Background.h"
 #include "./Gui/IGui.h"
 

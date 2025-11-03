@@ -12,6 +12,8 @@ using std::string;
 using std::vector;
 using namespace glm;
 
+class MeshBB;
+
 class Mesh
 {
 public:

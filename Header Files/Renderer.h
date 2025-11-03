@@ -7,10 +7,11 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "MeshBB.h"
-
 using namespace glm;
 using std::vector;
+
+class Mesh;
+class MeshBB;
 
 class Renderer
 {

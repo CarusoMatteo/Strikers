@@ -1,10 +1,5 @@
 #include "../Header Files/ShaderBuilder.h"
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <GL/gl.h>
-#include <iostream>
-
 GLuint ShaderBuilder::buildShder(const char *vertexfilename, const char *fragmentfilename, bool shouldPrintLogs)
 {
 	int success;
