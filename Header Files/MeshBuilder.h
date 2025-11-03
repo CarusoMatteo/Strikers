@@ -13,17 +13,17 @@ class MeshBuilder
 {
 public:
 	// No numberOfTriangles parameter because it is always 2 for a plane
-	static MeshBB *buildPlane(string vertexShaderName,
-							  string fragmentShaderName,
-							  bool shouldPrintLogs,
-							  ivec2 windowSize,
-							  fvec3 position,
-							  fvec3 scaleVector,
-							  fvec4 colorBottomLeft,
-							  fvec4 colorBottomRight,
-							  fvec4 colorTopLeft,
-							  fvec4 colorTopRight,
-							  fmat4 modelMatrix);
+	static Mesh *buildPlane(string vertexShaderName,
+							string fragmentShaderName,
+							bool shouldPrintLogs,
+							ivec2 windowSize,
+							fvec3 position,
+							fvec3 scaleVector,
+							fvec4 colorBottomLeft,
+							fvec4 colorBottomRight,
+							fvec4 colorTopLeft,
+							fvec4 colorTopRight,
+							fmat4 modelMatrix);
 
 	static MeshBB *buildHeart(string vertexShaderName,
 							  string fragmentShaderName,

@@ -1,9 +1,6 @@
 #include "../Header Files/Renderer.h"
 
-#include <iostream>
-using namespace std;
-
-void Renderer::render(
+void Renderer::renderWithBB(
 	unsigned int shaderProgramId,
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
@@ -14,16 +11,57 @@ void Renderer::render(
 	GLenum renderMode,
 	int vertexCount)
 {
+	Renderer::render(shaderProgramId,
+					 projectionMatrixUniformLocation, projectionMatrix,
+					 modelMatrixUniformLocation, modelMatrix,
+					 screenSizeUniformLocation, windowSize,
+					 currentTimeUniformLocation, currentTime,
+					 position, scaleVector, rotationAngleDegrees,
+					 vaoAddress,
+					 renderMode,
+					 vertexCount,
+					 true);
+}
+
+void Renderer::renderWithoutBB(
+	unsigned int shaderProgramId,
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *currentTimeUniformLocation, float currentTime,
+	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	GLuint vaoAddress,
+	GLenum renderMode,
+	int vertexCount)
+{
+	Renderer::render(shaderProgramId,
+					 projectionMatrixUniformLocation, projectionMatrix,
+					 modelMatrixUniformLocation, modelMatrix,
+					 screenSizeUniformLocation, windowSize,
+					 currentTimeUniformLocation, currentTime,
+					 position, scaleVector, rotationAngleDegrees,
+					 vaoAddress,
+					 renderMode,
+					 vertexCount,
+					 false);
+}
+
+void Renderer::render(
+	unsigned int shaderProgramId,
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *currentTimeUniformLocation, float currentTime,
+	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	GLuint vaoAddress,
+	GLenum renderMode,
+	int vertexCount,
+	bool meshHasBB)
+{
 	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, windowSize, currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
-	Renderer::renderWithBoundingBox(vaoAddress, renderMode, vertexCount);
-
-	GLenum err = glGetError();
-	if (err != GL_NO_ERROR)
-	{
-		std::cout << "GL Error: " << err << std::endl;
-		throw std::runtime_error("OpenGL error occurred during rendering.");
-	}
+	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB);
+	Renderer::checkGLError();
 }
 
 void Renderer::renderWithUniforms(unsigned int shaderProgramId,
@@ -72,18 +110,12 @@ void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *s
 	 */
 }
 
-void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int vertexCount)
+void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB)
 {
-	if (MeshBB::shouldDrawWireframe())
-	{
-		// Draw in wireframe mode
+	if (Mesh::shouldDrawWireframe())
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
 	else
-	{
-		// Otherwise, fill the faces in solid mode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
 
 	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
 	glBindVertexArray(vaoAddress);
@@ -94,9 +126,19 @@ void Renderer::renderWithBoundingBox(GLuint vaoAddress, GLenum renderMode, int v
 	 * The subtraction of 4 is to exclude the vertices of the bounding box.
 	 */
 	glDrawArrays(renderMode, 0, vertexCount - 4);
-	if (MeshBB::shouldDrawBoundingBox())
+	if (meshHasBB && MeshBB::shouldDrawBoundingBox())
 	{
 		// Draw the bounding box with a line loop connecting the last 4 vertices
 		glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);
+	}
+}
+
+void Renderer::checkGLError()
+{
+	GLenum error = glGetError();
+	if (error != GL_NO_ERROR)
+	{
+		std::cerr << "OpenGL Error: " << error << std::endl;
+		throw std::runtime_error("OpenGL encountered an error.");
 	}
 }

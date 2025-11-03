@@ -1,6 +1,6 @@
 #include "../../Header Files/Game Objects/Background.h"
 
-Background::Background(MeshBB *mesh) : mesh(mesh)
+Background::Background(Mesh *mesh) : mesh(mesh)
 {
 }
 

@@ -1,6 +1,6 @@
 #include "../Header Files/MeshBuilder.h"
 
-MeshBB *MeshBuilder::buildPlane(
+Mesh *MeshBuilder::buildPlane(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,
@@ -24,7 +24,7 @@ MeshBB *MeshBuilder::buildPlane(
 	vertices.push_back(fvec3(0.0, 1.0, 0.0));
 	colors.push_back(colorTopLeft);
 
-	return new MeshBB(
+	return new Mesh(
 		vertexShaderName,
 		fragmentShaderName,
 		shouldPrintLogs,

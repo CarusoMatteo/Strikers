@@ -1,18 +1,11 @@
 #pragma once
-
-#include <string>
-#include <vector>
-#include <glad/glad.h>
-#include <glm/glm.hpp>
-
-#include "ShaderBuilder.h"
-#include "Renderer.h"
+#include "Mesh.h"
 
 using std::string;
 using std::vector;
 using namespace glm;
 
-class MeshBB
+class MeshBB : public Mesh
 {
 public:
 	MeshBB(
@@ -26,75 +19,26 @@ public:
 		fvec3 position,
 		fvec3 scaleVector,
 		fmat4 modelMatrix);
-	~MeshBB();
 
-	static void setProjectionMatrix(fmat4 projection)
-	{
-		MeshBB::projectionMatrix = projection;
-	}
-	static bool *getIsWireframeRef()
-	{
-		return &isWireframe;
-	}
-	static bool shouldDrawWireframe()
-	{
-		return isWireframe;
-	}
 	static bool *shouldDrawBoundingBoxRef()
 	{
-		return &drawBoundingBox;
+		return &MeshBB::drawBoundingBox;
 	}
 	static bool shouldDrawBoundingBox()
 	{
-		return drawBoundingBox;
+		return MeshBB::drawBoundingBox;
 	}
 
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
-	void updateScreenSize(ivec2 newScreenSize)
-	{
-		this->windowSize = newScreenSize;
-	}
 
 private:
-	static bool isWireframe;
 	static bool drawBoundingBox;
-
-	// Shader compilation information
-
-	GLuint programId;
-	GLuint vaoAddress;
-	GLuint verticesVboAddress;
-	GLuint colorsVboAddress;
-
-	vector<fvec3> vertices;
-	vector<fvec4> colors;
-
-	GLenum drawMode;
-	ivec2 windowSize;
-
-	/// @brief Projection matrix to place object in world space.
-	static fmat4 projectionMatrix;
-	GLuint projectionMatrixUniformLocation;
-
-	fmat4 modelMatrix;
-	GLuint modelMatrixUniformLocation;
-
-	fvec3 position;
-	fvec3 scaleVector;
-
-	GLuint currentTimeUniformLocation;
-	GLuint screenSizeUniformLocation;
 
 	fvec4 boundingBoxMinObject;
 	fvec4 boundingBoxMaxObject;
 	fvec4 boundingBoxMinWorld;
 	fvec4 boundingBoxMaxWorld;
 
-	void buildShader(string vertexShaderName, string fragmentShaderName, bool shouldPrintLogs);
-	void initVao();
-	void initVbos();
-	void initUniformReferences();
 	void initBoundingBox();
-
 	void updateBoundingBoxWorld();
 };

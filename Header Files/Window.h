@@ -11,6 +11,7 @@
 #include <ImGui/imgui_impl_glfw.h>
 #include <ImGui/imgui_impl_opengl3.h>
 
+#include "Mesh.h"
 #include "InputEvents.h"
 
 using glm::fmat4;

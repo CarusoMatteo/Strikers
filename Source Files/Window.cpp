@@ -1,8 +1,5 @@
 #include "../Header Files/Window.h"
 
-#include <iostream>
-using namespace std;
-
 Window::Window(string windowTitle)
 {
 	this->initializeWindow(windowTitle, 0.8, 0.8);
@@ -11,7 +8,7 @@ Window::Window(string windowTitle)
 	this->initOpenGL();
 
 	InputEvents::setCurrentWindowSize(ivec2(this->windowWidth, this->windowHeight));
-	MeshBB::setProjectionMatrix(createProjectionMatrix(this->windowWidth, this->windowHeight));
+	Mesh::setProjectionMatrix(createProjectionMatrix(this->windowWidth, this->windowHeight));
 }
 
 Window::~Window()

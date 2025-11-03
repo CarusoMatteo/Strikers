@@ -7,7 +7,6 @@
 #include <stdexcept>
 
 #include "InputEventsType.h"
-#include "MeshBB.h"
 
 using namespace glm;
 using std::array;

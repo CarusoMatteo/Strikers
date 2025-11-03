@@ -48,6 +48,6 @@ void MenuGui::settingsWindow(float xpos, float ypos)
 	// Shows mouse coordinates.
 	ImGui::Text("Coordinate Mouse relative alla finestra GLFW: (%.1f, %.1f)", mousePosition->x, mousePosition->y);
 	// Checkbox to toggle wireframe mode.
-	ImGui::Checkbox("Wireframe", MeshBB::getIsWireframeRef());
+	ImGui::Checkbox("Wireframe", Mesh::getIsWireframeRef());
 	ImGui::Checkbox("Bounding Box", MeshBB::shouldDrawBoundingBoxRef());
 }

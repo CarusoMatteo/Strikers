@@ -11,12 +11,12 @@ using glm::fvec4;
 class Background : public IGameObject
 {
 public:
-	Background(MeshBB *mesh);
+	Background(Mesh *mesh);
 	~Background() override;
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 
 private:
-	MeshBB *mesh;
+	Mesh *mesh;
 };
