@@ -39,7 +39,50 @@ Mesh *MeshBuilder::buildPlane(
 		modelMatrix);
 }
 
-MeshBB *MeshBuilder::buildHeart(
+MeshBB *MeshBuilder::buildRectangleBB(
+	string vertexShaderName,
+	string fragmentShaderName,
+	bool shouldPrintLogs,
+	// int numberOfTriangles, always 2
+	float width,
+	float height,
+	ivec2 windowSize,
+	fvec3 position,
+	fvec3 scaleVector,
+	fvec4 colorTopLeft,
+	fvec4 colorTopRight,
+	fvec4 colorBottomLeft,
+	fvec4 colorBottomRight,
+	fmat4 modelMatrix)
+{
+	vector<fvec3> vertices;
+	vector<fvec4> colors;
+
+	vertices.push_back(fvec3(0));
+	colors.push_back(colorTopLeft);
+	vertices.push_back(fvec3(width, 0, 0));
+	colors.push_back(colorTopRight);
+	vertices.push_back(fvec3(width, height, 0));
+	colors.push_back(colorBottomRight);
+	vertices.push_back(fvec3(0, height, 0));
+	colors.push_back(colorBottomLeft);
+
+	MeshBuilder::initBoundingBox(vertices, colors);
+
+	return new MeshBB(
+		vertexShaderName,
+		fragmentShaderName,
+		shouldPrintLogs,
+		vertices,
+		colors,
+		GL_TRIANGLE_FAN,
+		windowSize,
+		position,
+		scaleVector,
+		modelMatrix);
+}
+
+MeshBB *MeshBuilder::buildHeartBB(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,

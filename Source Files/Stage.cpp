@@ -42,7 +42,7 @@ void Stage::createScenes()
 			fmat4(1.0f))),
 		new vector<IGameObject *>{
 			new Heart(
-				MeshBuilder::buildHeart(
+				MeshBuilder::buildHeartBB(
 					".\\Shader Files\\Heart\\HeartVertex.glsl",
 					".\\Shader Files\\Heart\\HeartFragment.glsl",
 					true,
@@ -56,18 +56,19 @@ void Stage::createScenes()
 					fvec4(0.5f, 0, 0, 1),
 					fmat4(1))),
 			new Spaceship(
-				MeshBuilder::buildHeart(
+				MeshBuilder::buildRectangleBB(
 					".\\Shader Files\\Default\\DefaultVertex.glsl",
 					".\\Shader Files\\Default\\DefaultFragment.glsl",
 					true,
-					100,
-					fvec2(0, 0),
-					fvec2(0.5f, 0.5f),
+					2,
+					1,
 					this->window->getWindowSize(),
-					fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0.0),
-					fvec3(10, 10, 1),
-					fvec4(0, 0, 1, 1),
-					fvec4(0, 0, 0.5f, 1),
+					fvec3(this->window->getWindowSize().x * 0.1, this->window->getWindowSize().y / 3.0, 0),
+					fvec3(100, 100, 1),
+					fvec4(1, 1, 0, 0.3f),
+					fvec4(1, 0, 0, 1),
+					fvec4(1, 1, 0, 0.3f),
+					fvec4(1, 0, 0, 1),
 					fmat4(1)))},
 		new MenuGui(&this->clearColor));
 

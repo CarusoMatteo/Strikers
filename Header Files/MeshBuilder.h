@@ -20,31 +20,49 @@ class MeshBB;
 class MeshBuilder
 {
 public:
-	// No numberOfTriangles parameter because it is always 2 for a plane
-	static Mesh *buildPlane(string vertexShaderName,
-							string fragmentShaderName,
-							bool shouldPrintLogs,
-							ivec2 windowSize,
-							fvec3 position,
-							fvec3 scaleVector,
-							fvec4 colorBottomLeft,
-							fvec4 colorBottomRight,
-							fvec4 colorTopLeft,
-							fvec4 colorTopRight,
-							fmat4 modelMatrix);
+	static Mesh *buildPlane(
+		string vertexShaderName,
+		string fragmentShaderName,
+		bool shouldPrintLogs,
+		// int numberOfTriangles, always 2
+		ivec2 windowSize,
+		fvec3 position,
+		fvec3 scaleVector,
+		fvec4 colorBottomLeft,
+		fvec4 colorBottomRight,
+		fvec4 colorTopLeft,
+		fvec4 colorTopRight,
+		fmat4 modelMatrix);
 
-	static MeshBB *buildHeart(string vertexShaderName,
-							  string fragmentShaderName,
-							  bool shouldPrintLogs,
-							  int numberOfTriangles,
-							  fvec2 center,
-							  fvec2 radius,
-							  ivec2 windowSize,
-							  fvec3 position,
-							  fvec3 scaleVector,
-							  fvec4 colorCenter,
-							  fvec4 colorBorder,
-							  fmat4 modelMatrix);
+	static MeshBB *buildHeartBB(
+		string vertexShaderName,
+		string fragmentShaderName,
+		bool shouldPrintLogs,
+		int numberOfTriangles,
+		fvec2 center,
+		fvec2 radius,
+		ivec2 windowSize,
+		fvec3 position,
+		fvec3 scaleVector,
+		fvec4 colorCenter,
+		fvec4 colorBorder,
+		fmat4 modelMatrix);
+
+	static MeshBB *buildRectangleBB(
+		string vertexShaderName,
+		string fragmentShaderName,
+		bool shouldPrintLogs,
+		// int numberOfTriangles, always 2
+		float width,
+		float height,
+		ivec2 windowSize,
+		fvec3 position,
+		fvec3 scaleVector,
+		fvec4 colorTopLeft,
+		fvec4 colorTopRight,
+		fvec4 colorBottomLeft,
+		fvec4 colorBottomRight,
+		fmat4 modelMatrix);
 
 private:
 	MeshBuilder() = default;
