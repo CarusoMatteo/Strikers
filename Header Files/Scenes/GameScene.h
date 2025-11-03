@@ -30,13 +30,15 @@ private:
 	Background *background;
 	vector<IGameObject *> *gameObjects;
 	vector<Projectile *> *projectiles;
+	Spaceship *spaceship;
+
 	IGui *gui;
 	ivec2 windowSize;
 
 	static Background *createBackground(ivec2 windowSize);
 	static Heart *createHeart(ivec2 windowSize);
 	static Spaceship *createSpaceship(ivec2 windowSize);
-	static Projectile *createProjectile(ivec2 windowSize);
+	static Projectile *createProjectile(ivec2 windowSize, fvec3 spaceshipPosition);
 
 	void spawnProjectile();
 	void deleteOffScreenProjectiles();

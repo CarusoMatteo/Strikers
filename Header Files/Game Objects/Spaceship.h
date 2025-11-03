@@ -27,6 +27,8 @@ public:
 		ivec2 windowSize);
 	~Spaceship() override;
 
+	fvec3 getPosition() const;
+
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 

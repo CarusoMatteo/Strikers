@@ -28,6 +28,11 @@ Spaceship::~Spaceship()
 	delete this->mesh;
 }
 
+fvec3 Spaceship::getPosition() const
+{
+	return mesh ? mesh->getPosition() : fvec3(0.0f);
+}
+
 void Spaceship::update(float deltaTime)
 {
 	fvec3 movementDirection = fvec3(0.0f, 0.0f, 0.0f);

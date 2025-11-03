@@ -12,7 +12,7 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 {
 	this->background = GameScene::createBackground(this->windowSize);
 	Heart *heart = GameScene::createHeart(this->windowSize);
-	Spaceship *spaceship = GameScene::createSpaceship(this->windowSize);
+	this->spaceship = GameScene::createSpaceship(this->windowSize);
 
 	this->gameObjects = new vector<IGameObject *>{
 		heart,
@@ -112,15 +112,14 @@ Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 		windowSize);
 }
 
-Projectile *GameScene::createProjectile(ivec2 windowSize)
+Projectile *GameScene::createProjectile(ivec2 windowSize, fvec3 spaceshipPosition)
 {
-	// TODO: Crea shader che ruota continuamente il proiettile.
-	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
-	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
+	string vertex = ".\\Shader Files\\Projectile\\ProjectileVertex.glsl";
+	string fragment = ".\\Shader Files\\Projectile\\ProjectileFragment.glsl";
 
 	float sideLenght = 1;
 
-	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 3.0, 0.0);
+	fvec3 position = spaceshipPosition;
 	fvec3 scaleVector = fvec3(100, 100, 1);
 
 	fvec4 colorTop = fvec4(1, 1, 1, 1);
@@ -178,7 +177,7 @@ void GameScene::renderScene(float currentTime)
 
 void GameScene::spawnProjectile()
 {
-	this->projectiles->push_back(GameScene::createProjectile(this->windowSize));
+	this->projectiles->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getPosition()));
 }
 
 void GameScene::deleteOffScreenProjectiles()
