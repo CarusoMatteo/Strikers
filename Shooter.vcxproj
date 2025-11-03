@@ -139,6 +139,7 @@
     <ClCompile Include="..\.common\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Source Files\Game Objects\Background.cpp" />
     <ClCompile Include="Source Files\Game Objects\Heart.cpp" />
+    <ClCompile Include="Source Files\Game Objects\Projectile.cpp" />
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp" />
     <ClCompile Include="Source Files\glad.c" />
     <ClCompile Include="Source Files\Gui\GameGui.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Header Files\Game Objects\Background.h" />
     <ClInclude Include="Header Files\Game Objects\Heart.h" />
     <ClInclude Include="Header Files\Game Objects\IGameObject.h" />
+    <ClInclude Include="Header Files\Game Objects\Projectile.h" />
     <ClInclude Include="Header Files\Game Objects\Spaceship.h" />
     <ClInclude Include="Header Files\Gui\GameGui.h" />
     <ClInclude Include="Header Files\Gui\IGui.h" />

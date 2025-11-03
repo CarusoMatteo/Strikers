@@ -13,6 +13,7 @@ using std::vector;
 class Background;
 class Heart;
 class Spaceship;
+class Projectile;
 class IGameObject;
 class IGui;
 
@@ -28,12 +29,17 @@ public:
 private:
 	Background *background;
 	vector<IGameObject *> *gameObjects;
+	vector<Projectile *> *projectiles;
 	IGui *gui;
+	ivec2 windowSize;
 
 	static Background *createBackground(ivec2 windowSize);
 	static Heart *createHeart(ivec2 windowSize);
 	static Spaceship *createSpaceship(ivec2 windowSize);
-	void renderGameObjects(float currentTime);
+	static Projectile *createProjectile(ivec2 windowSize);
 
+	void spawnProjectile();
+	void deleteOffScreenProjectiles();
+	void renderGameObjects(float currentTime);
 	void renderGui();
 };

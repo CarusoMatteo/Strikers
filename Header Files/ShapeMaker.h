@@ -37,6 +37,12 @@ public:
 		fvec4 colorTopLeft,
 		fvec4 colorTopRight);
 
+	static Shape makeTriangle(
+		float sideLength,
+		fvec4 colorTop,
+		fvec4 colorBottomLeft,
+		fvec4 colorBottomRight);
+
 private:
 	ShapeMaker() = default;
 	~ShapeMaker() = default;

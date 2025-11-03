@@ -72,6 +72,29 @@ Shape ShapeMaker::makeRectangle(
 	return Shape(vertices, colors);
 }
 
+Shape ShapeMaker::makeTriangle(
+	float sideLength,
+	fvec4 colorTop,
+	fvec4 colorBottomLeft,
+	fvec4 colorBottomRight)
+{
+	vector<fvec3> vertices;
+	vector<fvec4> colors;
+
+	float height = (sqrt(3) / 2) * sideLength;
+
+	vertices.push_back(fvec3(0, 2 * height / 3, 0));
+	colors.push_back(colorTop);
+	vertices.push_back(fvec3(-sideLength / 2, -height / 3, 0));
+	colors.push_back(colorBottomLeft);
+	vertices.push_back(fvec3(sideLength / 2, -height / 3, 0));
+	colors.push_back(colorBottomRight);
+
+	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+
+	return Shape(vertices, colors);
+}
+
 void ShapeMaker::addBoundingBoxVertices(vector<fvec3> *vertices, vector<fvec4> *colors)
 {
 	int n = static_cast<int>(vertices->size());
