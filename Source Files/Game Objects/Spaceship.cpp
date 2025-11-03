@@ -3,8 +3,24 @@
 #include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
-Spaceship::Spaceship()
+Spaceship::Spaceship(
+	string vertexName,
+	string fragmentName,
+	Shape shape,
+	fvec3 position,
+	fvec3 scaleVector,
+	ivec2 windowSize)
 {
+	this->mesh = new MeshBB(
+		vertexName,
+		fragmentName,
+		shape.first,
+		shape.second,
+		position,
+		scaleVector,
+		GL_TRIANGLES,
+		windowSize,
+		fmat4(1));
 }
 
 Spaceship::~Spaceship()
