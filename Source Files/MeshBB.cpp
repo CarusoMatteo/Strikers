@@ -1,4 +1,7 @@
 #include "../Header Files/MeshBB.h"
+#include "../Header Files/ShaderBuilder.h"
+#include "../Header Files/Renderer.h"
+
 bool MeshBB::drawBoundingBox = false;
 
 MeshBB::MeshBB(string vertexShaderName,

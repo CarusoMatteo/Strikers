@@ -5,14 +5,9 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-#include "ShaderBuilder.h"
-#include "Renderer.h"
-
 using std::string;
 using std::vector;
 using namespace glm;
-
-class MeshBB;
 
 class Mesh
 {

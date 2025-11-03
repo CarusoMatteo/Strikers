@@ -5,19 +5,17 @@
 #include <memory>
 #include <glm/glm.hpp>
 
-#include "Gui/MenuGui.h"
-#include "Gui/GameGui.h"
-#include "./Game Objects/Heart.h"
-#include "Scene.h"
-#include "SceneType.h"
-#include "Window.h"
-#include "MeshBuilder.h"
+#include "../Header Files/SceneType.h"
 
 using glm::fmat4;
 using glm::fvec3;
 using glm::fvec4;
 using std::array;
 using std::string;
+
+class Scene;
+class Window;
+
 using Scenes = std::array<std::unique_ptr<Scene>, static_cast<size_t>(SceneType::count)>;
 
 class Stage

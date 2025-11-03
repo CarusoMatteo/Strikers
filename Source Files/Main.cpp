@@ -1,5 +1,7 @@
 using namespace std;
 
+#include <GLFW/glfw3.h>
+
 #include "../Header Files/Stage.h"
 
 using glm::fvec3;

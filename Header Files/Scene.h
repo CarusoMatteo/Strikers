@@ -2,10 +2,11 @@
 
 #include <vector>
 
-#include "./Game Objects/Background.h"
-#include "./Gui/IGui.h"
-
 using std::vector;
+
+class IGui;
+class IGameObject;
+class Background;
 
 class Scene
 {

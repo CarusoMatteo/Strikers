@@ -1,5 +1,7 @@
 #include "../Header Files/MeshBuilder.h"
 
+#include "../Header Files/MeshBB.h"
+
 Mesh *MeshBuilder::buildPlane(
 	string vertexShaderName,
 	string fragmentShaderName,

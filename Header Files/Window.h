@@ -1,18 +1,16 @@
 #pragma once
 
 #include <string>
-
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_glfw.h>
 #include <ImGui/imgui_impl_opengl3.h>
 
-#include "Mesh.h"
-#include "InputEvents.h"
-
 using glm::fmat4;
+using glm::ivec2;
 using std::string;
 
 class Window

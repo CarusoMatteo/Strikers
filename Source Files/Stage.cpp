@@ -1,5 +1,13 @@
 #include "../Header Files/Stage.h"
 
+#include "../Header Files/Gui/MenuGui.h"
+#include "../Header Files/Gui/GameGui.h"
+#include "../Header Files/Game Objects/Background.h"
+#include "../Header Files/Game Objects/Heart.h"
+#include "../Header Files/Scene.h"
+#include "../Header Files/Window.h"
+#include "../Header Files/MeshBuilder.h"
+
 Stage::Stage(SceneType startingScene, fvec3 clearColor, string windowTitle)
 {
 	this->window = new Window(windowTitle);

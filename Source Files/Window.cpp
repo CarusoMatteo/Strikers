@@ -1,5 +1,8 @@
 #include "../Header Files/Window.h"
 
+#include "../Header Files/Mesh.h"
+#include "../Header Files/InputEvents.h"
+
 Window::Window(string windowTitle)
 {
 	this->initializeWindow(windowTitle, 0.8, 0.8);

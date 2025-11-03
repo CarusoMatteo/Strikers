@@ -1,5 +1,8 @@
 #include "../Header Files/Scene.h"
 
+#include "../Header Files/Game Objects/Background.h"
+#include "../Header Files/Gui/IGui.h"
+
 Scene::Scene(Background *background, vector<IGameObject *> *gameObjects, IGui *gui) : background(background), gameObjects(gameObjects), gui(gui)
 {
 }

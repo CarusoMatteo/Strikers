@@ -1,4 +1,6 @@
 #include "../Header Files/Mesh.h"
+#include "../Header Files/ShaderBuilder.h"
+#include "../Header Files/Renderer.h"
 
 glm::fmat4 Mesh::projectionMatrix;
 bool Mesh::isWireframe = false;
