@@ -2,10 +2,12 @@
 #include "Scene.h"
 
 #include <vector>
+#include <utility>
 #include <glm/glm.hpp>
 
 using glm::fvec3;
 using glm::ivec2;
+using std::pair;
 using std::vector;
 
 class Background;

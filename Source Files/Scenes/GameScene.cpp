@@ -5,6 +5,7 @@
 #include "../../Header Files/Game Objects/Spaceship.h"
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/MeshBuilder.h"
+#include "../../Header Files/ShapeMaker.h"
 
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef)
 {
@@ -30,6 +31,12 @@ Background GameScene::createBackground(ivec2 windowSize)
 	fvec4 colorBottomRight = fvec4(0, 1, 0, 1);
 	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
 	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
+
+	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeBackgroundPlane(
+		colorBottomLeft,
+		colorBottomRight,
+		colorTopLeft,
+		colorTopRight);
 
 	return Background(MeshBuilder::buildBackgroundMesh(
 		vertex,
@@ -59,6 +66,12 @@ Heart GameScene::createHeart(ivec2 windowSize)
 
 	fvec4 colorCenter = fvec4(1, 0, 0, 1);
 	fvec4 colorBorder = fvec4(0.5f, 0, 0, 1);
+
+	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeHeart(
+		numberOfTriangles,
+		radius,
+		colorCenter,
+		colorBorder);
 
 	return Heart(MeshBuilder::buildHeartBB(
 		vertex,
@@ -90,6 +103,14 @@ Spaceship GameScene::createSpaceship(ivec2 windowSize)
 	fvec4 colorBottomRight = fvec4(0, 1, 0, 1);
 	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
 	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
+
+	pair<vector<fvec3>, vector<fvec4>> shapeData = ShapeMaker::makeRectangle(
+		width,
+		height,
+		colorTopLeft,
+		colorTopRight,
+		colorBottomLeft,
+		colorBottomRight);
 
 	return Spaceship(MeshBuilder::buildRectangleBB(
 		".\\Shader Files\\Default\\DefaultVertex.glsl",
