@@ -2,7 +2,7 @@
 
 #include "../Header Files/MeshBB.h"
 
-Mesh *MeshBuilder::buildPlane(
+Mesh *MeshBuilder::buildBackgroundMesh(
 	string vertexShaderName,
 	string fragmentShaderName,
 	bool shouldPrintLogs,

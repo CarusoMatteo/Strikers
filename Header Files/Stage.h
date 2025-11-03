@@ -5,7 +5,7 @@
 #include <memory>
 #include <glm/glm.hpp>
 
-#include "../Header Files/SceneType.h"
+#include "../Header Files/Scenes/SceneType.h"
 
 using glm::fmat4;
 using glm::fvec3;

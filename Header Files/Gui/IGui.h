@@ -8,4 +8,7 @@ class IGui
 {
 public:
 	virtual void drawGui() = 0;
+
+protected:
+	IGui() = default;
 };

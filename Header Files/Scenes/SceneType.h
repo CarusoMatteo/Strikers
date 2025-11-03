@@ -2,7 +2,7 @@
 
 enum class SceneType
 {
-	MENU,
+	// MENU,
 	GAME,
 	count
 };

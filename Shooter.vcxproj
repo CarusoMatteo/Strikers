@@ -151,7 +151,7 @@
     <ClCompile Include="Source Files\MeshBB.cpp" />
     <ClCompile Include="Source Files\MeshBuilder.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
-    <ClCompile Include="Source Files\Scene.cpp" />
+    <ClCompile Include="Source Files\Scenes\GameScene.cpp" />
     <ClCompile Include="Source Files\ShaderBuilder.cpp" />
     <ClCompile Include="Source Files\Stage.cpp" />
     <ClCompile Include="Source Files\Window.cpp" />
@@ -180,6 +180,7 @@
     <ClInclude Include="Header Files\MeshBuilder.h" />
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scene.h" />
+    <ClInclude Include="Header Files\Scenes\GameScene.h" />
     <ClInclude Include="Header Files\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />
     <ClInclude Include="Header Files\Stage.h" />

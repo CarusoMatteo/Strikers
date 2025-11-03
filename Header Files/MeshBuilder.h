@@ -20,7 +20,7 @@ class MeshBB;
 class MeshBuilder
 {
 public:
-	static Mesh *buildPlane(
+	static Mesh *buildBackgroundMesh(
 		string vertexShaderName,
 		string fragmentShaderName,
 		bool shouldPrintLogs,
