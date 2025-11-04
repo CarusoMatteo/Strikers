@@ -60,9 +60,9 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 
 	// Gets the resolution of the monitor
 	const GLFWvidmode *mode = glfwGetVideoMode(monitor);
-	// Sets the window dimensions to fraction of the monitor resolution.
-	this->windowWidth = static_cast<int>(mode->width * monitorPercentageWidth);
-	this->windowHeight = static_cast<int>(mode->height * monitorPercentageHeight);
+	// Sets the window dimensions to a fixed game size
+	this->windowWidth = 1980;
+	this->windowHeight = 1080;
 
 	// Create a window and its OpenGL context
 	this->window = glfwCreateWindow(this->windowWidth, this->windowHeight, windowTitle.c_str(), NULL, NULL);
@@ -91,6 +91,13 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 	// Choose cursor mode (normal, hidden, disabled, infinte), and its initial position
 	// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	// glfwSetCursorPos(window, 0, 0);
+
+	// Resize window to fraction of monitor size
+	int newWidth = static_cast<int>(mode->width * monitorPercentageWidth);
+	int newHeight = static_cast<int>(mode->height * monitorPercentageHeight);
+	glfwSetWindowSize(this->window, newWidth, newHeight);
+
+	glViewport(0, 0, newWidth, newHeight);
 }
 
 void Window::initInputEvents()
