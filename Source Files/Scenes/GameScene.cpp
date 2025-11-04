@@ -24,16 +24,16 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 
 Background *GameScene::createBackground(ivec2 windowSize)
 {
-	string vertex = ".\\Shader Files\\Background\\BackgroundVertex.glsl";
-	string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
+	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
+	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
 
 	fvec3 position = fvec3(0, 0, 0);
 	fvec3 scaleVector = fvec3(windowSize, 1);
 
-	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
-	fvec4 colorBottomRight = fvec4(0, 1, 0, 1);
-	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
-	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
+	fvec4 colorBottomLeft = fvec4(0.06f, 0.04f, 0.12f, 1);
+	fvec4 colorBottomRight = fvec4(0.06f, 0.04f, 0.12f, 1);
+	fvec4 colorTopLeft = fvec4(0.06f, 0.04f, 0.12f, 1);
+	fvec4 colorTopRight = fvec4(0.06f, 0.04f, 0.12f, 1);
 
 	Shape shapeData = ShapeMaker::makeBackgroundPlane(
 		colorBottomLeft,

@@ -17,7 +17,8 @@ Shape ShapeMaker::makeBackgroundPlane(
 		colorBottomLeft,
 		colorBottomRight,
 		colorTopLeft,
-		colorTopRight);
+		colorTopRight,
+		false);
 }
 
 Shape ShapeMaker::makeHeart(
@@ -53,7 +54,8 @@ Shape ShapeMaker::makeRectangle(
 	fvec4 colorBottomLeft,
 	fvec4 colorBottomRight,
 	fvec4 colorTopLeft,
-	fvec4 colorTopRight)
+	fvec4 colorTopRight,
+	bool addBoundingBox)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
@@ -67,7 +69,10 @@ Shape ShapeMaker::makeRectangle(
 	vertices.push_back(fvec3(0.0, height, 0.0));
 	colors.push_back(colorTopLeft);
 
-	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	if (addBoundingBox)
+	{
+		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	}
 
 	return Shape(vertices, colors);
 }

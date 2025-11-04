@@ -35,7 +35,8 @@ public:
 		fvec4 colorBottomLeft,
 		fvec4 colorBottomRight,
 		fvec4 colorTopLeft,
-		fvec4 colorTopRight);
+		fvec4 colorTopRight,
+		bool addBoundingBox = true);
 
 	static Shape makeTriangle(
 		float sideLength,
