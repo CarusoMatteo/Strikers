@@ -22,7 +22,17 @@ MeshBB::MeshBB(string vertexShaderName,
 										 windowSize,
 										 modelMatrix)
 {
-	this->updateBoundingBoxWorld();
+}
+
+fvec3 MeshBB::getBBCenter()
+{
+	fvec4 boundingBoxMinWorld = this->getBoundingBoxMinWorld();
+	fvec4 boundingBoxMaxWorld = this->getBoundingBoxMaxWorld();
+
+	return fvec3(
+		(boundingBoxMinWorld.x + boundingBoxMaxWorld.x) / 2.0f,
+		(boundingBoxMinWorld.y + boundingBoxMaxWorld.y) / 2.0f,
+		(boundingBoxMinWorld.z + boundingBoxMaxWorld.z) / 2.0f);
 }
 
 void MeshBB::render(float currentTime, float rotationAngleDegrees)
@@ -39,16 +49,20 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 
 fvec4 MeshBB::getBoundingBoxMinObject()
 {
-	return fvec4(this->vertices[this->vertices.size() - 2], 1.0f);
+	return fvec4(this->vertices.at(this->vertices.size() - 4), 1.0f);
 }
 
 fvec4 MeshBB::getBoundingBoxMaxObject()
 {
-	return fvec4(this->vertices[this->vertices.size() - 1], 1.0f);
+	return fvec4(this->vertices.at(this->vertices.size() - 2), 1.0f);
 }
 
-void MeshBB::updateBoundingBoxWorld()
+fvec4 MeshBB::getBoundingBoxMinWorld()
 {
-	this->boundingBoxMinWorld = this->modelMatrix * this->getBoundingBoxMinObject();
-	this->boundingBoxMaxWorld = this->modelMatrix * this->getBoundingBoxMaxObject();
+	return this->modelMatrix * this->getBoundingBoxMinObject();
+}
+
+fvec4 MeshBB::getBoundingBoxMaxWorld()
+{
+	return this->modelMatrix * this->getBoundingBoxMaxObject();
 }

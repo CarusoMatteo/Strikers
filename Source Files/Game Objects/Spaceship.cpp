@@ -33,6 +33,11 @@ fvec3 Spaceship::getPosition() const
 	return mesh ? mesh->getPosition() : fvec3(0.0f);
 }
 
+fvec3 Spaceship::getBBCenter() const
+{
+	return mesh->getBBCenter();
+}
+
 void Spaceship::update(float deltaTime)
 {
 	fvec3 movementDirection = fvec3(0.0f, 0.0f, 0.0f);

@@ -28,6 +28,7 @@ public:
 		return MeshBB::drawBoundingBox;
 	}
 
+	fvec3 getBBCenter();
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 
 private:
@@ -35,8 +36,6 @@ private:
 
 	fvec4 getBoundingBoxMinObject();
 	fvec4 getBoundingBoxMaxObject();
-	fvec4 boundingBoxMinWorld;
-	fvec4 boundingBoxMaxWorld;
-
-	void updateBoundingBoxWorld();
+	fvec4 getBoundingBoxMinWorld();
+	fvec4 getBoundingBoxMaxWorld();
 };

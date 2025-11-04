@@ -177,7 +177,7 @@ void GameScene::renderScene(float currentTime)
 
 void GameScene::spawnProjectile()
 {
-	this->projectiles->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getPosition()));
+	this->projectiles->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getBBCenter()));
 }
 
 void GameScene::deleteOffScreenProjectiles()

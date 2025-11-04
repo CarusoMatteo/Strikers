@@ -28,6 +28,7 @@ public:
 	~Spaceship() override;
 
 	fvec3 getPosition() const;
+	fvec3 getBBCenter() const;
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
