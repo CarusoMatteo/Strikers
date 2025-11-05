@@ -15,17 +15,17 @@ using std::vector;
 
 class MeshBB;
 
-class Projectile : public ITemporaryGameObject
+class Enemy : public ITemporaryGameObject
 {
 public:
-	Projectile(
+	Enemy(
 		string vertexName,
 		string fragmentName,
 		Shape shape,
 		fvec3 position,
 		fvec3 scaleVector,
 		ivec2 windowSize);
-	~Projectile() override;
+	~Enemy() override;
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
@@ -33,6 +33,6 @@ public:
 
 private:
 	MeshBB *mesh;
-	float speed = 2500.0f;
+	float speed = 1000.0f;
 	ivec2 windowSize;
 };

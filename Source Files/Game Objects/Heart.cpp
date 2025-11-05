@@ -10,7 +10,7 @@ Heart::Heart(
 	fvec3 scaleVector,
 	ivec2 windowSize)
 {
-	this->mesh = new MeshBB(
+	this->mesh = new Mesh(
 		vertexName,
 		fragmentName,
 		shape.first,

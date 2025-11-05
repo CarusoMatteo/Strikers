@@ -14,7 +14,9 @@ class Background;
 class Heart;
 class Spaceship;
 class Projectile;
+class Enemy;
 class IGameObject;
+class ITemporaryGameObject;
 class IGui;
 
 class GameScene : public Scene
@@ -29,19 +31,25 @@ public:
 private:
 	Background *background;
 	vector<IGameObject *> *gameObjects;
-	vector<Projectile *> *projectiles;
+	vector<ITemporaryGameObject *> *temporaryGameObjects;
 	Spaceship *spaceship;
 
 	IGui *gui;
 	ivec2 windowSize;
 
+	const float enemySpawnInterval = 1.0f;
+	vector<fvec3> enemySpawnPositions;
+	float timeSinceLastEnemySpawn = 0.0f;
+
 	static Background *createBackground(ivec2 windowSize);
 	static Heart *createHeart(ivec2 windowSize);
 	static Spaceship *createSpaceship(ivec2 windowSize);
 	static Projectile *createProjectile(ivec2 windowSize, fvec3 spaceshipPosition);
+	static Enemy *createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions);
 
 	void spawnProjectile();
-	void deleteOffScreenProjectiles();
+	void spawnEnemy(float deltaTime);
+	void destroyTemporaryGameObjects();
 	void renderGameObjects(float currentTime);
 	void renderGui();
 };

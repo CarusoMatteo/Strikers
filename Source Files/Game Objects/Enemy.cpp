@@ -1,10 +1,10 @@
-#include "../../Header Files/Game Objects/Projectile.h"
+#include "../../Header Files/Game Objects/Enemy.h"
 
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
-Projectile::Projectile(
+Enemy::Enemy(
 	string vertexName,
 	string fragmentName,
 	Shape shape,
@@ -24,22 +24,24 @@ Projectile::Projectile(
 		fmat4(1));
 }
 
-Projectile::~Projectile()
+Enemy::~Enemy()
 {
 	delete this->mesh;
 }
 
-void Projectile::update(float deltaTime)
+void Enemy::update(float deltaTime)
 {
-	this->mesh->setPosition(this->mesh->getPosition() + fvec3(this->speed * deltaTime, 0, 0));
+	fvec3 oldPosition = this->mesh->getPosition();
+	this->mesh->setPosition(fvec3(oldPosition.x - this->speed * deltaTime, oldPosition.y, oldPosition.z));
 }
 
-void Projectile::render(float currentTime)
+void Enemy::render(float currentTime)
 {
 	this->mesh->render(currentTime);
 }
 
-bool Projectile::shouldDestroy()
+bool Enemy::shouldDestroy()
 {
-	return this->mesh->getPosition().x > static_cast<float>(this->windowSize.x) - 10;
+	return false;
+	// return this->mesh->getPosition().x < -10;
 }

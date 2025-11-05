@@ -16,6 +16,7 @@ int main(void)
 	Stage *stage = new Stage(startingScene, clearColor, windowTitle);
 
 	float lastFrameTime = 0.0f;
+
 	while (!stage->shouldWindowClose())
 	{
 		float currentTime = static_cast<float>(glfwGetTime());

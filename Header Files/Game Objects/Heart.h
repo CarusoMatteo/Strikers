@@ -13,7 +13,7 @@ using glm::ivec2;
 using std::string;
 using std::vector;
 
-class MeshBB;
+class Mesh;
 
 class Heart : public IGameObject
 {
@@ -31,5 +31,5 @@ public:
 	void render(float currentTime) override;
 
 private:
-	MeshBB *mesh;
+	Mesh *mesh;
 };

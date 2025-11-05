@@ -4,9 +4,13 @@
 #include "../../Header Files/Game Objects/Heart.h"
 #include "../../Header Files/Game Objects/Spaceship.h"
 #include "../../Header Files/Game Objects/Projectile.h"
+#include "../../Header Files/Game Objects/Enemy.h"
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/InputEvents.h"
+
+#include <iostream>
+using namespace std;
 
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(windowSize)
 {
@@ -17,10 +21,18 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 	this->gameObjects = new vector<IGameObject *>{
 		heart,
 		spaceship};
-	this->projectiles = new vector<Projectile *>();
+	this->temporaryGameObjects = new vector<ITemporaryGameObject *>();
 
 	this->gui = new MenuGui(clearColorRef);
+
+	this->enemySpawnPositions = {
+		fvec3(windowSize.x * 1.1f, windowSize.y * 0.2f, 0.0f),
+		fvec3(windowSize.x * 1.1f, windowSize.y * 0.4f, 0.0f),
+		fvec3(windowSize.x * 1.1f, windowSize.y * 0.6f, 0.0f),
+		fvec3(windowSize.x * 1.1f, windowSize.y * 0.8f, 0.0f)};
 }
+
+#pragma region Game Object Creators
 
 Background *GameScene::createBackground(ivec2 windowSize)
 {
@@ -68,7 +80,8 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 		numberOfTriangles,
 		radius,
 		colorCenter,
-		colorBorder);
+		colorBorder,
+		false);
 
 	return new Heart(
 		vertex,
@@ -141,6 +154,42 @@ Projectile *GameScene::createProjectile(ivec2 windowSize, fvec3 spaceshipPositio
 		windowSize);
 }
 
+Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions)
+{
+	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
+	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
+
+	float width = 1;
+	float height = 1;
+
+	fvec3 position = enemySpawnPositions[rand() % enemySpawnPositions.size()];
+	cout << "Enemy position: " << position.x << ", " << position.y << ", " << position.z << endl;
+	fvec3 scaleVector = fvec3(50, 50, 1);
+
+	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
+	fvec4 colorBottomRight = fvec4(1, 0, 0, 1);
+	fvec4 colorTopLeft = fvec4(1, 0, 0, 1);
+	fvec4 colorTopRight = fvec4(1, 0, 0, 1);
+
+	Shape shapeData = ShapeMaker::makeRectangle(
+		width,
+		height,
+		colorBottomLeft,
+		colorBottomRight,
+		colorTopLeft,
+		colorTopRight);
+
+	return new Enemy(
+		vertex,
+		fragment,
+		shapeData,
+		position,
+		scaleVector,
+		windowSize);
+}
+
+#pragma endregion
+
 GameScene::~GameScene()
 {
 	delete this->background;
@@ -155,17 +204,14 @@ void GameScene::updateGameObjects(float deltaTime)
 	{
 		gameObject->update(deltaTime);
 	}
-	for (auto &&projectile : *projectiles)
+	for (auto &&temporaryGameObject : *temporaryGameObjects)
 	{
-		projectile->update(deltaTime);
+		temporaryGameObject->update(deltaTime);
 	}
 
-	if (InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)))
-	{
-		this->spawnProjectile();
-		InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)) = false;
-	}
-	this->deleteOffScreenProjectiles();
+	this->spawnProjectile();
+	this->spawnEnemy(deltaTime);
+	this->destroyTemporaryGameObjects();
 }
 
 void GameScene::renderScene(float currentTime)
@@ -177,19 +223,37 @@ void GameScene::renderScene(float currentTime)
 
 void GameScene::spawnProjectile()
 {
-	this->projectiles->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getBBCenter()));
+	if (InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)))
+	{
+		this->temporaryGameObjects->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getBBCenter()));
+		InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)) = false;
+	}
 }
 
-void GameScene::deleteOffScreenProjectiles()
+void GameScene::spawnEnemy(float deltaTime)
 {
-	for (size_t i = 0; i < this->projectiles->size(); /* no increment here */)
+	if (this->timeSinceLastEnemySpawn >= this->enemySpawnInterval)
 	{
-		Projectile *projectile = this->projectiles->at(i);
+		this->temporaryGameObjects->push_back(GameScene::createEnemy(this->windowSize, this->enemySpawnPositions));
+		this->timeSinceLastEnemySpawn = 0.0f;
+		cout << "Spawned enemy!" << endl;
+	}
+	else
+	{
+		this->timeSinceLastEnemySpawn += deltaTime;
+	}
+}
 
-		if (projectile->isOffScreen())
+void GameScene::destroyTemporaryGameObjects()
+{
+	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
+	{
+		ITemporaryGameObject *temporaryGameObject = this->temporaryGameObjects->at(i);
+
+		if (temporaryGameObject->shouldDestroy())
 		{
-			this->projectiles->erase(this->projectiles->begin() + i);
-			delete projectile;
+			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
+			delete temporaryGameObject;
 		}
 		else
 		{
@@ -200,9 +264,9 @@ void GameScene::deleteOffScreenProjectiles()
 
 void GameScene::renderGameObjects(float currentTime)
 {
-	for (auto &&projectile : *projectiles)
+	for (auto &&temporaryGameObject : *temporaryGameObjects)
 	{
-		projectile->render(currentTime);
+		temporaryGameObject->render(currentTime);
 	}
 
 	for (auto &&gameObject : *gameObjects)

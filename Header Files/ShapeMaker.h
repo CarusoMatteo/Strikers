@@ -26,7 +26,8 @@ public:
 		int numberOfTriangles,
 		fvec2 radius,
 		fvec4 colorCenter,
-		fvec4 colorBorder);
+		fvec4 colorBorder,
+		bool addBoundingBox = true);
 
 	static Shape makeRectangle(
 		// int numberOfTriangles = 2,
@@ -42,7 +43,8 @@ public:
 		float sideLength,
 		fvec4 colorTop,
 		fvec4 colorBottomLeft,
-		fvec4 colorBottomRight);
+		fvec4 colorBottomRight,
+		bool addBoundingBox = true);
 
 private:
 	ShapeMaker() = default;

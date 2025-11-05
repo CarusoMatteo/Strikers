@@ -25,7 +25,8 @@ Shape ShapeMaker::makeHeart(
 	int numberOfTriangles,
 	fvec2 radius,
 	fvec4 colorCenter,
-	fvec4 colorBorder)
+	fvec4 colorBorder,
+	bool addBoundingBox)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
@@ -43,7 +44,10 @@ Shape ShapeMaker::makeHeart(
 		colors.push_back(colorBorder);
 	}
 
-	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	if (addBoundingBox)
+	{
+		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	}
 
 	return Shape(vertices, colors);
 }
@@ -81,7 +85,8 @@ Shape ShapeMaker::makeTriangle(
 	float sideLength,
 	fvec4 colorTop,
 	fvec4 colorBottomLeft,
-	fvec4 colorBottomRight)
+	fvec4 colorBottomRight,
+	bool addBoundingBox)
 {
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
@@ -95,7 +100,10 @@ Shape ShapeMaker::makeTriangle(
 	vertices.push_back(fvec3(sideLength / 2, -height / 3, 0));
 	colors.push_back(colorBottomRight);
 
-	ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	if (addBoundingBox)
+	{
+		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	}
 
 	return Shape(vertices, colors);
 }
