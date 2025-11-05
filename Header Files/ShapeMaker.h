@@ -46,6 +46,13 @@ public:
 		fvec4 colorBottomRight,
 		bool addBoundingBox = true);
 
+	static Shape makeCircle(
+		int numberOfTriangles,
+		fvec2 radius,
+		fvec4 colorCenter,
+		fvec4 colorBorder,
+		bool addBoundingBox = false);
+
 private:
 	ShapeMaker() = default;
 	~ShapeMaker() = default;

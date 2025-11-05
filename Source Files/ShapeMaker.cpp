@@ -108,6 +108,38 @@ Shape ShapeMaker::makeTriangle(
 	return Shape(vertices, colors);
 }
 
+Shape ShapeMaker::makeCircle(
+	int numberOfTriangles,
+	fvec2 radius,
+	fvec4 colorCenter,
+	fvec4 colorBorder,
+	bool addBoundingBox)
+{
+	vector<fvec3> vertices;
+	vector<fvec4> colors;
+
+	float step = (2 * pi) / numberOfTriangles;
+
+	vertices.push_back(fvec3(0));
+	colors.push_back(colorCenter);
+
+	for (int i = 0; i <= numberOfTriangles; i++)
+	{
+		float t = (float)i * step;
+		float xx = radius.x * cos(t);
+		float yy = radius.y * sin(t);
+		vertices.push_back(fvec3(xx, yy, 0));
+		colors.push_back(colorBorder);
+	}
+
+	if (addBoundingBox)
+	{
+		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	}
+
+	return Shape(vertices, colors);
+}
+
 void ShapeMaker::addBoundingBoxVertices(vector<fvec3> *vertices, vector<fvec4> *colors)
 {
 	int n = static_cast<int>(vertices->size());
