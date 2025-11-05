@@ -47,4 +47,5 @@ void MenuGui::settingsWindow(float xpos, float ypos)
 	// Checkbox to toggle wireframe mode.
 	ImGui::Checkbox("Wireframe", Mesh::getIsWireframeRef());
 	ImGui::Checkbox("Bounding Box", MeshBB::shouldDrawBoundingBoxRef());
+	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 }

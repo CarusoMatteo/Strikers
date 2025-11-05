@@ -98,6 +98,9 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 	glfwSetWindowSize(this->window, newWidth, newHeight);
 
 	glViewport(0, 0, newWidth, newHeight);
+
+	// Enable V-Sync
+	glfwSwapInterval(1);
 }
 
 void Window::initInputEvents()
