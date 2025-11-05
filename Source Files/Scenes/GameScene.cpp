@@ -287,17 +287,58 @@ void GameScene::checkCollisions()
 	// Check collision of player vs enemies
 	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
 	{
-		ITemporaryGameObject *temporaryGameObject = this->temporaryGameObjects->at(i);
-		Enemy *enemy;
-		if ((enemy = dynamic_cast<Enemy *>(temporaryGameObject)) && MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
+		Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(i));
+		if (enemy && MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
 		{
 			cout << "Collision detected between spaceship and an enemy." << endl;
 			this->spaceship->takeDamage();
 			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
-			delete temporaryGameObject;
+			delete enemy;
 			continue;
 		}
 		i++;
 	}
-	// Check collision of projectiles vs enemies
+
+	// Check collision of enemies vs projectiles
+	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
+	{
+		Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(i));
+		if (enemy)
+		{
+			bool collisionFound = false;
+			for (size_t j = 0; j < this->temporaryGameObjects->size(); j++)
+			{
+				Projectile *projectile = dynamic_cast<Projectile *>(this->temporaryGameObjects->at(j));
+				if (projectile && MeshBB::checkCollision(enemy->getMesh(), projectile->getMesh()))
+				{
+					cout << "Collision detected between enemy and a projectile." << endl;
+					// Erase higher index first to avoid shifting issues
+					if (i > j)
+					{
+						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
+						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + j);
+						delete enemy;
+						delete projectile;
+					}
+					else
+					{
+						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + j);
+						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
+						delete projectile;
+						delete enemy;
+					}
+					collisionFound = true;
+
+					// Break inner loop, restart outer loop
+					break;
+				}
+			}
+			if (collisionFound)
+			{
+				// Restart outer loop since vector changed
+				continue;
+			}
+		}
+		i++;
+	}
 }
