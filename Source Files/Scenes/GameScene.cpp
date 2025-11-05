@@ -212,7 +212,7 @@ void GameScene::updateGameObjects(float deltaTime)
 	this->spawnProjectile();
 	this->spawnEnemy(deltaTime);
 	this->checkCollisions();
-	this->destroyTemporaryGameObjects();
+	this->deleteTemporaryGameObjects();
 }
 
 void GameScene::renderScene(float currentTime)
@@ -246,13 +246,13 @@ void GameScene::spawnEnemy(float deltaTime)
 	}
 }
 
-void GameScene::destroyTemporaryGameObjects()
+void GameScene::deleteTemporaryGameObjects()
 {
 	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
 	{
 		ITemporaryGameObject *temporaryGameObject = this->temporaryGameObjects->at(i);
 
-		if (temporaryGameObject->shouldDestroy())
+		if (temporaryGameObject->shouldDelete())
 		{
 			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
 			delete temporaryGameObject;

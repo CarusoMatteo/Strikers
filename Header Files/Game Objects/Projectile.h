@@ -34,7 +34,7 @@ public:
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
-	bool shouldDestroy() override;
+	bool shouldDelete() override;
 
 private:
 	MeshBB *mesh;

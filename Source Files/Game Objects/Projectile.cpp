@@ -39,7 +39,7 @@ void Projectile::render(float currentTime)
 	this->mesh->render(currentTime);
 }
 
-bool Projectile::shouldDestroy()
+bool Projectile::shouldDelete()
 {
 	return this->mesh->getPosition().x > static_cast<float>(this->windowSize.x) - 10;
 }

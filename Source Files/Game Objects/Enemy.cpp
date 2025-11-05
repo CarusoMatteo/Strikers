@@ -40,7 +40,7 @@ void Enemy::render(float currentTime)
 	this->mesh->render(currentTime);
 }
 
-bool Enemy::shouldDestroy()
+bool Enemy::shouldDelete()
 {
 	return this->mesh->getPosition().x < -50;
 }

@@ -51,7 +51,7 @@ private:
 
 	void spawnProjectile();
 	void spawnEnemy(float deltaTime);
-	void destroyTemporaryGameObjects();
+	void deleteTemporaryGameObjects();
 	void renderGameObjects(float currentTime);
 	void renderGui();
 	void checkCollisions();
