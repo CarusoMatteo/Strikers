@@ -61,7 +61,7 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 	// Gets the resolution of the monitor
 	const GLFWvidmode *mode = glfwGetVideoMode(monitor);
 	// Sets the window dimensions to a fixed game size
-	this->windowWidth = 1980;
+	this->windowWidth = 1920;
 	this->windowHeight = 1080;
 
 	// Create a window and its OpenGL context

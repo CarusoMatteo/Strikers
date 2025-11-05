@@ -84,16 +84,16 @@ Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
 	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
 
-	float width = 2;
+	float width = 1;
 	float height = 1;
 
 	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 3.0, 0.0);
 	fvec3 scaleVector = fvec3(100, 100, 1);
 
-	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
-	fvec4 colorBottomRight = fvec4(0, 1, 0, 1);
-	fvec4 colorTopLeft = fvec4(0, 0, 1, 1);
-	fvec4 colorTopRight = fvec4(1, 1, 1, 1);
+	fvec4 colorBottomLeft = fvec4(1);
+	fvec4 colorBottomRight = fvec4(1);
+	fvec4 colorTopLeft = fvec4(1);
+	fvec4 colorTopRight = fvec4(1);
 
 	Shape shapeData = ShapeMaker::makeRectangle(
 		width,
@@ -120,7 +120,7 @@ Projectile *GameScene::createProjectile(ivec2 windowSize, fvec3 spaceshipPositio
 	float sideLenght = 1;
 
 	fvec3 position = spaceshipPosition;
-	fvec3 scaleVector = fvec3(100, 100, 1);
+	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorTop = fvec4(1, 1, 1, 1);
 	fvec4 colorBottomLeft = fvec4(1, 1, 1, 1);

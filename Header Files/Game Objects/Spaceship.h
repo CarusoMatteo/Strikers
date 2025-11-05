@@ -35,5 +35,5 @@ public:
 
 private:
 	MeshBB *mesh;
-	float speed = 500.0f;
+	float speed = 700.0f;
 };
