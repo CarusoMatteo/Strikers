@@ -27,6 +27,11 @@ public:
 		ivec2 windowSize);
 	~Projectile() override;
 
+	MeshBB *getMesh() const
+	{
+		return this->mesh;
+	}
+
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 	bool shouldDestroy() override;

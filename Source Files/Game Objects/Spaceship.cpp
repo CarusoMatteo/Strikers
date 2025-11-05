@@ -33,9 +33,9 @@ fvec3 Spaceship::getPosition() const
 	return mesh ? mesh->getPosition() : fvec3(0.0f);
 }
 
-fvec3 Spaceship::getBBCenter() const
+fvec3 Spaceship::getProjectileSpawnPosition() const
 {
-	return mesh->getBBCenter();
+	return mesh->getBBRight();
 }
 
 void Spaceship::update(float deltaTime)
@@ -67,4 +67,9 @@ void Spaceship::update(float deltaTime)
 void Spaceship::render(float currentTime)
 {
 	this->mesh->render(currentTime);
+}
+
+void Spaceship::takeDamage(int amount)
+{
+	// TODO: Method stub
 }

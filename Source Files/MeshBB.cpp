@@ -35,6 +35,29 @@ fvec3 MeshBB::getBBCenter()
 		(boundingBoxMinWorld.z + boundingBoxMaxWorld.z) / 2.0f);
 }
 
+fvec3 MeshBB::getBBRight()
+{
+	fvec4 boundingBoxMinWorld = this->getBoundingBoxMinWorld();
+	fvec4 boundingBoxMaxWorld = this->getBoundingBoxMaxWorld();
+
+	return fvec3(
+		boundingBoxMaxWorld.x,
+		(boundingBoxMinWorld.y + boundingBoxMaxWorld.y) / 2.0f,
+		(boundingBoxMinWorld.z + boundingBoxMaxWorld.z) / 2.0f);
+}
+
+bool MeshBB::checkCollision(MeshBB *meshA, MeshBB *meshB)
+{
+	fvec4 bbAMin = meshA->getBoundingBoxMinWorld();
+	fvec4 bbAMax = meshA->getBoundingBoxMaxWorld();
+	fvec4 bbBMin = meshB->getBoundingBoxMinWorld();
+	fvec4 bbBMax = meshB->getBoundingBoxMaxWorld();
+
+	bool collisionX = (bbAMin.x <= bbBMax.x) && (bbAMax.x > bbBMin.x);
+	bool collisionY = (bbAMin.y <= bbBMax.y) && (bbAMax.y > bbBMin.y);
+	return collisionX && collisionY;
+}
+
 void MeshBB::render(float currentTime, float rotationAngleDegrees)
 {
 	Renderer::renderWithBB(

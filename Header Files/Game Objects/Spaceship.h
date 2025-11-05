@@ -28,10 +28,15 @@ public:
 	~Spaceship() override;
 
 	fvec3 getPosition() const;
-	fvec3 getBBCenter() const;
+	fvec3 getProjectileSpawnPosition() const;
+	MeshBB *getMesh() const
+	{
+		return this->mesh;
+	}
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
+	void takeDamage(int amount = 1);
 
 private:
 	MeshBB *mesh;

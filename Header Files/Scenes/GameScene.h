@@ -54,4 +54,5 @@ private:
 	void destroyTemporaryGameObjects();
 	void renderGameObjects(float currentTime);
 	void renderGui();
+	void checkCollisions();
 };

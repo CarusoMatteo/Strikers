@@ -163,7 +163,7 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 	float width = 1;
 	float height = 1;
 
-	fvec3 position = enemySpawnPositions[Random::getRandomInt(0, enemySpawnPositions.size())];
+	fvec3 position = enemySpawnPositions[Random::getRandomInt(0, static_cast<int>(enemySpawnPositions.size()))];
 	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
@@ -211,6 +211,7 @@ void GameScene::updateGameObjects(float deltaTime)
 
 	this->spawnProjectile();
 	this->spawnEnemy(deltaTime);
+	this->checkCollisions();
 	this->destroyTemporaryGameObjects();
 }
 
@@ -225,7 +226,7 @@ void GameScene::spawnProjectile()
 {
 	if (InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)))
 	{
-		this->temporaryGameObjects->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getBBCenter()));
+		this->temporaryGameObjects->push_back(GameScene::createProjectile(this->windowSize, this->spaceship->getProjectileSpawnPosition()));
 		InputEvents::getButtonStates()->at(static_cast<size_t>(InputEventsType::SHOOT)) = false;
 	}
 }
@@ -279,4 +280,34 @@ void GameScene::renderGameObjects(float currentTime)
 void GameScene::renderGui()
 {
 	this->gui->drawGui();
+}
+
+void GameScene::checkCollisions()
+{
+	// Check collision of player vs enemies
+	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
+	{
+		ITemporaryGameObject *temporaryGameObject = this->temporaryGameObjects->at(i);
+		Enemy *enemy;
+		if (enemy = dynamic_cast<Enemy *>(temporaryGameObject))
+		{
+			if (MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
+			{
+				cout << "Collision detected between spaceship and an enemy." << endl;
+				this->spaceship->takeDamage();
+				this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
+				delete temporaryGameObject;
+			}
+			else
+			{
+				i++;
+			}
+		}
+		else
+		{
+			i++;
+		}
+	}
+
+	// Check collision of projectiles vs enemies
 }

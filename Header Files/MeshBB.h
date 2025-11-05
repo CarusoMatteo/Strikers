@@ -27,8 +27,10 @@ public:
 	{
 		return MeshBB::drawBoundingBox;
 	}
+	static bool checkCollision(MeshBB *meshA, MeshBB *meshB);
 
 	fvec3 getBBCenter();
+	fvec3 getBBRight();
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);
 
 private:
