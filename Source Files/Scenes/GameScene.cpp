@@ -8,6 +8,7 @@
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/InputEvents.h"
+#include "../../Header Files/Random.h"
 
 #include <iostream>
 using namespace std;
@@ -162,8 +163,7 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 	float width = 1;
 	float height = 1;
 
-	fvec3 position = enemySpawnPositions[rand() % enemySpawnPositions.size()];
-	cout << "Enemy position: " << position.x << ", " << position.y << ", " << position.z << endl;
+	fvec3 position = enemySpawnPositions[Random::getRandomInt(0, enemySpawnPositions.size())];
 	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
@@ -236,7 +236,8 @@ void GameScene::spawnEnemy(float deltaTime)
 	{
 		this->temporaryGameObjects->push_back(GameScene::createEnemy(this->windowSize, this->enemySpawnPositions));
 		this->timeSinceLastEnemySpawn = 0.0f;
-		cout << "Spawned enemy!" << endl;
+		this->enemySpawnInterval = Random::getRandomFloat(this->enemySpawnIntervalRange.x, this->enemySpawnIntervalRange.y);
+		cout << "Next enemy in: " << this->enemySpawnInterval << " seconds." << endl;
 	}
 	else
 	{

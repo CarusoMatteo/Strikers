@@ -5,6 +5,7 @@
 #include <utility>
 #include <glm/glm.hpp>
 
+using glm::fvec2;
 using glm::fvec3;
 using glm::ivec2;
 using std::pair;
@@ -37,7 +38,8 @@ private:
 	IGui *gui;
 	ivec2 windowSize;
 
-	const float enemySpawnInterval = 1.0f;
+	const fvec2 enemySpawnIntervalRange = fvec2(0.5f, 2.5f);
+	float enemySpawnInterval = 1.0f;
 	vector<fvec3> enemySpawnPositions;
 	float timeSinceLastEnemySpawn = 0.0f;
 
