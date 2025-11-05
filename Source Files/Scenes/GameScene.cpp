@@ -289,25 +289,15 @@ void GameScene::checkCollisions()
 	{
 		ITemporaryGameObject *temporaryGameObject = this->temporaryGameObjects->at(i);
 		Enemy *enemy;
-		if (enemy = dynamic_cast<Enemy *>(temporaryGameObject))
+		if ((enemy = dynamic_cast<Enemy *>(temporaryGameObject)) && MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
 		{
-			if (MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
-			{
-				cout << "Collision detected between spaceship and an enemy." << endl;
-				this->spaceship->takeDamage();
-				this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
-				delete temporaryGameObject;
-			}
-			else
-			{
-				i++;
-			}
+			cout << "Collision detected between spaceship and an enemy." << endl;
+			this->spaceship->takeDamage();
+			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
+			delete temporaryGameObject;
+			continue;
 		}
-		else
-		{
-			i++;
-		}
+		i++;
 	}
-
 	// Check collision of projectiles vs enemies
 }
