@@ -42,6 +42,5 @@ void Enemy::render(float currentTime)
 
 bool Enemy::shouldDestroy()
 {
-	return false;
-	// return this->mesh->getPosition().x < -10;
+	return this->mesh->getPosition().x < -50;
 }
