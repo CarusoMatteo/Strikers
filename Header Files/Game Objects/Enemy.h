@@ -32,6 +32,8 @@ public:
 		return this->mesh;
 	}
 
+	fvec3 getSizeWorld() const;
+
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 

@@ -28,6 +28,14 @@ public:
 	}
 	static bool checkCollision(MeshBB *meshA, MeshBB *meshB);
 
+	fvec3 getSizeWorld()
+	{
+		return fvec3(
+			this->getBoundingBoxMinWorld().x - this->getBoundingBoxMaxWorld().x,
+			this->getBoundingBoxMaxWorld().y - this->getBoundingBoxMinWorld().y,
+			this->getBoundingBoxMaxWorld().z - this->getBoundingBoxMinWorld().z);
+	}
+
 	fvec3 getBBCenter();
 	fvec3 getBBRight();
 	void render(float currentTime, float rotationAngleDegrees = 0.0f);

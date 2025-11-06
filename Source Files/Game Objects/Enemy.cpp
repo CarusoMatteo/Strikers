@@ -28,6 +28,12 @@ Enemy::~Enemy()
 	delete this->mesh;
 }
 
+fvec3 Enemy::getSizeWorld() const
+{
+	return this->mesh->getSizeWorld();
+}
+
+
 void Enemy::update(float deltaTime)
 {
 	fvec3 oldPosition = this->mesh->getPosition();

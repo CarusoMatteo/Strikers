@@ -51,7 +51,7 @@ private:
 	static Projectile *createProjectile(ivec2 windowSize, fvec3 spaceshipPosition);
 	static ProjectileExplosion *createProjectileExplosion(ivec2 windowSize, fvec3 spawnPosition);
 	static Enemy *createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions);
-	static EnemyExplosion *createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition);
+	static EnemyExplosion *createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition, fvec3 sizeWorld);
 
 	void spawnProjectile();
 	void spawnEnemy(float deltaTime);

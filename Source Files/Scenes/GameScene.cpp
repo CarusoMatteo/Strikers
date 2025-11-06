@@ -12,9 +12,6 @@
 #include "../../Header Files/InputEvents.h"
 #include "../../Header Files/Random.h"
 
-#include <iostream>
-using namespace std;
-
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(windowSize)
 {
 	this->background = GameScene::createBackground(this->windowSize);
@@ -222,15 +219,16 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 		windowSize);
 }
 
-EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition)
+EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition, fvec3 sizeWorld)
 {
 	string vertex = ".\\Shader Files\\Explosion\\ExplosionVertex.glsl";
 	string fragment = ".\\Shader Files\\Explosion\\ExplosionFragment.glsl";
 
 	float width = 1;
-	float height = 1;
+	float height = 0.5f;
 
-	fvec3 position = spawnPosition;
+	fvec3 positionTop = spawnPosition + fvec3(0, sizeWorld.y / 2, 0);
+	fvec3 positionBottom = spawnPosition;
 	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
@@ -244,13 +242,15 @@ EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPos
 		colorBottomLeft,
 		colorBottomRight,
 		colorTopLeft,
-		colorTopRight);
+		colorTopRight,
+		false);
 
 	return new EnemyExplosion(
 		vertex,
 		fragment,
 		shapeData,
-		position,
+		positionTop,
+		positionBottom,
 		scaleVector,
 		windowSize);
 }
@@ -305,7 +305,7 @@ void GameScene::spawnEnemy(float deltaTime)
 		this->temporaryGameObjects->push_back(GameScene::createEnemy(this->windowSize, this->enemySpawnPositions));
 		this->timeSinceLastEnemySpawn = 0.0f;
 		this->enemySpawnInterval = Random::getRandomFloat(this->enemySpawnIntervalRange.x, this->enemySpawnIntervalRange.y);
-		cout << "Next enemy in: " << this->enemySpawnInterval << " seconds." << endl;
+		// cout << "Next enemy in: " << this->enemySpawnInterval << " seconds." << endl;
 	}
 	else
 	{
@@ -357,7 +357,6 @@ void GameScene::checkCollisions()
 		Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(i));
 		if (enemy && MeshBB::checkCollision(this->spaceship->getMesh(), enemy->getMesh()))
 		{
-			cout << "Collision detected between spaceship and an enemy." << endl;
 			this->spaceship->takeDamage();
 			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
 			delete enemy;
@@ -389,7 +388,7 @@ void GameScene::checkCollisions()
 void GameScene::replaceEnemy(size_t position)
 {
 	Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(position));
-	this->temporaryGameObjects->at(position) = GameScene::createEnemyExplosion(this->windowSize, enemy->getMesh()->getPosition());
+	this->temporaryGameObjects->at(position) = GameScene::createEnemyExplosion(this->windowSize, enemy->getMesh()->getPosition(), enemy->getSizeWorld());
 	delete enemy;
 }
 

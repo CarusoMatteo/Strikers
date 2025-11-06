@@ -23,15 +23,11 @@ public:
 		string vertexName,
 		string fragmentName,
 		Shape shapeHalf,
-		fvec3 position,
+		fvec3 positionTop,
+		fvec3 positionBottom,
 		fvec3 scaleVector,
 		ivec2 windowSize);
 	~EnemyExplosion() override;
-
-	Mesh *getMesh() const
-	{
-		return this->mesh;
-	}
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
@@ -41,6 +37,10 @@ private:
 	const float timeToLiveSeconds = 0.5f;
 	float creationTime;
 
-	Mesh *mesh;
+	const float maxHorizontalSpeed = 1000.0f;
+	const float maxVerticalSpeed = 50.0f;
+
+	Mesh *meshTop;
+	Mesh *meshBottom;
 	ivec2 windowSize;
 };
