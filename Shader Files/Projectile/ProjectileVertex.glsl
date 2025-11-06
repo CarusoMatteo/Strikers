@@ -10,11 +10,12 @@ out vec4 ourColor;
 // Uniform, stays the same for every vertex of the primitive 
 uniform mat4 projectionMatrix;
 uniform mat4 modelMatrix;
+uniform float creationTime;
 uniform float currentTime;
 
 float degreeFromTime()
 {
-	return mod(currentTime, 360.0);
+	return mod(creationTime + currentTime, 360.0);
 }
 
 void main()

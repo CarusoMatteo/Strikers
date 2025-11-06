@@ -38,7 +38,7 @@ public:
 	bool shouldDelete() override;
 
 private:
-	const float timeToLiveSeconds = 1.0f;
+	const float timeToLiveSeconds = 0.5f;
 	float creationTime;
 
 	Mesh *mesh;

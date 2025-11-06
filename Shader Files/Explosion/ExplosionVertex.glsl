@@ -16,7 +16,7 @@ uniform float currentTime;
 
 vec4 fadeColor(vec4 color)
 {
-	float timeToLiveSeconds = 1.0;
+	float timeToLiveSeconds = 0.5;
 
 	float lifeTime = currentTime - creationTime;
 	float alpha = 1.0 - (lifeTime / timeToLiveSeconds);
