@@ -15,7 +15,9 @@ class Background;
 class Heart;
 class Spaceship;
 class Projectile;
+class ProjectileExplosion;
 class Enemy;
+class EnemyExplosion;
 class IGameObject;
 class ITemporaryGameObject;
 class IGui;
@@ -47,7 +49,9 @@ private:
 	static Heart *createHeart(ivec2 windowSize);
 	static Spaceship *createSpaceship(ivec2 windowSize);
 	static Projectile *createProjectile(ivec2 windowSize, fvec3 spaceshipPosition);
+	static ProjectileExplosion *createProjectileExplosion(ivec2 windowSize, fvec3 spawnPosition);
 	static Enemy *createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions);
+	static EnemyExplosion *createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition);
 
 	void spawnProjectile();
 	void spawnEnemy(float deltaTime);
@@ -55,4 +59,7 @@ private:
 	void renderGameObjects(float currentTime);
 	void renderGui();
 	void checkCollisions();
+
+	void replaceEnemy(size_t position);
+	void replaceProjectile(size_t position);
 };

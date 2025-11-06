@@ -11,16 +11,14 @@ MeshBB::MeshBB(string vertexShaderName,
 			   fvec3 position,
 			   fvec3 scaleVector,
 			   GLenum drawMode,
-			   ivec2 windowSize,
-			   fmat4 modelMatrix) : Mesh(vertexShaderName,
-										 fragmentShaderName,
-										 vertices,
-										 colors,
-										 position,
-										 scaleVector,
-										 drawMode,
-										 windowSize,
-										 modelMatrix)
+			   ivec2 windowSize) : Mesh(vertexShaderName,
+										fragmentShaderName,
+										vertices,
+										colors,
+										position,
+										scaleVector,
+										drawMode,
+										windowSize)
 {
 }
 
@@ -65,6 +63,7 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 		&this->projectionMatrixUniformLocation, &MeshBB::projectionMatrix,
 		&this->modelMatrixUniformLocation, &this->modelMatrix,
 		&this->screenSizeUniformLocation, this->windowSize,
+		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
 		&this->position, &this->scaleVector, rotationAngleDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));

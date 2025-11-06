@@ -19,8 +19,7 @@ Spaceship::Spaceship(
 		position,
 		scaleVector,
 		GL_TRIANGLE_FAN,
-		windowSize,
-		fmat4(1));
+		windowSize);
 }
 
 Spaceship::~Spaceship()

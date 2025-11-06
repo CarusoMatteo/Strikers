@@ -21,6 +21,7 @@ public:
 		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
@@ -32,6 +33,7 @@ public:
 		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
@@ -47,6 +49,7 @@ private:
 		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
@@ -54,11 +57,12 @@ private:
 		int vertexCount,
 		bool checkBB);
 
-	static void renderWithUniforms(unsigned int shaderProgramId,
-								   GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
-								   GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
-								   GLuint *screenSizeUniformLocation, fvec2 windowSize,
-								   GLuint *currentTimeUniformLocation, float currentTime);
+	static void passUniforms(
+		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
+		GLuint *currentTimeUniformLocation, float currentTime);
 
 	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
 	static void drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB);

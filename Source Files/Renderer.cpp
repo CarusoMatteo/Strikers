@@ -8,6 +8,7 @@ void Renderer::renderWithBB(
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
@@ -18,6 +19,7 @@ void Renderer::renderWithBB(
 					 projectionMatrixUniformLocation, projectionMatrix,
 					 modelMatrixUniformLocation, modelMatrix,
 					 screenSizeUniformLocation, windowSize,
+					 creationTimeUniformLocation, creationTime,
 					 currentTimeUniformLocation, currentTime,
 					 position, scaleVector, rotationAngleDegrees,
 					 vaoAddress,
@@ -31,6 +33,7 @@ void Renderer::renderWithoutBB(
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
@@ -41,6 +44,7 @@ void Renderer::renderWithoutBB(
 					 projectionMatrixUniformLocation, projectionMatrix,
 					 modelMatrixUniformLocation, modelMatrix,
 					 screenSizeUniformLocation, windowSize,
+					 creationTimeUniformLocation, creationTime,
 					 currentTimeUniformLocation, currentTime,
 					 position, scaleVector, rotationAngleDegrees,
 					 vaoAddress,
@@ -54,6 +58,7 @@ void Renderer::render(
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
 	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
@@ -61,32 +66,40 @@ void Renderer::render(
 	int vertexCount,
 	bool meshHasBB)
 {
-	Renderer::renderWithUniforms(shaderProgramId, projectionMatrixUniformLocation, projectionMatrix, modelMatrixUniformLocation, modelMatrix, screenSizeUniformLocation, windowSize, currentTimeUniformLocation, currentTime);
+	// Enable selected shader program
+	glUseProgram(shaderProgramId);
+
+	Renderer::passUniforms(
+		projectionMatrixUniformLocation, projectionMatrix,
+		modelMatrixUniformLocation, modelMatrix,
+		screenSizeUniformLocation, windowSize,
+		creationTimeUniformLocation, creationTime,
+		currentTimeUniformLocation, currentTime);
 	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
 	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB);
 	Renderer::checkGLError();
 }
 
-void Renderer::renderWithUniforms(unsigned int shaderProgramId,
-								  GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
-								  GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
-								  GLuint *screenSizeUniformLocation, fvec2 windowSize,
-								  GLuint *currentTimeUniformLocation, float currentTime)
+void Renderer::passUniforms(
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
+	GLuint *currentTimeUniformLocation, float currentTime)
 {
-	// Enable selected shader program
-	glUseProgram(shaderProgramId);
 
 	// Pass the projection matrix to the "projectionMatrix" uniform
 	glUniformMatrix4fv(*projectionMatrixUniformLocation, 1, GL_FALSE, value_ptr(*projectionMatrix));
 	// Pass the model matrix to the "modelMatrix" uniform
 	glUniformMatrix4fv(*modelMatrixUniformLocation, 1, GL_FALSE, value_ptr(*modelMatrix));
 
-	// if (resolution.x > 0.0f && resolution.y > 0.0f) Should always be valid?
 	// Pass the resolution to the "windowSize" uniform
 	glUniform2f(*screenSizeUniformLocation, windowSize.x, windowSize.y);
 
+	// Pass the creation time to the "creationTime" uniform
+	glUniform1f(*creationTimeUniformLocation, creationTime);
+
 	// Pass the current time to the "currentTime" uniform
-	// if (currentTime > 0.0f)
 	glUniform1f(*currentTimeUniformLocation, currentTime);
 }
 

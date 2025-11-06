@@ -20,8 +20,7 @@ Enemy::Enemy(
 		position,
 		scaleVector,
 		GL_TRIANGLE_FAN,
-		windowSize,
-		fmat4(1));
+		windowSize);
 }
 
 Enemy::~Enemy()

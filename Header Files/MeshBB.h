@@ -16,8 +16,7 @@ public:
 		fvec3 position,
 		fvec3 scaleVector,
 		GLenum drawMode,
-		ivec2 windowSize,
-		fmat4 modelMatrix);
+		ivec2 windowSize);
 
 	static bool *shouldDrawBoundingBoxRef()
 	{

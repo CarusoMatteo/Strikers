@@ -4,6 +4,7 @@
 #include <vector>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
+#include <GLFW/glfw3.h>
 
 using std::string;
 using std::vector;
@@ -20,8 +21,7 @@ public:
 		fvec3 position,
 		fvec3 scaleVector,
 		GLenum drawMode,
-		ivec2 windowSize,
-		fmat4 modelMatrix);
+		ivec2 windowSize);
 	~Mesh();
 
 	static void setProjectionMatrix(fmat4 projection)
@@ -77,6 +77,9 @@ protected:
 
 	fvec3 position;
 	fvec3 scaleVector;
+
+	float creationTime;
+	GLuint creationTimeUniformLocation;
 
 	GLuint currentTimeUniformLocation;
 	GLuint screenSizeUniformLocation;

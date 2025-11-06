@@ -4,7 +4,9 @@
 #include "../../Header Files/Game Objects/Heart.h"
 #include "../../Header Files/Game Objects/Spaceship.h"
 #include "../../Header Files/Game Objects/Projectile.h"
+#include "../../Header Files/Game Objects/ProjectileExplosion.h"
 #include "../../Header Files/Game Objects/Enemy.h"
+#include "../../Header Files/Game Objects/EnemyExplosion.h"
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/InputEvents.h"
@@ -155,6 +157,38 @@ Projectile *GameScene::createProjectile(ivec2 windowSize, fvec3 spaceshipPositio
 		windowSize);
 }
 
+ProjectileExplosion *GameScene::createProjectileExplosion(ivec2 windowSize, fvec3 spawnPosition)
+{
+	string vertex = ".\\Shader Files\\Explosion\\ExplosionVertex.glsl";
+	string fragment = ".\\Shader Files\\Explosion\\ExplosionFragment.glsl";
+
+	float sideLenght = 1;
+
+	int numberOfTriangles = 100;
+	fvec2 radius = fvec2(1, 1);
+
+	fvec3 position = spawnPosition;
+	fvec3 scaleVector = fvec3(50, 50, 1);
+
+	fvec4 colorCenter = fvec4(1, 1, 0, 1);
+	fvec4 colorBorder = fvec4(1, 1, 1, 1);
+
+	Shape shapeData = ShapeMaker::makeCircle(
+		numberOfTriangles,
+		radius,
+		colorCenter,
+		colorBorder,
+		false);
+
+	return new ProjectileExplosion(
+		vertex,
+		fragment,
+		shapeData,
+		position,
+		scaleVector,
+		windowSize);
+}
+
 Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions)
 {
 	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
@@ -180,6 +214,39 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 		colorTopRight);
 
 	return new Enemy(
+		vertex,
+		fragment,
+		shapeData,
+		position,
+		scaleVector,
+		windowSize);
+}
+
+EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPosition)
+{
+	string vertex = ".\\Shader Files\\Explosion\\ExplosionVertex.glsl";
+	string fragment = ".\\Shader Files\\Explosion\\ExplosionFragment.glsl";
+
+	float width = 1;
+	float height = 1;
+
+	fvec3 position = spawnPosition;
+	fvec3 scaleVector = fvec3(50, 50, 1);
+
+	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
+	fvec4 colorBottomRight = fvec4(1, 0, 0, 1);
+	fvec4 colorTopLeft = fvec4(1, 0, 0, 1);
+	fvec4 colorTopRight = fvec4(1, 0, 0, 1);
+
+	Shape shapeData = ShapeMaker::makeRectangle(
+		width,
+		height,
+		colorBottomLeft,
+		colorBottomRight,
+		colorTopLeft,
+		colorTopRight);
+
+	return new EnemyExplosion(
 		vertex,
 		fragment,
 		shapeData,
@@ -300,45 +367,35 @@ void GameScene::checkCollisions()
 	}
 
 	// Check collision of enemies vs projectiles
-	for (size_t i = 0; i < this->temporaryGameObjects->size(); /* no increment here */)
+	for (size_t i = 0; i < this->temporaryGameObjects->size(); i++)
 	{
 		Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(i));
 		if (enemy)
 		{
-			bool collisionFound = false;
 			for (size_t j = 0; j < this->temporaryGameObjects->size(); j++)
 			{
 				Projectile *projectile = dynamic_cast<Projectile *>(this->temporaryGameObjects->at(j));
 				if (projectile && MeshBB::checkCollision(enemy->getMesh(), projectile->getMesh()))
 				{
-					cout << "Collision detected between enemy and a projectile." << endl;
-					// Erase higher index first to avoid shifting issues
-					if (i > j)
-					{
-						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
-						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + j);
-						delete enemy;
-						delete projectile;
-					}
-					else
-					{
-						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + j);
-						this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
-						delete projectile;
-						delete enemy;
-					}
-					collisionFound = true;
-
-					// Break inner loop, restart outer loop
+					replaceEnemy(i);
+					replaceProjectile(j);
 					break;
 				}
 			}
-			if (collisionFound)
-			{
-				// Restart outer loop since vector changed
-				continue;
-			}
 		}
-		i++;
 	}
+}
+
+void GameScene::replaceEnemy(size_t position)
+{
+	Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(position));
+	this->temporaryGameObjects->at(position) = GameScene::createEnemyExplosion(this->windowSize, enemy->getMesh()->getPosition());
+	delete enemy;
+}
+
+void GameScene::replaceProjectile(size_t position)
+{
+	Projectile *projectile = dynamic_cast<Projectile *>(this->temporaryGameObjects->at(position));
+	this->temporaryGameObjects->at(position) = GameScene::createProjectileExplosion(this->windowSize, projectile->getMesh()->getPosition());
+	delete projectile;
 }

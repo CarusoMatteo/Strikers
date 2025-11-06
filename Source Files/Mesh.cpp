@@ -13,15 +13,15 @@ Mesh::Mesh(
 	fvec3 position,
 	fvec3 scaleVector,
 	GLenum drawMode,
-	ivec2 windowSize,
-	fmat4 modelMatrix) : vertices(vertices),
-						 colors(colors),
-						 position(position),
-						 scaleVector(scaleVector),
-						 drawMode(drawMode),
-						 windowSize(windowSize),
-						 modelMatrix(modelMatrix)
+	ivec2 windowSize) : vertices(vertices),
+						colors(colors),
+						position(position),
+						scaleVector(scaleVector),
+						drawMode(drawMode),
+						windowSize(windowSize)
 {
+	this->modelMatrix = fmat4(1);
+	this->creationTime = static_cast<float>(glfwGetTime());
 	this->buildShader(vertexShaderName, fragmentShaderName);
 	this->initVao();
 	this->initVbos();
@@ -43,6 +43,7 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 		&this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
 		&this->modelMatrixUniformLocation, &this->modelMatrix,
 		&this->screenSizeUniformLocation, this->windowSize,
+		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
 		&this->position, &this->scaleVector, rotationAngleDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
@@ -82,6 +83,7 @@ void Mesh::initUniformReferences()
 	this->projectionMatrixUniformLocation = glGetUniformLocation(this->programId, "projectionMatrix");
 	this->modelMatrixUniformLocation = glGetUniformLocation(this->programId, "modelMatrix");
 
+	this->creationTimeUniformLocation = glGetUniformLocation(this->programId, "creationTime");
 	this->currentTimeUniformLocation = glGetUniformLocation(this->programId, "currentTime");
 	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "windowSize");
 }

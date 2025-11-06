@@ -139,8 +139,10 @@
     <ClCompile Include="..\.common\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Source Files\Game Objects\Background.cpp" />
     <ClCompile Include="Source Files\Game Objects\Enemy.cpp" />
+    <ClCompile Include="Source Files\Game Objects\EnemyExplosion.cpp" />
     <ClCompile Include="Source Files\Game Objects\Heart.cpp" />
     <ClCompile Include="Source Files\Game Objects\Projectile.cpp" />
+    <ClCompile Include="Source Files\Game Objects\ProjectileExplosion.cpp" />
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp" />
     <ClCompile Include="Source Files\glad.c" />
     <ClCompile Include="Source Files\Gui\GameGui.cpp" />
@@ -170,10 +172,12 @@
     <ClInclude Include="..\.common\ImGui\imstb_truetype.h" />
     <ClInclude Include="Header Files\Game Objects\Background.h" />
     <ClInclude Include="Header Files\Game Objects\Enemy.h" />
+    <ClInclude Include="Header Files\Game Objects\EnemyExplosion.h" />
     <ClInclude Include="Header Files\Game Objects\Heart.h" />
     <ClInclude Include="Header Files\Game Objects\IGameObject.h" />
     <ClInclude Include="Header Files\Game Objects\ITemporaryGameObject.h" />
     <ClInclude Include="Header Files\Game Objects\Projectile.h" />
+    <ClInclude Include="Header Files\Game Objects\ProjectileExplosion.h" />
     <ClInclude Include="Header Files\Game Objects\Spaceship.h" />
     <ClInclude Include="Header Files\Gui\GameGui.h" />
     <ClInclude Include="Header Files\Gui\IGui.h" />
@@ -199,6 +203,12 @@
     <None Include="Shader Files\Background\BackgroundVertex.glsl" />
     <None Include="Shader Files\Default\DefaultFragment.glsl" />
     <None Include="Shader Files\Default\DefaultVertex.glsl" />
+    <None Include="Shader Files\Explosion\ExplosionFragment.glsl" />
+    <None Include="Shader Files\Explosion\ExplosionVertex.glsl" />
+    <None Include="Shader Files\Heart\HeartFragment.glsl" />
+    <None Include="Shader Files\Heart\HeartVertex.glsl" />
+    <None Include="Shader Files\Projectile\ProjectileFragment.glsl" />
+    <None Include="Shader Files\Projectile\ProjectileVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,5 @@
 #include "../../Header Files/Game Objects/Projectile.h"
 
-#include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
@@ -20,8 +19,7 @@ Projectile::Projectile(
 		position,
 		scaleVector,
 		GL_TRIANGLE_FAN,
-		windowSize,
-		fmat4(1));
+		windowSize);
 }
 
 Projectile::~Projectile()
