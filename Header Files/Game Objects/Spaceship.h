@@ -41,4 +41,12 @@ public:
 private:
 	MeshBB *mesh;
 	float speed = 700.0f;
+	bool isInvincible = false;
+
+	const float invincibilityTime = 1.0f;
+	float invincibilityTimer = 0.0f;
+
+	const int invincibleBlinkFrequencyHz = 3;
+
+	bool isVisible();
 };

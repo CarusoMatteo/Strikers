@@ -61,14 +61,35 @@ void Spaceship::update(float deltaTime)
 		movementDirection = normalize(movementDirection);
 
 	this->mesh->setPosition(this->mesh->getPosition() + movementDirection * this->speed * deltaTime);
+
+	if (this->isInvincible)
+	{
+		this->invincibilityTimer -= deltaTime;
+		
+	}
+
+	if (this->invincibilityTimer <= 0)
+	{
+		this->isInvincible = false;
+	}
+}
+
+bool Spaceship::isVisible()
+{
+	return static_cast<int>(this->invincibilityTimer * this->invincibleBlinkFrequencyHz * 2) % 2 == 0;
 }
 
 void Spaceship::render(float currentTime)
 {
-	this->mesh->render(currentTime);
+	if (isVisible())
+		this->mesh->render(currentTime);
 }
 
 void Spaceship::takeDamage(int amount)
 {
-	// TODO: Method stub
+	if (this->isInvincible)
+		return;
+
+	this->isInvincible = true;
+	this->invincibilityTimer = this->invincibilityTime;
 }
