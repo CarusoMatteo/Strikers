@@ -45,6 +45,7 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 		&this->screenSizeUniformLocation, this->windowSize,
 		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
+		&this->isVisibleUniformLocation, this->isVisible,
 		&this->position, &this->scaleVector, rotationAngleDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
@@ -86,4 +87,5 @@ void Mesh::initUniformReferences()
 	this->creationTimeUniformLocation = glGetUniformLocation(this->programId, "creationTime");
 	this->currentTimeUniformLocation = glGetUniformLocation(this->programId, "currentTime");
 	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "windowSize");
+	this->isVisibleUniformLocation = glGetUniformLocation(this->programId, "isVisible");
 }

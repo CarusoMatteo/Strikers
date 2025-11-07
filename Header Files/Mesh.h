@@ -51,6 +51,10 @@ public:
 	{
 		this->position = newPosition;
 	}
+	void setIsVisible(bool isVisible)
+	{
+		this->isVisible = isVisible;
+	}
 
 protected:
 	static bool isWireframe;
@@ -80,6 +84,8 @@ protected:
 
 	float creationTime;
 	GLuint creationTimeUniformLocation;
+	bool isVisible = true;
+	GLuint isVisibleUniformLocation;
 
 	GLuint currentTimeUniformLocation;
 	GLuint screenSizeUniformLocation;

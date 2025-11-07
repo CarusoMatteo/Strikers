@@ -10,22 +10,25 @@ void Renderer::renderWithBB(
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int vertexCount)
 {
-	Renderer::render(shaderProgramId,
-					 projectionMatrixUniformLocation, projectionMatrix,
-					 modelMatrixUniformLocation, modelMatrix,
-					 screenSizeUniformLocation, windowSize,
-					 creationTimeUniformLocation, creationTime,
-					 currentTimeUniformLocation, currentTime,
-					 position, scaleVector, rotationAngleDegrees,
-					 vaoAddress,
-					 renderMode,
-					 vertexCount,
-					 true);
+	Renderer::render(
+		shaderProgramId,
+		projectionMatrixUniformLocation, projectionMatrix,
+		modelMatrixUniformLocation, modelMatrix,
+		screenSizeUniformLocation, windowSize,
+		creationTimeUniformLocation, creationTime,
+		currentTimeUniformLocation, currentTime,
+		isVisibleUniformLocation, isVisible,
+		position, scaleVector, rotationAngleDegrees,
+		vaoAddress,
+		renderMode,
+		vertexCount,
+		true);
 }
 
 void Renderer::renderWithoutBB(
@@ -35,22 +38,25 @@ void Renderer::renderWithoutBB(
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int vertexCount)
 {
-	Renderer::render(shaderProgramId,
-					 projectionMatrixUniformLocation, projectionMatrix,
-					 modelMatrixUniformLocation, modelMatrix,
-					 screenSizeUniformLocation, windowSize,
-					 creationTimeUniformLocation, creationTime,
-					 currentTimeUniformLocation, currentTime,
-					 position, scaleVector, rotationAngleDegrees,
-					 vaoAddress,
-					 renderMode,
-					 vertexCount,
-					 false);
+	Renderer::render(
+		shaderProgramId,
+		projectionMatrixUniformLocation, projectionMatrix,
+		modelMatrixUniformLocation, modelMatrix,
+		screenSizeUniformLocation, windowSize,
+		creationTimeUniformLocation, creationTime,
+		currentTimeUniformLocation, currentTime,
+		isVisibleUniformLocation, isVisible,
+		position, scaleVector, rotationAngleDegrees,
+		vaoAddress,
+		renderMode,
+		vertexCount,
+		false);
 }
 
 void Renderer::render(
@@ -60,6 +66,7 @@ void Renderer::render(
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible,
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
@@ -74,7 +81,8 @@ void Renderer::render(
 		modelMatrixUniformLocation, modelMatrix,
 		screenSizeUniformLocation, windowSize,
 		creationTimeUniformLocation, creationTime,
-		currentTimeUniformLocation, currentTime);
+		currentTimeUniformLocation, currentTime,
+		isVisibleUniformLocation, isVisible);
 	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
 	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB);
 	Renderer::checkGLError();
@@ -85,7 +93,8 @@ void Renderer::passUniforms(
 	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
 	GLuint *screenSizeUniformLocation, fvec2 windowSize,
 	GLuint *creationTimeUniformLocation, float creationTime,
-	GLuint *currentTimeUniformLocation, float currentTime)
+	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible)
 {
 
 	// Pass the projection matrix to the "projectionMatrix" uniform
@@ -101,6 +110,9 @@ void Renderer::passUniforms(
 
 	// Pass the current time to the "currentTime" uniform
 	glUniform1f(*currentTimeUniformLocation, currentTime);
+
+	// Pass the visibility status to the "isVisible" uniform
+	glUniform1i(*isVisibleUniformLocation, isVisible ? 1 : 0);
 }
 
 void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis)

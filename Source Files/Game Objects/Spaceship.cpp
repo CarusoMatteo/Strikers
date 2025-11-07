@@ -65,7 +65,7 @@ void Spaceship::update(float deltaTime)
 	if (this->isInvincible)
 	{
 		this->invincibilityTimer -= deltaTime;
-		
+		this->mesh->setIsVisible(this->isVisible());
 	}
 
 	if (this->invincibilityTimer <= 0)
@@ -81,8 +81,7 @@ bool Spaceship::isVisible()
 
 void Spaceship::render(float currentTime)
 {
-	if (isVisible())
-		this->mesh->render(currentTime);
+	this->mesh->render(currentTime);
 }
 
 void Spaceship::takeDamage(int amount)

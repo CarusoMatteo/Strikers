@@ -65,6 +65,7 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 		&this->screenSizeUniformLocation, this->windowSize,
 		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
+		&this->isVisibleUniformLocation, this->isVisible,
 		&this->position, &this->scaleVector, rotationAngleDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }

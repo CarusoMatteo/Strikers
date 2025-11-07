@@ -211,6 +211,8 @@
     <None Include="Shader Files\Heart\HeartVertex.glsl" />
     <None Include="Shader Files\Projectile\ProjectileFragment.glsl" />
     <None Include="Shader Files\Projectile\ProjectileVertex.glsl" />
+    <None Include="Shader Files\Spaceship\SpaceshipFragment.glsl" />
+    <None Include="Shader Files\Spaceship\SpaceshipVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

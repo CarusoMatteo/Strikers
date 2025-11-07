@@ -55,6 +55,9 @@
     <Filter Include="Shader Files\Projectile">
       <UniqueIdentifier>{e9d0ee2f-cf32-4f04-bfdc-74dca75f6756}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader Files\Spaceship">
+      <UniqueIdentifier>{19a9b63e-da7d-4fcc-b414-e4b79667c969}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\.common\ImGui\imgui.cpp">
@@ -289,6 +292,12 @@
     </None>
     <None Include="Shader Files\Projectile\ProjectileVertex.glsl">
       <Filter>Shader Files\Projectile</Filter>
+    </None>
+    <None Include="Shader Files\Spaceship\SpaceshipFragment.glsl">
+      <Filter>Shader Files\Spaceship</Filter>
+    </None>
+    <None Include="Shader Files\Spaceship\SpaceshipVertex.glsl">
+      <Filter>Shader Files\Spaceship</Filter>
     </None>
   </ItemGroup>
 </Project>

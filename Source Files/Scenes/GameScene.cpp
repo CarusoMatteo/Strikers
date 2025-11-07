@@ -94,8 +94,8 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 
 Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 {
-	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
-	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
+	string vertex = ".\\Shader Files\\Spaceship\\SpaceshipVertex.glsl";
+	string fragment = ".\\Shader Files\\Spaceship\\SpaceshipFragment.glsl";
 
 	float width = 1;
 	float height = 1;
