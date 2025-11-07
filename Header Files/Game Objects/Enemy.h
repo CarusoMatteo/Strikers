@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include "../Shape.h"
+#include "../Parameters.h"
 
 using glm::fvec3;
 using glm::fvec4;
@@ -41,6 +42,6 @@ public:
 
 private:
 	MeshBB *mesh;
-	float speed = 1000.0f;
+	float speed = Parameters::enemySpeed;
 	ivec2 windowSize;
 };

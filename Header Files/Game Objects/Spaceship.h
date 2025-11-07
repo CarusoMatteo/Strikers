@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include "../Shape.h"
+#include "../Parameters.h"
 
 using glm::fvec3;
 using glm::fvec4;
@@ -39,14 +40,13 @@ public:
 	void takeDamage(int amount = 1);
 
 private:
+	const float invincibilityTime = Parameters::spaceshipIvincibilityTime;
+	const int invincibleBlinkFrequencyHz = Parameters::spaceshipInvincibleBlinkFrequencyHz;
+	const float speed = Parameters::spaceshipSpeed;
+
 	MeshBB *mesh;
-	float speed = 700.0f;
 	bool isInvincible = false;
-
-	const float invincibilityTime = 1.0f;
 	float invincibilityTimer = 0.0f;
-
-	const int invincibleBlinkFrequencyHz = 3;
 
 	bool isVisible();
 };

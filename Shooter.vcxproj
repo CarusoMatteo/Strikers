@@ -152,6 +152,7 @@
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
     <ClCompile Include="Source Files\MeshBB.cpp" />
+    <ClCompile Include="Source Files\Parameters.cpp" />
     <ClCompile Include="Source Files\Random.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
     <ClCompile Include="Source Files\Scenes\GameScene.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />
     <ClInclude Include="Header Files\MeshBB.h" />
+    <ClInclude Include="Header Files\Parameters.h" />
     <ClInclude Include="Header Files\Random.h" />
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scene.h" />

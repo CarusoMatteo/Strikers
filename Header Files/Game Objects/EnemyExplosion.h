@@ -7,6 +7,7 @@
 #include <GLFW/glfw3.h>
 
 #include "../Shape.h"
+#include "../Parameters.h"
 
 using glm::fvec3;
 using glm::fvec4;
@@ -34,11 +35,11 @@ public:
 	bool shouldDelete() override;
 
 private:
-	const float timeToLiveSeconds = 0.5f;
+	const float timeToLiveSeconds = Parameters::explosionTimeToLiveSeconds;
 	float creationTime;
 
-	const float maxHorizontalSpeed = 1000.0f;
-	const float maxVerticalSpeed = 50.0f;
+	const float maxHorizontalSpeed = Parameters::enemyExplosionMaxHorizontalSpeed;
+	const float maxVerticalSpeed = Parameters::enemyExplosionMaxVerticalSpeed;
 
 	Mesh *meshTop;
 	Mesh *meshBottom;
