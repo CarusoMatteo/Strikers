@@ -9,7 +9,7 @@ Spaceship::Spaceship(
 	Shape shape,
 	fvec3 position,
 	fvec3 scaleVector,
-	ivec2 windowSize)
+	ivec2 windowSize) : windowSize(windowSize)
 {
 	this->mesh = new MeshBB(
 		vertexName,
@@ -60,7 +60,12 @@ void Spaceship::update(float deltaTime)
 	if (movementDirection != fvec3(0.0f))
 		movementDirection = normalize(movementDirection);
 
-	this->mesh->setPosition(this->mesh->getPosition() + movementDirection * this->speed * deltaTime);
+	fvec3 newPosition = this->mesh->getPosition() + movementDirection * this->speed * deltaTime;
+	fvec3 clampedPosition = fvec3(
+		clamp(newPosition.x, 0.0f, static_cast<float>(this->windowSize.x) + this->mesh->getSizeWorld().x),
+		clamp(newPosition.y, 0.0f, static_cast<float>(this->windowSize.y) - this->mesh->getSizeWorld().y),
+		newPosition.z);
+	this->mesh->setPosition(clampedPosition);
 
 	if (this->isInvincible)
 	{

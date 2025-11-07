@@ -45,6 +45,7 @@ private:
 	const float speed = Parameters::spaceshipSpeed;
 
 	MeshBB *mesh;
+	ivec2 windowSize;
 	bool isInvincible = false;
 	float invincibilityTimer = 0.0f;
 
