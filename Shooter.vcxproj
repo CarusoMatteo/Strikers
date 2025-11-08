@@ -146,7 +146,7 @@
     <ClCompile Include="Source Files\Game Objects\Spaceship.cpp" />
     <ClCompile Include="Source Files\glad.c" />
     <ClCompile Include="Source Files\Gui\GameGui.cpp" />
-    <ClCompile Include="Source Files\Gui\IGui.cpp" />
+    <ClCompile Include="Source Files\Gui\GameOverGui.cpp" />
     <ClCompile Include="Source Files\Gui\MenuGui.cpp" />
     <ClCompile Include="Source Files\InputEvents.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
@@ -181,6 +181,7 @@
     <ClInclude Include="Header Files\Game Objects\ProjectileExplosion.h" />
     <ClInclude Include="Header Files\Game Objects\Spaceship.h" />
     <ClInclude Include="Header Files\Gui\GameGui.h" />
+    <ClInclude Include="Header Files\Gui\GameOverGui.h" />
     <ClInclude Include="Header Files\Gui\IGui.h" />
     <ClInclude Include="Header Files\Gui\MenuGui.h" />
     <ClInclude Include="Header Files\InputEvents.h" />

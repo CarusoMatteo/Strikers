@@ -94,6 +94,8 @@ void Spaceship::takeDamage(int amount)
 	if (this->isInvincible)
 		return;
 
+	this->health -= amount;
+
 	this->isInvincible = true;
 	this->invincibilityTimer = this->invincibilityTime;
 }

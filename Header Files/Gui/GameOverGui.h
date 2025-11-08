@@ -6,10 +6,10 @@
 
 #include "IGui.h"
 
-class MenuGui : public IGui
+class GameOverGui : public IGui
 {
 public:
-	MenuGui(fvec3 *clearColorRef);
+	GameOverGui(fvec3 *clearColorRef);
 	void drawGui() override;
 	fvec3 *getClearColorRef() override
 	{
@@ -17,7 +17,8 @@ public:
 	}
 
 private:
-	void settingsWindow(float xpos, float ypos);
+	void gameOverWindow(float xpos, float ypos);
 
 	fvec3 *clearColorRef;
+	ivec2 screenSize;
 };

@@ -34,18 +34,24 @@ public:
 	{
 		return this->mesh;
 	}
+	bool isAlive() const
+	{
+		return this->health > 0.0f;
+	}
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
 	void takeDamage(int amount = 1);
 
 private:
+	const float maxHealth = Parameters::spaceshipMaxHealth;
+	const float speed = Parameters::spaceshipSpeed;
 	const float invincibilityTime = Parameters::spaceshipIvincibilityTime;
 	const int invincibleBlinkFrequencyHz = Parameters::spaceshipInvincibleBlinkFrequencyHz;
-	const float speed = Parameters::spaceshipSpeed;
 
 	MeshBB *mesh;
 	ivec2 windowSize;
+	float health = maxHealth;
 	bool isInvincible = false;
 	float invincibilityTimer = 0.0f;
 

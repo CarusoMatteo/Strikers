@@ -111,9 +111,6 @@
     <ClCompile Include="Source Files\Gui\GameGui.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Gui\IGui.cpp">
-      <Filter>Source Files\Gui</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\Gui\MenuGui.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
@@ -149,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="Source Files\Parameters.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\Gui\GameOverGui.cpp">
+      <Filter>Source Files\Gui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +258,9 @@
       <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\Parameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Gui\GameOverGui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,6 +8,7 @@
 #include "../../Header Files/Game Objects/Enemy.h"
 #include "../../Header Files/Game Objects/EnemyExplosion.h"
 #include "../../Header Files/Gui/MenuGui.h"
+#include "../../Header Files/Gui/GameOverGui.h"
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/InputEvents.h"
 #include "../../Header Files/Random.h"
@@ -266,6 +267,17 @@ GameScene::~GameScene()
 
 void GameScene::updateGameObjects(float deltaTime)
 {
+	if (!this->spaceship->isAlive())
+	{
+		if (!dynamic_cast<GameOverGui *>(this->gui))
+		{
+			IGui *oldGui = this->gui;
+			this->gui = new GameOverGui(oldGui->getClearColorRef());
+			delete oldGui;
+		}
+		return;
+	}
+
 	this->background->update(deltaTime);
 	for (auto &&gameObject : *gameObjects)
 	{
