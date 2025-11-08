@@ -20,5 +20,4 @@ private:
 	void gameOverWindow(float xpos, float ypos);
 
 	fvec3 *clearColorRef;
-	ivec2 screenSize;
 };

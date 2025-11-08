@@ -148,10 +148,12 @@
     <ClCompile Include="Source Files\Gui\GameGui.cpp" />
     <ClCompile Include="Source Files\Gui\GameOverGui.cpp" />
     <ClCompile Include="Source Files\Gui\MenuGui.cpp" />
+    <ClCompile Include="Source Files\HermiteCurveMaker.cpp" />
     <ClCompile Include="Source Files\InputEvents.cpp" />
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Mesh.cpp" />
     <ClCompile Include="Source Files\MeshBB.cpp" />
+    <ClCompile Include="Source Files\MeshCurve.cpp" />
     <ClCompile Include="Source Files\Parameters.cpp" />
     <ClCompile Include="Source Files\Random.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
@@ -184,16 +186,19 @@
     <ClInclude Include="Header Files\Gui\GameOverGui.h" />
     <ClInclude Include="Header Files\Gui\IGui.h" />
     <ClInclude Include="Header Files\Gui\MenuGui.h" />
+    <ClInclude Include="Header Files\HermiteCurveMaker.h" />
     <ClInclude Include="Header Files\InputEvents.h" />
     <ClInclude Include="Header Files\InputEventsType.h" />
     <ClInclude Include="Header Files\Mesh.h" />
     <ClInclude Include="Header Files\MeshBB.h" />
+    <ClInclude Include="Header Files\MeshCurve.h" />
     <ClInclude Include="Header Files\Parameters.h" />
+    <ClInclude Include="Header Files\ParametrizationType.h" />
     <ClInclude Include="Header Files\Random.h" />
     <ClInclude Include="Header Files\Renderer.h" />
-    <ClInclude Include="Header Files\Scene.h" />
     <ClInclude Include="Header Files\Scenes\GameScene.h" />
-    <ClInclude Include="Header Files\SceneType.h" />
+    <ClInclude Include="Header Files\Scenes\Scene.h" />
+    <ClInclude Include="Header Files\Scenes\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />
     <ClInclude Include="Header Files\Shape.h" />
     <ClInclude Include="Header Files\ShapeMaker.h" />
@@ -214,6 +219,9 @@
     <None Include="Shader Files\Projectile\ProjectileVertex.glsl" />
     <None Include="Shader Files\Spaceship\SpaceshipFragment.glsl" />
     <None Include="Shader Files\Spaceship\SpaceshipVertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Curves\projectile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

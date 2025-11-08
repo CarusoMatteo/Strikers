@@ -38,7 +38,7 @@ public:
 
 	fvec3 getBBCenter();
 	fvec3 getBBRight();
-	void render(float currentTime, float rotationAngleDegrees = 0.0f);
+	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
 
 private:
 	static bool drawBoundingBox;

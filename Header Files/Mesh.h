@@ -37,7 +37,7 @@ public:
 		return isWireframe;
 	}
 
-	void render(float currentTime, float rotationAngleDegrees = 0.0f);
+	virtual void render(float currentTime, float rotationAngleDegrees = 0.0f);
 	void updateScreenSize(ivec2 newScreenSize)
 	{
 		this->windowSize = newScreenSize;

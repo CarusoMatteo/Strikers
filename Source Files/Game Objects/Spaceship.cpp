@@ -79,7 +79,7 @@ void Spaceship::update(float deltaTime)
 	}
 }
 
-bool Spaceship::isVisible()
+bool Spaceship::isVisible() const
 {
 	return static_cast<int>(this->invincibilityTimer * this->invincibleBlinkFrequencyHz * 2) % 2 == 0;
 }

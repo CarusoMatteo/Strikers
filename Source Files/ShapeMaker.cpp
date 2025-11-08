@@ -1,5 +1,7 @@
 #include "../Header Files/ShapeMaker.h"
 
+#include "../Header Files/HermiteCurveMaker.h"
+
 float pi = 3.14159265358979323846f;
 
 Shape ShapeMaker::makeBackgroundPlane(
@@ -91,7 +93,7 @@ Shape ShapeMaker::makeTriangle(
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 
-	float height = (sqrt(3) / 2) * sideLength;
+	float height = (sqrtf(3) / 2) * sideLength;
 
 	vertices.push_back(fvec3(0, 2 * height / 3, 0));
 	colors.push_back(colorTop);
@@ -131,6 +133,23 @@ Shape ShapeMaker::makeCircle(
 		vertices.push_back(fvec3(xx, yy, 0));
 		colors.push_back(colorBorder);
 	}
+
+	if (addBoundingBox)
+	{
+		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+	}
+
+	return Shape(vertices, colors);
+}
+
+Shape ShapeMaker::makeCurve(
+	string fileName,
+	fvec4 colorTop,
+	fvec4 colorBottom,
+	bool addBoundingBox)
+{
+	vector<fvec3> vertices;
+	vector<fvec4> colors;
 
 	if (addBoundingBox)
 	{

@@ -55,5 +55,5 @@ private:
 	bool isInvincible = false;
 	float invincibilityTimer = 0.0f;
 
-	bool isVisible();
+	bool isVisible() const;
 };

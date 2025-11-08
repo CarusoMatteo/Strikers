@@ -58,6 +58,9 @@
     <Filter Include="Shader Files\Spaceship">
       <UniqueIdentifier>{19a9b63e-da7d-4fcc-b414-e4b79667c969}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Curves">
+      <UniqueIdentifier>{58427775-e28b-40d3-a362-c35c83d027a8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\.common\ImGui\imgui.cpp">
@@ -150,6 +153,12 @@
     <ClCompile Include="Source Files\Gui\GameOverGui.cpp">
       <Filter>Source Files\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\MeshCurve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\HermiteCurveMaker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h">
@@ -224,12 +233,6 @@
     <ClInclude Include="Header Files\MeshBB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Scene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Header Files\SceneType.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="Header Files\Scenes\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -262,6 +265,21 @@
     </ClInclude>
     <ClInclude Include="Header Files\Gui\GameOverGui.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\HermiteCurveMaker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\ParametrizationType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\MeshCurve.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Scenes\Scene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\Scenes\SceneType.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -302,5 +320,10 @@
     <None Include="Shader Files\Spaceship\SpaceshipVertex.glsl">
       <Filter>Shader Files\Spaceship</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Curves\projectile.txt">
+      <Filter>Curves</Filter>
+    </Text>
   </ItemGroup>
 </Project>

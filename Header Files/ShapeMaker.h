@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utility>
+#include <string>
 #include <vector>
 #include <glm/glm.hpp>
 
@@ -10,6 +11,7 @@ using glm::fvec2;
 using glm::fvec3;
 using glm::fvec4;
 using std::pair;
+using std::string;
 using std::vector;
 
 class ShapeMaker
@@ -52,6 +54,12 @@ public:
 		fvec4 colorCenter,
 		fvec4 colorBorder,
 		bool addBoundingBox = false);
+
+	static Shape makeCurve(
+		string fileName,
+		fvec4 colorTop,
+		fvec4 colorBottom,
+		bool addBoundingBox);
 
 private:
 	ShapeMaker() = default;
