@@ -142,8 +142,9 @@ Shape ShapeMaker::makeCircle(
 	return Shape(vertices, colors);
 }
 
-Shape ShapeMaker::makeCurve(
+Shape ShapeMaker::makeHermitCurve(
 	string fileName,
+	int numberOfTriangles,
 	fvec4 colorTop,
 	fvec4 colorBottom,
 	bool addBoundingBox)
@@ -151,24 +152,30 @@ Shape ShapeMaker::makeCurve(
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 
+	Shape curveShape = HermiteCurveMaker::makeHermiteCurve(
+						   fileName,
+						   numberOfTriangles,
+						   colorTop,
+						   colorBottom)
+						   .front();
+
 	if (addBoundingBox)
 	{
-		ShapeMaker::addBoundingBoxVertices(&vertices, &colors);
+		ShapeMaker::addBoundingBoxVertices(&curveShape.first, &curveShape.second);
 	}
 
-	return Shape(vertices, colors);
+	return curveShape;
 }
 
 void ShapeMaker::addBoundingBoxVertices(vector<fvec3> *vertices, vector<fvec4> *colors)
 {
-	int n = static_cast<int>(vertices->size());
 	float minx = vertices->at(0).x; // Assumiamo che il primo elemento sia il minimo iniziale
 	float miny = vertices->at(0).y; // Assumiamo che il primo elemento sia il minimo iniziale
 
 	float maxx = vertices->at(0).x; // Assumiamo che il primo elemento sia il massimo iniziale
 	float maxy = vertices->at(0).y; // Assumiamo che il primo elemento sia il massimo iniziale
 
-	for (int i = 1; i < n; i++)
+	for (int i = 1; i < static_cast<int>(vertices->size()); i++)
 	{
 		if (vertices->at(i).x < minx)
 		{

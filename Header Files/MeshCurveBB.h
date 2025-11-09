@@ -30,6 +30,8 @@ public:
 		vector<fvec3> *vertices,
 		vector<fvec4> *colors);
 
+	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
+
 private:
 	vector<unsigned int> indices;
 };

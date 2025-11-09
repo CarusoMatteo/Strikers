@@ -25,9 +25,9 @@ class HermiteCurveMaker
 public:
 	static vector<Shape> makeHermiteCurve(
 		string fileName,
+		int numberOfTriangles,
 		fvec4 colorTop,
-		fvec4 colorBottom,
-		int numberOfTriangles);
+		fvec4 colorBottom);
 
 private:
 	HermiteCurveMaker() = default;

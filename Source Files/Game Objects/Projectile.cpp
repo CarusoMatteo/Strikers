@@ -1,6 +1,6 @@
 #include "../../Header Files/Game Objects/Projectile.h"
 
-#include "../../Header Files/MeshBB.h"
+#include "../../Header Files/MeshCurveBB.h"
 #include "../../Header Files/InputEvents.h"
 
 Projectile::Projectile(
@@ -11,7 +11,7 @@ Projectile::Projectile(
 	fvec3 scaleVector,
 	ivec2 windowSize) : windowSize(windowSize)
 {
-	this->mesh = new MeshBB(
+	this->mesh = new MeshCurveBB(
 		vertexName,
 		fragmentName,
 		shape.first,

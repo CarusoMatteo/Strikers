@@ -10,8 +10,10 @@
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/Gui/GameOverGui.h"
 #include "../../Header Files/ShapeMaker.h"
+#include "../../Header Files/HermiteCurveMaker.h"
 #include "../../Header Files/InputEvents.h"
 #include "../../Header Files/Random.h"
+#include "../../Header Files/MeshCurveBB.h"
 
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(windowSize)
 {
@@ -131,20 +133,20 @@ Projectile *GameScene::createProjectile(ivec2 windowSize, fvec3 spaceshipPositio
 	string vertex = ".\\Shader Files\\Projectile\\ProjectileVertex.glsl";
 	string fragment = ".\\Shader Files\\Projectile\\ProjectileFragment.glsl";
 
-	float sideLenght = 1;
+	int numberOfTriangles = 200;
 
 	fvec3 position = spaceshipPosition;
 	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorTop = fvec4(1, 1, 1, 1);
-	fvec4 colorBottomLeft = fvec4(1, 1, 1, 1);
-	fvec4 colorBottomRight = fvec4(1, 1, 1, 1);
+	fvec4 colorBottom = fvec4(1, 1, 1, 1);
 
-	Shape shapeData = ShapeMaker::makeTriangle(
-		sideLenght,
+	Shape shapeData = ShapeMaker::makeHermitCurve(
+		"Curves/projectile.txt",
+		numberOfTriangles,
 		colorTop,
-		colorBottomLeft,
-		colorBottomRight);
+		colorBottom,
+		true);
 
 	return new Projectile(
 		vertex,

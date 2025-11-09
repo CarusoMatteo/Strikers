@@ -13,7 +13,7 @@ using glm::ivec2;
 using std::string;
 using std::vector;
 
-class MeshBB;
+class MeshCurveBB;
 
 class Projectile : public ITemporaryGameObject
 {
@@ -27,7 +27,7 @@ public:
 		ivec2 windowSize);
 	~Projectile() override;
 
-	MeshBB *getMesh() const
+	MeshCurveBB *getMesh() const
 	{
 		return this->mesh;
 	}
@@ -37,7 +37,7 @@ public:
 	bool shouldDelete() override;
 
 private:
-	MeshBB *mesh;
+	MeshCurveBB *mesh;
 	float speed = 2500.0f;
 	ivec2 windowSize;
 };

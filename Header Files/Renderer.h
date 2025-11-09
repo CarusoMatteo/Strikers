@@ -42,6 +42,32 @@ public:
 		GLenum renderMode,
 		int vertexCount);
 
+	static void renderCurveWithBB(
+		unsigned int shaderProgramId,
+		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
+		GLuint *currentTimeUniformLocation, float currentTime,
+		GLuint *isVisibleUniformLocation, bool isVisible,
+		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		GLuint vaoAddress,
+		GLenum renderMode,
+		int vertexCount);
+
+	static void renderCurveWithoutBB(
+		unsigned int shaderProgramId,
+		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+		GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+		GLuint *screenSizeUniformLocation, fvec2 windowSize,
+		GLuint *creationTimeUniformLocation, float creationTime,
+		GLuint *currentTimeUniformLocation, float currentTime,
+		GLuint *isVisibleUniformLocation, bool isVisible,
+		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		GLuint vaoAddress,
+		GLenum renderMode,
+		int vertexCount);
+
 private:
 	Renderer() = default;
 	~Renderer() = default;
@@ -58,7 +84,8 @@ private:
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int vertexCount,
-		bool checkBB);
+		bool meshHasBB,
+		bool isCurve);
 
 	static void passUniforms(
 		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
@@ -69,6 +96,6 @@ private:
 		GLuint *isVisibleUniformLocation, bool isVisible);
 
 	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
-	static void drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB);
+	static void drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB, bool isCurve);
 	static void checkGLError();
 };

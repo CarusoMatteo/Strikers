@@ -1,6 +1,7 @@
 #include "../Header Files/MeshCurveBB.h"
 #include "../Header Files/Renderer.h"
 #include "../Header Files/earcut.hpp"
+#include <iostream>
 
 using Point2D = array<float, 2>;
 
@@ -35,9 +36,36 @@ void MeshCurveBB::triangulate(
 	for (auto &&vertex : *vertices)
 		polygon2D.push_back(Point2D{vertex.x, vertex.y});
 
+	// Remove the last four vertices if there are at least four because they are for the bounding box
+	if (polygon2D.size() >= 4)
+	{
+		polygon2D.erase(polygon2D.end() - 4, polygon2D.end());
+	}
+
+	// Print the contents x, y of the polygon2D array
+	for (const auto& pt : polygon2D) {
+		std::cout << "x: " << pt[0] << ", y: " << pt[1] << std::endl;
+	}
+
 	vector<vector<Point2D>> polygon = {polygon2D};
-	// Triangolazione facebndo uso della funzione eartcut
+	// Triangulation using the earcut function
 	vector<unsigned int> indices = mapbox::earcut<unsigned int>(polygon);
-	// Output degli indici dei triangoli
+	// Triangle indices
 	this->indices = indices;
+}
+
+void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
+{
+	Renderer::renderCurveWithBB(
+		this->programId,
+		&this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
+		&this->modelMatrixUniformLocation, &this->modelMatrix,
+		&this->screenSizeUniformLocation, fvec2(this->windowSize),
+		&this->creationTimeUniformLocation, this->creationTime,
+		&this->currentTimeUniformLocation, currentTime,
+		&this->isVisibleUniformLocation, this->isVisible,
+		&this->position, &this->scaleVector, rotationAngleDegrees,
+		this->vaoAddress,
+		this->drawMode,
+		static_cast<int>(this->indices.size()));
 }

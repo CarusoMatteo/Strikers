@@ -31,15 +31,16 @@ ParameterizationType HermiteCurveMaker::parameterization = ParameterizationType:
 
 vector<Shape> HermiteCurveMaker::makeHermiteCurve(
 	string fileName,
+	int numberOfTriangles,
 	fvec4 colorTop,
-	fvec4 colorBottom,
-	int numberOfTriangles)
+	fvec4 colorBottom)
 {
 	vector<fvec3> points;
 	vector<Curve> curves = readCurveSource(fileName);
 	vector<Shape> shapes;
 	for (auto &&curve : curves)
 	{
+		curve.derivatives = vector<fvec3>(curve.controlPoints.size(), fvec3(0));
 		Shape shape = buildCurve(&curve, colorTop, colorBottom, numberOfTriangles);
 		shapes.push_back(shape);
 	}
@@ -101,7 +102,7 @@ Shape HermiteCurveMaker::buildCurve(
 	vector<fvec3> vertices;
 	vector<fvec4> colors;
 
-	float step = 1.0f / numberOfTriangles - 1;
+	float step = 1.0f / (numberOfTriangles - 1);
 
 	// Index of the left endpoint of the interval [t(i),t(i+1)] to which the tangent point belongs
 	int leftEndpointIndex = 0;
@@ -109,27 +110,27 @@ Shape HermiteCurveMaker::buildCurve(
 	for (float tangent = 0; tangent <= 1; tangent += step)
 	{
 		// Find the interval to which tangent belongs
-		if (tangent > t[leftEndpointIndex + 1])
+		if (tangent > t.at(leftEndpointIndex + 1))
 			leftEndpointIndex++;
 
-		float ampiezza = (t[leftEndpointIndex + 1] - t[leftEndpointIndex]);
+		float segmentLength = (t.at(leftEndpointIndex + 1) - t.at(leftEndpointIndex));
 
 		// Map tg in the interval [0,1]
-		float tgmapp = (tangent - t[leftEndpointIndex]) / ampiezza;
+		float tgmapp = (tangent - t.at(leftEndpointIndex)) / segmentLength;
 
-		float x = curve->controlPoints[leftEndpointIndex].position.x * PHI0(tgmapp) +
-				  dx(leftEndpointIndex, &t, curve) * PHI1(tgmapp) * ampiezza +
-				  curve->controlPoints[leftEndpointIndex + 1].position.x * PSI0(tgmapp) +
-				  dx(leftEndpointIndex + 1, &t, curve) * PSI1(tgmapp) * ampiezza;
-		float y = curve->controlPoints[leftEndpointIndex].position.y * PHI0(tgmapp) +
-				  dy(leftEndpointIndex, &t, curve) * PHI1(tgmapp) * ampiezza +
-				  curve->controlPoints[leftEndpointIndex + 1].position.y * PSI0(tgmapp) +
-				  dy(leftEndpointIndex + 1, &t, curve) * PSI1(tgmapp) * ampiezza;
+		float x = curve->controlPoints.at(leftEndpointIndex).position.x * PHI0(tgmapp) +
+				  dx(leftEndpointIndex, &t, curve) * PHI1(tgmapp) * segmentLength +
+				  curve->controlPoints.at(leftEndpointIndex + 1).position.x * PSI0(tgmapp) +
+				  dx(leftEndpointIndex + 1, &t, curve) * PSI1(tgmapp) * segmentLength;
+		float y = curve->controlPoints.at(leftEndpointIndex).position.y * PHI0(tgmapp) +
+				  dy(leftEndpointIndex, &t, curve) * PHI1(tgmapp) * segmentLength +
+				  curve->controlPoints.at(leftEndpointIndex + 1).position.y * PSI0(tgmapp) +
+				  dy(leftEndpointIndex + 1, &t, curve) * PSI1(tgmapp) * segmentLength;
 		float z = 0.0f;
 		/*
-		 * float z = curve.controlPoints[leftEndpointIndex].position.y * PHI0(tgmapp) +
+		 * float z = curve.controlPoints.at(leftEndpointIndex).position.y * PHI0(tgmapp) +
 		 * 			 dz(leftEndpointIndex, &t, &curve) * PHI1(tgmapp) * ampiezza +
-		 * 		  	 curve.controlPoints[leftEndpointIndex + 1].position.z * PSI0(tgmapp) +
+		 * 		  	 curve.controlPoints.at(leftEndpointIndex + 1).position.z * PSI0(tgmapp) +
 		 * 			 dz(leftEndpointIndex + 1, &t, &curve) * PSI1(tgmapp) * ampiezza;
 		 */
 

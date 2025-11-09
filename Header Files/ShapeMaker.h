@@ -55,8 +55,9 @@ public:
 		fvec4 colorBorder,
 		bool addBoundingBox = false);
 
-	static Shape makeCurve(
+	static Shape makeHermitCurve(
 		string fileName,
+		int numberOfTriangles,
 		fvec4 colorTop,
 		fvec4 colorBottom,
 		bool addBoundingBox);

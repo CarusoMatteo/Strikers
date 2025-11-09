@@ -3,6 +3,8 @@
 #include "../Header Files/Mesh.h"
 #include "../Header Files/MeshBB.h"
 
+#pragma region Public access methods
+
 void Renderer::renderWithBB(
 	unsigned int shaderProgramId,
 	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
@@ -28,7 +30,7 @@ void Renderer::renderWithBB(
 		vaoAddress,
 		renderMode,
 		vertexCount,
-		true);
+		true, false);
 }
 
 void Renderer::renderWithoutBB(
@@ -56,8 +58,66 @@ void Renderer::renderWithoutBB(
 		vaoAddress,
 		renderMode,
 		vertexCount,
-		false);
+		false, false);
 }
+
+void Renderer::renderCurveWithBB(
+	unsigned int shaderProgramId,
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
+	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible,
+	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	GLuint vaoAddress,
+	GLenum renderMode,
+	int vertexCount)
+{
+	Renderer::render(
+		shaderProgramId,
+		projectionMatrixUniformLocation, projectionMatrix,
+		modelMatrixUniformLocation, modelMatrix,
+		screenSizeUniformLocation, windowSize,
+		creationTimeUniformLocation, creationTime,
+		currentTimeUniformLocation, currentTime,
+		isVisibleUniformLocation, isVisible,
+		position, scaleVector, rotationAngleDegrees,
+		vaoAddress,
+		renderMode,
+		vertexCount,
+		true, true);
+}
+
+void Renderer::renderCurveWithoutBB(
+	unsigned int shaderProgramId,
+	GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
+	GLuint *modelMatrixUniformLocation, fmat4 *modelMatrix,
+	GLuint *screenSizeUniformLocation, fvec2 windowSize,
+	GLuint *creationTimeUniformLocation, float creationTime,
+	GLuint *currentTimeUniformLocation, float currentTime,
+	GLuint *isVisibleUniformLocation, bool isVisible,
+	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	GLuint vaoAddress,
+	GLenum renderMode,
+	int vertexCount)
+{
+	Renderer::render(
+		shaderProgramId,
+		projectionMatrixUniformLocation, projectionMatrix,
+		modelMatrixUniformLocation, modelMatrix,
+		screenSizeUniformLocation, windowSize,
+		creationTimeUniformLocation, creationTime,
+		currentTimeUniformLocation, currentTime,
+		isVisibleUniformLocation, isVisible,
+		position, scaleVector, rotationAngleDegrees,
+		vaoAddress,
+		renderMode,
+		vertexCount,
+		false, true);
+}
+
+#pragma endregion
 
 void Renderer::render(
 	unsigned int shaderProgramId,
@@ -71,7 +131,8 @@ void Renderer::render(
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int vertexCount,
-	bool meshHasBB)
+	bool meshHasBB,
+	bool isCurve)
 {
 	// Enable selected shader program
 	glUseProgram(shaderProgramId);
@@ -84,7 +145,7 @@ void Renderer::render(
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible);
 	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
-	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB);
+	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB, isCurve);
 	Renderer::checkGLError();
 }
 
@@ -138,12 +199,14 @@ void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *s
 	 */
 }
 
-void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB)
+void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB, bool isCurve)
 {
 	if (Mesh::shouldDrawWireframe())
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else
+	else if (!isCurve)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	else
+		glPolygonMode(GL_FRONT_AND_BACK, GL_TRIANGLES);
 
 	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
 	glBindVertexArray(vaoAddress);
