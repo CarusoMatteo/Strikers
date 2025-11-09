@@ -281,6 +281,9 @@
     <ClInclude Include="Header Files\Scenes\SceneType.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\earcut.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

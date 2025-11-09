@@ -173,6 +173,7 @@
     <ClInclude Include="..\.common\ImGui\imstb_rectpack.h" />
     <ClInclude Include="..\.common\ImGui\imstb_textedit.h" />
     <ClInclude Include="..\.common\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Header Files\earcut.hpp" />
     <ClInclude Include="Header Files\Game Objects\Background.h" />
     <ClInclude Include="Header Files\Game Objects\Enemy.h" />
     <ClInclude Include="Header Files\Game Objects\EnemyExplosion.h" />

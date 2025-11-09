@@ -13,6 +13,7 @@ using namespace glm;
 class Mesh
 {
 public:
+	Mesh() = default;
 	Mesh(
 		string vertexShaderName,
 		string fragmentShaderName,

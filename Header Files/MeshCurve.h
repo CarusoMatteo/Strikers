@@ -2,11 +2,13 @@
 #include "Mesh.h"
 
 #include <string>
+#include <array>
 #include <vector>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
 
+using std::array;
 using std::string;
 using std::vector;
 using namespace glm;
@@ -24,5 +26,11 @@ public:
 		GLenum drawMode,
 		ivec2 windowSize);
 
+	void triangulate(
+		vector<fvec3> *vertices,
+		vector<fvec4> *colors);
 	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
+
+private:
+	vector<unsigned int> indices;
 };
