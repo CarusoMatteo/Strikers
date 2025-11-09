@@ -8,6 +8,7 @@ using namespace glm;
 class MeshBB : public Mesh
 {
 public:
+	MeshBB() = default;
 	MeshBB(
 		string vertexShaderName,
 		string fragmentShaderName,

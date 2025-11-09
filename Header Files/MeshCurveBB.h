@@ -1,5 +1,5 @@
 #pragma once
-#include "Mesh.h"
+#include "MeshBB.h"
 
 #include <string>
 #include <array>
@@ -13,10 +13,10 @@ using std::string;
 using std::vector;
 using namespace glm;
 
-class MeshCurve : public Mesh
+class MeshCurveBB : public MeshBB
 {
 public:
-	MeshCurve(
+	MeshCurveBB(
 		string vertexShaderName,
 		string fragmentShaderName,
 		vector<fvec3> vertices,

@@ -159,6 +159,9 @@
     <ClCompile Include="Source Files\HermiteCurveMaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\MeshCurveBB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h">
@@ -282,6 +285,9 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\earcut.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\MeshCurveBB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,10 @@
-#include "../Header Files/MeshCurve.h"
+#include "../Header Files/MeshCurveBB.h"
 #include "../Header Files/Renderer.h"
 #include "../Header Files/earcut.hpp"
 
 using Point2D = array<float, 2>;
 
-MeshCurve::MeshCurve(
+MeshCurveBB::MeshCurveBB(
 	string vertexShaderName,
 	string fragmentShaderName,
 	vector<fvec3> vertices,
@@ -15,7 +15,7 @@ MeshCurve::MeshCurve(
 	ivec2 windowSize)
 {
 	this->triangulate(&vertices, &colors);
-	Mesh(
+	MeshBB(
 		vertexShaderName,
 		fragmentShaderName,
 		vertices,
@@ -26,7 +26,7 @@ MeshCurve::MeshCurve(
 		windowSize);
 }
 
-void MeshCurve::triangulate(
+void MeshCurveBB::triangulate(
 	vector<fvec3> *vertices,
 	vector<fvec4> *colors)
 {

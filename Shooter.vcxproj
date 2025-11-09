@@ -154,6 +154,7 @@
     <ClCompile Include="Source Files\Mesh.cpp" />
     <ClCompile Include="Source Files\MeshBB.cpp" />
     <ClCompile Include="Source Files\MeshCurve.cpp" />
+    <ClCompile Include="Source Files\MeshCurveBB.cpp" />
     <ClCompile Include="Source Files\Parameters.cpp" />
     <ClCompile Include="Source Files\Random.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Header Files\Mesh.h" />
     <ClInclude Include="Header Files\MeshBB.h" />
     <ClInclude Include="Header Files\MeshCurve.h" />
+    <ClInclude Include="Header Files\MeshCurveBB.h" />
     <ClInclude Include="Header Files\Parameters.h" />
     <ClInclude Include="Header Files\ParametrizationType.h" />
     <ClInclude Include="Header Files\Random.h" />
