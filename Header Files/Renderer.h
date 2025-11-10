@@ -27,7 +27,7 @@ public:
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
-		int vertexCount);
+		int pointCount);
 
 	static void renderWithoutBB(
 		unsigned int shaderProgramId,
@@ -40,7 +40,7 @@ public:
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
-		int vertexCount);
+		int pointCount);
 
 	static void renderCurveWithBB(
 		unsigned int shaderProgramId,
@@ -53,7 +53,8 @@ public:
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
-		int vertexCount);
+		int indicesCount,
+		int *vertexCount);
 
 	static void renderCurveWithoutBB(
 		unsigned int shaderProgramId,
@@ -66,7 +67,7 @@ public:
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
-		int vertexCount);
+		int indicesCount);
 
 private:
 	Renderer() = default;
@@ -83,9 +84,10 @@ private:
 		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
-		int vertexCount,
+		int pointCount,
 		bool meshHasBB,
-		bool isCurve);
+		bool isCurve,
+		int *vertexCount);
 
 	static void passUniforms(
 		GLuint *projectionMatrixUniformLocation, fmat4 *projectionMatrix,
@@ -97,6 +99,6 @@ private:
 
 	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
 	static void drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB);
-	static void drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB);
+	static void drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB, int *vertexCount);
 	static void checkGLError();
 };

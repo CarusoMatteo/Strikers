@@ -16,8 +16,12 @@ void Renderer::renderWithBB(
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int vertexCount)
+	int pointCount)
 {
+	bool meshHasBB = false;
+	bool isCurve = false;
+	int *vertexCount = nullptr;
+
 	Renderer::render(
 		shaderProgramId,
 		projectionMatrixUniformLocation, projectionMatrix,
@@ -29,8 +33,10 @@ void Renderer::renderWithBB(
 		position, scaleVector, rotationAngleDegrees,
 		vaoAddress,
 		renderMode,
-		vertexCount,
-		true, false);
+		pointCount,
+		meshHasBB,
+		isCurve,
+		vertexCount);
 }
 
 void Renderer::renderWithoutBB(
@@ -44,8 +50,12 @@ void Renderer::renderWithoutBB(
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int vertexCount)
+	int pointCount)
 {
+	bool meshHasBB = false;
+	bool isCurve = false;
+	int *vertexCount = nullptr;
+
 	Renderer::render(
 		shaderProgramId,
 		projectionMatrixUniformLocation, projectionMatrix,
@@ -57,8 +67,10 @@ void Renderer::renderWithoutBB(
 		position, scaleVector, rotationAngleDegrees,
 		vaoAddress,
 		renderMode,
-		vertexCount,
-		false, false);
+		pointCount,
+		meshHasBB,
+		isCurve,
+		vertexCount);
 }
 
 void Renderer::renderCurveWithBB(
@@ -72,8 +84,12 @@ void Renderer::renderCurveWithBB(
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int vertexCount)
+	int indicesCount,
+	int *vertexCount)
 {
+	bool meshHasBB = true;
+	bool isCurve = true;
+
 	Renderer::render(
 		shaderProgramId,
 		projectionMatrixUniformLocation, projectionMatrix,
@@ -85,8 +101,10 @@ void Renderer::renderCurveWithBB(
 		position, scaleVector, rotationAngleDegrees,
 		vaoAddress,
 		renderMode,
-		vertexCount,
-		true, true);
+		indicesCount,
+		meshHasBB,
+		isCurve,
+		vertexCount);
 }
 
 void Renderer::renderCurveWithoutBB(
@@ -100,8 +118,12 @@ void Renderer::renderCurveWithoutBB(
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int vertexCount)
+	int indicesCount)
 {
+	bool meshHasBB = false;
+	bool isCurve = true;
+	int *vertexCount = nullptr;
+
 	Renderer::render(
 		shaderProgramId,
 		projectionMatrixUniformLocation, projectionMatrix,
@@ -113,8 +135,10 @@ void Renderer::renderCurveWithoutBB(
 		position, scaleVector, rotationAngleDegrees,
 		vaoAddress,
 		renderMode,
-		vertexCount,
-		false, true);
+		indicesCount,
+		meshHasBB,
+		isCurve,
+		vertexCount);
 }
 
 #pragma endregion
@@ -132,7 +156,8 @@ void Renderer::render(
 	GLenum renderMode,
 	int pointCount,
 	bool meshHasBB,
-	bool isCurve)
+	bool isCurve,
+	int *vertexCount)
 {
 	// Enable selected shader program
 	glUseProgram(shaderProgramId);
@@ -148,7 +173,7 @@ void Renderer::render(
 	if (!isCurve)
 		Renderer::drawMesh(vaoAddress, renderMode, pointCount, meshHasBB);
 	else
-		Renderer::drawCurveMesh(vaoAddress, renderMode, pointCount, meshHasBB);
+		Renderer::drawCurveMesh(vaoAddress, renderMode, pointCount, meshHasBB, vertexCount);
 	Renderer::checkGLError();
 }
 
@@ -235,7 +260,7 @@ void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, b
 	}
 }
 
-void Renderer::drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB)
+void Renderer::drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB, int *vertexCount)
 {
 	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
 	glBindVertexArray(vaoAddress);
@@ -246,9 +271,14 @@ void Renderer::drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCo
 
 		if (MeshBB::shouldDrawBoundingBox())
 		{
+			if (vertexCount == nullptr)
+			{
+				throw std::runtime_error("vertexCount pointer is null when trying to draw curve's bounding box.");
+			}
+
 			// Draw the bounding box with aline loop connecting the last 4 indices
 			// Draw the bounding box with a line loop connecting the last 4 vertices
-			glDrawArrays(GL_LINE_LOOP, indicesCount - 4, 4);
+			glDrawArrays(GL_LINE_LOOP, *vertexCount - 4, 4);
 		}
 	}
 	else

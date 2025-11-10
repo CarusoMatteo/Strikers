@@ -54,6 +54,7 @@ void MeshCurveBB::triangulate(
 
 void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
 {
+	int vertexCount = static_cast<int>(this->vertices.size());
 	Renderer::renderCurveWithBB(
 		this->programId,
 		&this->projectionMatrixUniformLocation, &Mesh::projectionMatrix,
@@ -65,7 +66,8 @@ void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
 		&this->position, &this->scaleVector, rotationAngleDegrees,
 		this->vaoAddress,
 		this->drawMode,
-		static_cast<int>(this->indices.size()));
+		static_cast<int>(this->indices.size()),
+		&vertexCount);
 }
 
 void MeshCurveBB::initVbos()
@@ -73,7 +75,6 @@ void MeshCurveBB::initVbos()
 	// Generates and makes active the VBO for the vertices
 	glGenBuffers(1, &this->verticesVboAddress);
 	glBindBuffer(GL_ARRAY_BUFFER, this->verticesVboAddress);
-
 	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(fvec3), this->vertices.data(), GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
 	glEnableVertexAttribArray(0);
