@@ -1,7 +1,6 @@
 #include "../Header Files/MeshCurveBB.h"
 #include "../Header Files/Renderer.h"
 #include "../Header Files/earcut.hpp"
-#include <iostream>
 
 using Point2D = array<float, 2>;
 
@@ -15,16 +14,20 @@ MeshCurveBB::MeshCurveBB(
 	GLenum drawMode,
 	ivec2 windowSize)
 {
+	this->vertices = vertices;
+	this->colors = colors;
+	this->position = position;
+	this->scaleVector = scaleVector;
+	this->drawMode = drawMode;
+	this->windowSize = windowSize;
+
+	this->modelMatrix = fmat4(1);
+	this->creationTime = static_cast<float>(glfwGetTime());
 	this->triangulate(&vertices, &colors);
-	MeshBB(
-		vertexShaderName,
-		fragmentShaderName,
-		vertices,
-		colors,
-		position,
-		scaleVector,
-		drawMode,
-		windowSize);
+	this->buildShader(vertexShaderName, fragmentShaderName);
+	this->initVao();
+	this->initVbos();
+	this->initUniformReferences();
 }
 
 void MeshCurveBB::triangulate(
@@ -40,11 +43,6 @@ void MeshCurveBB::triangulate(
 	if (polygon2D.size() >= 4)
 	{
 		polygon2D.erase(polygon2D.end() - 4, polygon2D.end());
-	}
-
-	// Print the contents x, y of the polygon2D array
-	for (const auto& pt : polygon2D) {
-		std::cout << "x: " << pt[0] << ", y: " << pt[1] << std::endl;
 	}
 
 	vector<vector<Point2D>> polygon = {polygon2D};
@@ -68,4 +66,47 @@ void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
 		this->vaoAddress,
 		this->drawMode,
 		static_cast<int>(this->indices.size()));
+}
+
+void MeshCurveBB::initVbos()
+{
+	// Generates and makes active the VBO for the vertices
+	glGenBuffers(1, &this->verticesVboAddress);
+	glBindBuffer(GL_ARRAY_BUFFER, this->verticesVboAddress);
+
+	glBufferData(GL_ARRAY_BUFFER, this->vertices.size() * sizeof(fvec3), this->vertices.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
+	glEnableVertexAttribArray(0);
+
+	// Generates and makes active the VBO for the colors
+	glGenBuffers(1, &this->colorsVboAddress);
+	glBindBuffer(GL_ARRAY_BUFFER, this->colorsVboAddress);
+	glBufferData(GL_ARRAY_BUFFER, this->colors.size() * sizeof(fvec4), this->colors.data(), GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void *)0);
+	glEnableVertexAttribArray(1);
+
+	// Generates and makes active the EBO for the indices
+	glGenBuffers(1, &this->indicesEboAddress);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->indicesEboAddress);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->indices.size() * sizeof(unsigned int), this->indices.data(), GL_STATIC_DRAW);
+}
+
+fvec4 MeshCurveBB::getBoundingBoxMinObject()
+{
+	return fvec4(this->vertices.at(this->vertices.size() - 4), 1.0f);
+}
+
+fvec4 MeshCurveBB::getBoundingBoxMaxObject()
+{
+	return fvec4(this->vertices.at(this->vertices.size() - 2), 1.0f);
+}
+
+fvec4 MeshCurveBB::getBoundingBoxMinWorld()
+{
+	return this->modelMatrix * this->getBoundingBoxMinObject();
+}
+
+fvec4 MeshCurveBB::getBoundingBoxMaxWorld()
+{
+	return this->modelMatrix * this->getBoundingBoxMaxObject();
 }

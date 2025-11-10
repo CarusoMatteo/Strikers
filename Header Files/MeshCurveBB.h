@@ -32,6 +32,15 @@ public:
 
 	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
 
+	fvec4 getBoundingBoxMinObject();
+	fvec4 getBoundingBoxMaxObject();
+	fvec4 getBoundingBoxMinWorld();
+	fvec4 getBoundingBoxMaxWorld();
+
 private:
 	vector<unsigned int> indices;
+
+	GLuint indicesEboAddress; // Element Buffer Object for the vertices indices
+
+	void initVbos();
 };

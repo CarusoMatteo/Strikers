@@ -130,7 +130,7 @@ void Renderer::render(
 	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
-	int vertexCount,
+	int pointCount,
 	bool meshHasBB,
 	bool isCurve)
 {
@@ -145,7 +145,10 @@ void Renderer::render(
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible);
 	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
-	Renderer::drawMesh(vaoAddress, renderMode, vertexCount, meshHasBB, isCurve);
+	if (!isCurve)
+		Renderer::drawMesh(vaoAddress, renderMode, pointCount, meshHasBB);
+	else
+		Renderer::drawCurveMesh(vaoAddress, renderMode, pointCount, meshHasBB);
 	Renderer::checkGLError();
 }
 
@@ -199,14 +202,12 @@ void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *s
 	 */
 }
 
-void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB, bool isCurve)
+void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB)
 {
 	if (Mesh::shouldDrawWireframe())
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	else if (!isCurve)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	else
-		glPolygonMode(GL_FRONT_AND_BACK, GL_TRIANGLES);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
 	glBindVertexArray(vaoAddress);
@@ -219,17 +220,43 @@ void Renderer::drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, b
 		 * The subtraction of 4 is to exclude the vertices of the bounding box.
 		 */
 		glDrawArrays(renderMode, 0, vertexCount - 4);
+
 		if (MeshBB::shouldDrawBoundingBox())
 		{
 			// Draw the bounding box with a line loop connecting the last 4 vertices
 			glDrawArrays(GL_LINE_LOOP, vertexCount - 4, 4);
 		}
 	}
-	else if (!meshHasBB)
+	else
 	{
 		// Draw the vertices of the shape as specified by renderMode,
 		// starting from the first vertex (0), for vertexCount vertices in total
 		glDrawArrays(renderMode, 0, vertexCount);
+	}
+}
+
+void Renderer::drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB)
+{
+	// Bind the Vertex Array Object (VAO) of the shape, which contains the vertex data to be drawn
+	glBindVertexArray(vaoAddress);
+
+	if (meshHasBB)
+	{
+		glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
+
+		if (MeshBB::shouldDrawBoundingBox())
+		{
+			// Draw the bounding box with aline loop connecting the last 4 indices
+			// Draw the bounding box with a line loop connecting the last 4 vertices
+			glDrawArrays(GL_LINE_LOOP, indicesCount - 4, 4);
+		}
+	}
+	else
+	{
+		// Draw the vertices of the shape as specified by renderMode,
+		// starting from the first vertex (0), for vertexCount vertices in total
+		glDrawElements(GL_TRIANGLES, indicesCount, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
 	}
 }
 
