@@ -4,21 +4,22 @@
 
 bool MeshBB::drawBoundingBox = false;
 
-MeshBB::MeshBB(string vertexShaderName,
-			   string fragmentShaderName,
-			   vector<fvec3> vertices,
-			   vector<fvec4> colors,
-			   fvec3 position,
-			   fvec3 scaleVector,
-			   GLenum drawMode,
-			   ivec2 windowSize) : Mesh(vertexShaderName,
-										fragmentShaderName,
-										vertices,
-										colors,
-										position,
-										scaleVector,
-										drawMode,
-										windowSize)
+MeshBB::MeshBB(
+	string vertexShaderName,
+	string fragmentShaderName,
+	vector<fvec3> vertices,
+	vector<fvec4> colors,
+	fvec3 position,
+	fvec3 scaleVector,
+	GLenum drawMode,
+	ivec2 windowSize) : Mesh(vertexShaderName,
+							 fragmentShaderName,
+							 vertices,
+							 colors,
+							 position,
+							 scaleVector,
+							 drawMode,
+							 windowSize)
 {
 }
 
