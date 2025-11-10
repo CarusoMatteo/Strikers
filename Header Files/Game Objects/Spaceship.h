@@ -14,7 +14,7 @@ using glm::ivec2;
 using std::string;
 using std::vector;
 
-class MeshBB;
+class MeshCurveBB;
 
 class Spaceship : public IGameObject
 {
@@ -30,7 +30,7 @@ public:
 
 	fvec3 getPosition() const;
 	fvec3 getProjectileSpawnPosition() const;
-	MeshBB *getMesh() const
+	MeshCurveBB *getMesh() const
 	{
 		return this->mesh;
 	}
@@ -49,7 +49,7 @@ private:
 	const float invincibilityTime = Parameters::spaceshipIvincibilityTime;
 	const int invincibleBlinkFrequencyHz = Parameters::spaceshipInvincibleBlinkFrequencyHz;
 
-	MeshBB *mesh;
+	MeshCurveBB *mesh;
 	ivec2 windowSize;
 	float health = maxHealth;
 	bool isInvincible = false;

@@ -23,9 +23,11 @@ public:
 	EnemyExplosion(
 		string vertexName,
 		string fragmentName,
-		Shape shapeHalf,
+		Shape shape,
 		fvec3 positionTop,
 		fvec3 positionBottom,
+		float rotationDegreesTop,
+		float rotationDegreesBottom,
 		fvec3 scaleVector,
 		ivec2 windowSize);
 	~EnemyExplosion() override;

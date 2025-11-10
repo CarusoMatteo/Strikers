@@ -15,6 +15,7 @@ public:
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		fvec3 position,
+		float rotationDegrees,
 		fvec3 scaleVector,
 		GLenum drawMode,
 		ivec2 windowSize);
@@ -39,7 +40,7 @@ public:
 
 	fvec3 getBBCenter();
 	fvec3 getBBRight();
-	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
+	void render(float currentTime) override;
 
 private:
 	static bool drawBoundingBox;

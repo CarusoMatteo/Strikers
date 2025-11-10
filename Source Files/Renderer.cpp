@@ -13,7 +13,7 @@ void Renderer::renderWithBB(
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible,
-	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int pointCount)
@@ -30,7 +30,7 @@ void Renderer::renderWithBB(
 		creationTimeUniformLocation, creationTime,
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible,
-		position, scaleVector, rotationAngleDegrees,
+		position, scaleVector, rotationDegrees,
 		vaoAddress,
 		renderMode,
 		pointCount,
@@ -47,7 +47,7 @@ void Renderer::renderWithoutBB(
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible,
-	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int pointCount)
@@ -64,7 +64,7 @@ void Renderer::renderWithoutBB(
 		creationTimeUniformLocation, creationTime,
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible,
-		position, scaleVector, rotationAngleDegrees,
+		position, scaleVector, rotationDegrees,
 		vaoAddress,
 		renderMode,
 		pointCount,
@@ -81,7 +81,7 @@ void Renderer::renderCurveWithBB(
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible,
-	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int indicesCount,
@@ -98,7 +98,7 @@ void Renderer::renderCurveWithBB(
 		creationTimeUniformLocation, creationTime,
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible,
-		position, scaleVector, rotationAngleDegrees,
+		position, scaleVector, rotationDegrees,
 		vaoAddress,
 		renderMode,
 		indicesCount,
@@ -115,7 +115,7 @@ void Renderer::renderCurveWithoutBB(
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible,
-	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int indicesCount)
@@ -132,7 +132,7 @@ void Renderer::renderCurveWithoutBB(
 		creationTimeUniformLocation, creationTime,
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible,
-		position, scaleVector, rotationAngleDegrees,
+		position, scaleVector, rotationDegrees,
 		vaoAddress,
 		renderMode,
 		indicesCount,
@@ -151,7 +151,7 @@ void Renderer::render(
 	GLuint *creationTimeUniformLocation, float creationTime,
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible,
-	fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+	fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 	GLuint vaoAddress,
 	GLenum renderMode,
 	int pointCount,
@@ -169,7 +169,7 @@ void Renderer::render(
 		creationTimeUniformLocation, creationTime,
 		currentTimeUniformLocation, currentTime,
 		isVisibleUniformLocation, isVisible);
-	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationAngleDegrees);
+	Renderer::applyTransformaiton(modelMatrix, position, scaleVector, rotationDegrees);
 	if (!isCurve)
 		Renderer::drawMesh(vaoAddress, renderMode, pointCount, meshHasBB);
 	else
@@ -204,11 +204,11 @@ void Renderer::passUniforms(
 	glUniform1i(*isVisibleUniformLocation, isVisible ? 1 : 0);
 }
 
-void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis)
+void Renderer::applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationDegrees, fvec3 *rotationAxis)
 {
 	*modelMatrix = fmat4(1.0f);
 	*modelMatrix = translate(*modelMatrix, *position);
-	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationAngleDegrees), *rotationAxis);
+	*modelMatrix = rotate(*modelMatrix, glm::radians(rotationDegrees), *rotationAxis);
 	*modelMatrix = scale(*modelMatrix, *scaleVector);
 
 	/*

@@ -1,7 +1,7 @@
 #include "../../Header Files/Game Objects/Enemy.h"
 
 #include "../../Header Files/ShapeMaker.h"
-#include "../../Header Files/MeshBB.h"
+#include "../../Header Files/MeshCurveBB.h"
 #include "../../Header Files/InputEvents.h"
 
 Enemy::Enemy(
@@ -9,15 +9,17 @@ Enemy::Enemy(
 	string fragmentName,
 	Shape shape,
 	fvec3 position,
+	float rotationDegrees,
 	fvec3 scaleVector,
 	ivec2 windowSize) : windowSize(windowSize)
 {
-	this->mesh = new MeshBB(
+	this->mesh = new MeshCurveBB(
 		vertexName,
 		fragmentName,
 		shape.first,
 		shape.second,
 		position,
+		rotationDegrees,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);
@@ -32,7 +34,6 @@ fvec3 Enemy::getSizeWorld() const
 {
 	return this->mesh->getSizeWorld();
 }
-
 
 void Enemy::update(float deltaTime)
 {

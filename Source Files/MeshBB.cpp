@@ -10,6 +10,7 @@ MeshBB::MeshBB(
 	vector<fvec3> vertices,
 	vector<fvec4> colors,
 	fvec3 position,
+	float rotationDegrees,
 	fvec3 scaleVector,
 	GLenum drawMode,
 	ivec2 windowSize) : Mesh(vertexShaderName,
@@ -17,6 +18,7 @@ MeshBB::MeshBB(
 							 vertices,
 							 colors,
 							 position,
+							 rotationDegrees,
 							 scaleVector,
 							 drawMode,
 							 windowSize)
@@ -57,7 +59,7 @@ bool MeshBB::checkCollision(MeshBB *meshA, MeshBB *meshB)
 	return collisionX && collisionY;
 }
 
-void MeshBB::render(float currentTime, float rotationAngleDegrees)
+void MeshBB::render(float currentTime)
 {
 	Renderer::renderWithBB(
 		this->programId,
@@ -67,7 +69,7 @@ void MeshBB::render(float currentTime, float rotationAngleDegrees)
 		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
 		&this->isVisibleUniformLocation, this->isVisible,
-		&this->position, &this->scaleVector, rotationAngleDegrees,
+		&this->position, &this->scaleVector, this->rotationDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 
@@ -83,10 +85,22 @@ fvec4 MeshBB::getBoundingBoxMaxObject()
 
 fvec4 MeshBB::getBoundingBoxMinWorld()
 {
+	/*
+	 * 	fmat4 translated = translate(this->modelMatrix, this->position);
+	 *	fmat4 rotated = rotate(translated, glm::radians(rotationDegrees), glm::fvec3(0, 0, 1));
+	 *	fmat4 scaled = scale(rotated, this->scaleVector);
+	 *	return scaled * this->getBoundingBoxMinObject();
+	 */
 	return this->modelMatrix * this->getBoundingBoxMinObject();
 }
 
 fvec4 MeshBB::getBoundingBoxMaxWorld()
 {
+	/*
+	 * 	fmat4 translated = translate(this->modelMatrix, this->position);
+	 *	fmat4 rotated = rotate(translated, glm::radians(rotationDegrees), glm::fvec3(0, 0, 1));
+	 *	fmat4 scaled = scale(rotated, this->scaleVector);
+	 *	return scaled * this->getBoundingBoxMaxObject();
+	 */
 	return this->modelMatrix * this->getBoundingBoxMaxObject();
 }

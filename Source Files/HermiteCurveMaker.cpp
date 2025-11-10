@@ -27,7 +27,7 @@ public:
 
 #pragma endregion
 
-ParameterizationType HermiteCurveMaker::parameterization = ParameterizationType::EQUIDISTANT;
+ParameterizationType HermiteCurveMaker::parameterization = ParameterizationType::CHORDS;
 
 vector<Shape> HermiteCurveMaker::makeHermiteCurve(
 	string fileName,

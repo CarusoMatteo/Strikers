@@ -10,6 +10,7 @@ MeshCurveBB::MeshCurveBB(
 	vector<fvec3> vertices,
 	vector<fvec4> colors,
 	fvec3 position,
+	float rotationDegrees,
 	fvec3 scaleVector,
 	GLenum drawMode,
 	ivec2 windowSize)
@@ -17,6 +18,7 @@ MeshCurveBB::MeshCurveBB(
 	this->vertices = vertices;
 	this->colors = colors;
 	this->position = position;
+	this->rotationDegrees = rotationDegrees;
 	this->scaleVector = scaleVector;
 	this->drawMode = drawMode;
 	this->windowSize = windowSize;
@@ -52,7 +54,7 @@ void MeshCurveBB::triangulate(
 	this->indices = indices;
 }
 
-void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
+void MeshCurveBB::render(float currentTime)
 {
 	int vertexCount = static_cast<int>(this->vertices.size());
 	Renderer::renderCurveWithBB(
@@ -63,7 +65,7 @@ void MeshCurveBB::render(float currentTime, float rotationAngleDegrees)
 		&this->creationTimeUniformLocation, this->creationTime,
 		&this->currentTimeUniformLocation, currentTime,
 		&this->isVisibleUniformLocation, this->isVisible,
-		&this->position, &this->scaleVector, rotationAngleDegrees,
+		&this->position, &this->scaleVector, this->rotationDegrees,
 		this->vaoAddress,
 		this->drawMode,
 		static_cast<int>(this->indices.size()),
@@ -90,24 +92,4 @@ void MeshCurveBB::initVbos()
 	glGenBuffers(1, &this->indicesEboAddress);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->indicesEboAddress);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, this->indices.size() * sizeof(unsigned int), this->indices.data(), GL_STATIC_DRAW);
-}
-
-fvec4 MeshCurveBB::getBoundingBoxMinObject()
-{
-	return fvec4(this->vertices.at(this->vertices.size() - 4), 1.0f);
-}
-
-fvec4 MeshCurveBB::getBoundingBoxMaxObject()
-{
-	return fvec4(this->vertices.at(this->vertices.size() - 2), 1.0f);
-}
-
-fvec4 MeshCurveBB::getBoundingBoxMinWorld()
-{
-	return this->modelMatrix * this->getBoundingBoxMinObject();
-}
-
-fvec4 MeshCurveBB::getBoundingBoxMaxWorld()
-{
-	return this->modelMatrix * this->getBoundingBoxMaxObject();
 }

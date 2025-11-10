@@ -14,7 +14,7 @@ using glm::ivec2;
 using std::string;
 using std::vector;
 
-class MeshBB;
+class MeshCurveBB;
 
 class Enemy : public ITemporaryGameObject
 {
@@ -24,11 +24,12 @@ public:
 		string fragmentName,
 		Shape shape,
 		fvec3 position,
+		float rotationDegrees,
 		fvec3 scaleVector,
 		ivec2 windowSize);
 	~Enemy() override;
 
-	MeshBB *getMesh() const
+	MeshCurveBB *getMesh() const
 	{
 		return this->mesh;
 	}
@@ -41,7 +42,7 @@ public:
 	bool shouldDelete() override;
 
 private:
-	MeshBB *mesh;
+	MeshCurveBB *mesh;
 	float speed = Parameters::enemySpeed;
 	ivec2 windowSize;
 };

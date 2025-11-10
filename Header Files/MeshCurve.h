@@ -22,6 +22,7 @@ public:
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		fvec3 position,
+		float rotationDegrees,
 		fvec3 scaleVector,
 		GLenum drawMode,
 		ivec2 windowSize);

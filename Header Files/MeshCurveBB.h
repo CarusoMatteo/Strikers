@@ -22,6 +22,7 @@ public:
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		fvec3 position,
+		float rotationDegrees,
 		fvec3 scaleVector,
 		GLenum drawMode,
 		ivec2 windowSize);
@@ -30,12 +31,7 @@ public:
 		vector<fvec3> *vertices,
 		vector<fvec4> *colors);
 
-	void render(float currentTime, float rotationAngleDegrees = 0.0f) override;
-
-	fvec4 getBoundingBoxMinObject();
-	fvec4 getBoundingBoxMaxObject();
-	fvec4 getBoundingBoxMinWorld();
-	fvec4 getBoundingBoxMaxWorld();
+	void render(float currentTime) override;
 
 private:
 	vector<unsigned int> indices;

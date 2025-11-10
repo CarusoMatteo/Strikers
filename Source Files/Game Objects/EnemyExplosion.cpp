@@ -8,6 +8,8 @@ EnemyExplosion::EnemyExplosion(
 	Shape shape,
 	fvec3 positionTop,
 	fvec3 positionBottom,
+	float rotationDegreesTop,
+	float rotationDegreesBottom,
 	fvec3 scaleVector,
 	ivec2 windowSize) : windowSize(windowSize)
 {
@@ -18,6 +20,7 @@ EnemyExplosion::EnemyExplosion(
 		shape.first,
 		shape.second,
 		positionTop,
+		rotationDegreesTop,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);
@@ -27,6 +30,7 @@ EnemyExplosion::EnemyExplosion(
 		shape.first,
 		shape.second,
 		positionBottom,
+		rotationDegreesBottom,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);

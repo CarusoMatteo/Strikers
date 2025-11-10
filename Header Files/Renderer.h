@@ -24,7 +24,7 @@ public:
 		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible,
-		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int pointCount);
@@ -37,7 +37,7 @@ public:
 		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible,
-		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int pointCount);
@@ -50,7 +50,7 @@ public:
 		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible,
-		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int indicesCount,
@@ -64,7 +64,7 @@ public:
 		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible,
-		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int indicesCount);
@@ -81,7 +81,7 @@ private:
 		GLuint *creationTimeUniformLocation, float creationTime,
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible,
-		fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees,
+		fvec3 *position, fvec3 *scaleVector, float rotationDegrees,
 		GLuint vaoAddress,
 		GLenum renderMode,
 		int pointCount,
@@ -97,7 +97,7 @@ private:
 		GLuint *currentTimeUniformLocation, float currentTime,
 		GLuint *isVisibleUniformLocation, bool isVisible);
 
-	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationAngleDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
+	static void applyTransformaiton(fmat4 *modelMatrix, fvec3 *position, fvec3 *scaleVector, float rotationDegrees, fvec3 *rotationAxis = new fvec3(0, 0, 1));
 	static void drawMesh(GLuint vaoAddress, GLenum renderMode, int vertexCount, bool meshHasBB);
 	static void drawCurveMesh(GLuint vaoAddress, GLenum renderMode, int indicesCount, bool meshHasBB, int *vertexCount);
 	static void checkGLError();

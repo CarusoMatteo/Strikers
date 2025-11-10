@@ -11,11 +11,13 @@ Mesh::Mesh(
 	vector<fvec3> vertices,
 	vector<fvec4> colors,
 	fvec3 position,
+	float rotationDegrees,
 	fvec3 scaleVector,
 	GLenum drawMode,
 	ivec2 windowSize) : vertices(vertices),
 						colors(colors),
 						position(position),
+						rotationDegrees(rotationDegrees),
 						scaleVector(scaleVector),
 						drawMode(drawMode),
 						windowSize(windowSize)
@@ -36,7 +38,7 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &this->vaoAddress);
 }
 
-void Mesh::render(float currentTime, float rotationAngleDegrees)
+void Mesh::render(float currentTime)
 {
 	Renderer::renderWithoutBB(
 		this->programId,
@@ -46,7 +48,7 @@ void Mesh::render(float currentTime, float rotationAngleDegrees)
 		&this->creationTimeUniformLocation, creationTime,
 		&this->currentTimeUniformLocation, currentTime,
 		&this->isVisibleUniformLocation, this->isVisible,
-		&this->position, &this->scaleVector, rotationAngleDegrees,
+		&this->position, &this->scaleVector, this->rotationDegrees,
 		this->vaoAddress, this->drawMode, static_cast<int>(this->vertices.size()));
 }
 

@@ -1,6 +1,6 @@
 #include "../../Header Files/Game Objects/Spaceship.h"
 
-#include "../../Header Files/MeshBB.h"
+#include "../../Header Files/MeshCurveBB.h"
 #include "../../Header Files/InputEvents.h"
 
 Spaceship::Spaceship(
@@ -11,12 +11,13 @@ Spaceship::Spaceship(
 	fvec3 scaleVector,
 	ivec2 windowSize) : windowSize(windowSize)
 {
-	this->mesh = new MeshBB(
+	this->mesh = new MeshCurveBB(
 		vertexName,
 		fragmentName,
 		shape.first,
 		shape.second,
 		position,
+		0.0f,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);

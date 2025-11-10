@@ -100,24 +100,20 @@ Spaceship *GameScene::createSpaceship(ivec2 windowSize)
 	string vertex = ".\\Shader Files\\Spaceship\\SpaceshipVertex.glsl";
 	string fragment = ".\\Shader Files\\Spaceship\\SpaceshipFragment.glsl";
 
-	float width = 1;
-	float height = 1;
+	int numberOfTriangles = 200;
 
-	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 3.0, 0.0);
-	fvec3 scaleVector = fvec3(100, 100, 1);
+	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 2.0, 0.0);
+	fvec3 scaleVector = fvec3(125, 120, 1);
 
-	fvec4 colorBottomLeft = fvec4(1);
-	fvec4 colorBottomRight = fvec4(1);
-	fvec4 colorTopLeft = fvec4(1);
-	fvec4 colorTopRight = fvec4(1);
+	fvec4 colorTop = fvec4(1, 1, 1, 1);
+	fvec4 colorBottom = fvec4(0, 1, 1, 1);
 
-	Shape shapeData = ShapeMaker::makeRectangle(
-		width,
-		height,
-		colorBottomLeft,
-		colorBottomRight,
-		colorTopLeft,
-		colorTopRight);
+	Shape shapeData = ShapeMaker::makeHermitCurve(
+		"Curves/spaceship.txt",
+		numberOfTriangles,
+		colorTop,
+		colorBottom,
+		true);
 
 	return new Spaceship(
 		vertex,
@@ -194,30 +190,30 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
 	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
 
-	float width = 1;
-	float height = 1;
+	int numberOfTriangles = 200;
 
 	fvec3 position = enemySpawnPositions[Random::getRandomInt(0, static_cast<int>(enemySpawnPositions.size()))];
-	fvec3 scaleVector = fvec3(50, 50, 1);
+	float scaleX = Random::getRandomFloat(100, 300);
+	float scaleY = Random::getRandomFloat(100, 300);
+	fvec3 scaleVector = fvec3(scaleX, scaleY, 1);
+	float rotationDegrees = Random::getRandomFloat(0, 360);
 
-	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
-	fvec4 colorBottomRight = fvec4(1, 0, 0, 1);
-	fvec4 colorTopLeft = fvec4(1, 0, 0, 1);
-	fvec4 colorTopRight = fvec4(1, 0, 0, 1);
+	fvec4 colorTop = fvec4(1, 1, 1, 1);
+	fvec4 colorBottom = fvec4(1, 0, 0, 1);
 
-	Shape shapeData = ShapeMaker::makeRectangle(
-		width,
-		height,
-		colorBottomLeft,
-		colorBottomRight,
-		colorTopLeft,
-		colorTopRight);
+	Shape shapeData = ShapeMaker::makeHermitCurve(
+		"Curves/enemy.txt",
+		numberOfTriangles,
+		colorTop,
+		colorBottom,
+		true);
 
 	return new Enemy(
 		vertex,
 		fragment,
 		shapeData,
 		position,
+		rotationDegrees,
 		scaleVector,
 		windowSize);
 }
@@ -232,6 +228,8 @@ EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPos
 
 	fvec3 positionTop = spawnPosition + fvec3(0, sizeWorld.y / 2, 0);
 	fvec3 positionBottom = spawnPosition;
+	float rotationDegreesTop = 0.0f;
+	float rotationDegreesBottom = 0.0f;
 	fvec3 scaleVector = fvec3(50, 50, 1);
 
 	fvec4 colorBottomLeft = fvec4(1, 0, 0, 1);
@@ -254,6 +252,8 @@ EnemyExplosion *GameScene::createEnemyExplosion(ivec2 windowSize, fvec3 spawnPos
 		shapeData,
 		positionTop,
 		positionBottom,
+		rotationDegreesTop,
+		rotationDegreesBottom,
 		scaleVector,
 		windowSize);
 }

@@ -10,6 +10,7 @@ ProjectileExplosion::ProjectileExplosion(string vertexName, string fragmentName,
 		shape.first,
 		shape.second,
 		position,
+		0.0f,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);

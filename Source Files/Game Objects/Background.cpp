@@ -18,6 +18,7 @@ Background::Background(
 		shape.first,
 		shape.second,
 		position,
+		0.0,
 		scaleVector,
 		GL_TRIANGLE_FAN,
 		windowSize);

@@ -20,6 +20,7 @@ public:
 		vector<fvec3> vertices,
 		vector<fvec4> colors,
 		fvec3 position,
+		float rotationDegrees,
 		fvec3 scaleVector,
 		GLenum drawMode,
 		ivec2 windowSize);
@@ -38,7 +39,7 @@ public:
 		return isWireframe;
 	}
 
-	virtual void render(float currentTime, float rotationAngleDegrees = 0.0f);
+	virtual void render(float currentTime);
 	void updateScreenSize(ivec2 newScreenSize)
 	{
 		this->windowSize = newScreenSize;
@@ -81,6 +82,7 @@ protected:
 	GLuint modelMatrixUniformLocation;
 
 	fvec3 position;
+	float rotationDegrees;
 	fvec3 scaleVector;
 
 	float creationTime;
