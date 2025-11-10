@@ -196,7 +196,8 @@ Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPosition
 	float scaleX = Random::getRandomFloat(100, 300);
 	float scaleY = Random::getRandomFloat(100, 300);
 	fvec3 scaleVector = fvec3(scaleX, scaleY, 1);
-	float rotationDegrees = Random::getRandomFloat(0, 360);
+	float rotationDegrees = 0.0f;
+	// float rotationDegrees = Random::getRandomFloat(0, 360);
 
 	fvec4 colorTop = fvec4(1, 1, 1, 1);
 	fvec4 colorBottom = fvec4(1, 0, 0, 1);
