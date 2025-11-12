@@ -11,7 +11,7 @@ int main(void)
 {
 	SceneType startingScene = SceneType::MENU;
 	fvec3 clearColor = fvec3(0.1f, 0.1f, 0.1f);
-	string windowTitle = "Shooter Game";
+	string windowTitle = "Strikers";
 
 	Stage *stage = new Stage(startingScene, clearColor, windowTitle);
 
