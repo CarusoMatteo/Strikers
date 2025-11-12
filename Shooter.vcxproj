@@ -159,6 +159,7 @@
     <ClCompile Include="Source Files\Random.cpp" />
     <ClCompile Include="Source Files\Renderer.cpp" />
     <ClCompile Include="Source Files\Scenes\GameScene.cpp" />
+    <ClCompile Include="Source Files\Scenes\MenuScene.cpp" />
     <ClCompile Include="Source Files\ShaderBuilder.cpp" />
     <ClCompile Include="Source Files\ShapeMaker.cpp" />
     <ClCompile Include="Source Files\Stage.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Header Files\Random.h" />
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scenes\GameScene.h" />
+    <ClInclude Include="Header Files\Scenes\MenuScene.h" />
     <ClInclude Include="Header Files\Scenes\Scene.h" />
     <ClInclude Include="Header Files\Scenes\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />

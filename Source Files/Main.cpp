@@ -9,7 +9,7 @@ using std::string;
 
 int main(void)
 {
-	SceneType startingScene = SceneType::GAME;
+	SceneType startingScene = SceneType::MENU;
 	fvec3 clearColor = fvec3(0.1f, 0.1f, 0.1f);
 	string windowTitle = "Shooter Game";
 

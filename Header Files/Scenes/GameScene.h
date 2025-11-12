@@ -22,7 +22,7 @@ class IGameObject;
 class ITemporaryGameObject;
 class IGui;
 
-class GameScene : public Scene
+class GameScene : public IScene
 {
 public:
 	GameScene(ivec2 windowSize, fvec3 *clearColorRef);

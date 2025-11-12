@@ -13,10 +13,10 @@ using glm::fvec4;
 using std::array;
 using std::string;
 
-class Scene;
+class IScene;
 class Window;
 
-using Scenes = std::array<std::unique_ptr<Scene>, static_cast<size_t>(SceneType::count)>;
+using Scenes = std::array<std::unique_ptr<IScene>, static_cast<size_t>(SceneType::count)>;
 
 class Stage
 {

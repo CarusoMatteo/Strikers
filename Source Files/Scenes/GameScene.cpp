@@ -7,7 +7,7 @@
 #include "../../Header Files/Game Objects/ProjectileExplosion.h"
 #include "../../Header Files/Game Objects/Enemy.h"
 #include "../../Header Files/Game Objects/EnemyExplosion.h"
-#include "../../Header Files/Gui/MenuGui.h"
+#include "../../Header Files/Gui/GameGui.h"
 #include "../../Header Files/Gui/GameOverGui.h"
 #include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/HermiteCurveMaker.h"
@@ -26,7 +26,7 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 		spaceship};
 	this->temporaryGameObjects = new vector<ITemporaryGameObject *>();
 
-	this->gui = new MenuGui(clearColorRef);
+	this->gui = new GameGui(clearColorRef);
 
 	this->enemySpawnPositions = {
 		fvec3(windowSize.x * 1.1f, windowSize.y * 0.2f, 0.0f),
@@ -40,8 +40,8 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 Background *GameScene::createBackground(ivec2 windowSize)
 {
 	string vertex = ".\\Shader Files\\Background\\BackgroundVertex.glsl";
-	// string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
-	string fragment = ".\\Shader Files\\Background\\STBackgroundFragment.glsl";
+	// string fragment = ".\\Shader Files\\Background\\STBackgroundFragment.glsl";
+	string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
 
 	fvec3 position = fvec3(0, 0, 0);
 	fvec3 scaleVector = fvec3(windowSize, 1);

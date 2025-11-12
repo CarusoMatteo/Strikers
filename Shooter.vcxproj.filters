@@ -162,6 +162,9 @@
     <ClCompile Include="Source Files\MeshCurveBB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\Scenes\MenuScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\.common\ImGui\imconfig.h">
@@ -290,6 +293,9 @@
     <ClInclude Include="Header Files\MeshCurveBB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\Scenes\MenuScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -334,5 +340,6 @@
     <Text Include="Curves\projectile.txt">
       <Filter>Curves</Filter>
     </Text>
+    <Text Include="Curves\spaceship.txt" />
   </ItemGroup>
 </Project>

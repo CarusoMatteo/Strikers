@@ -1,9 +1,9 @@
 #pragma once
 
-class Scene
+class IScene
 {
 public:
-	virtual ~Scene() = default;
+	virtual ~IScene() = default;
 	virtual void updateGameObjects(float deltaTime) = 0;
 	virtual void renderScene(float currentTime) = 0;
 };
