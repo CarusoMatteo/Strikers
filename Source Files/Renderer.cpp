@@ -185,7 +185,6 @@ void Renderer::passUniforms(
 	GLuint *currentTimeUniformLocation, float currentTime,
 	GLuint *isVisibleUniformLocation, bool isVisible)
 {
-
 	// Pass the projection matrix to the "projectionMatrix" uniform
 	glUniformMatrix4fv(*projectionMatrixUniformLocation, 1, GL_FALSE, value_ptr(*projectionMatrix));
 	// Pass the model matrix to the "modelMatrix" uniform

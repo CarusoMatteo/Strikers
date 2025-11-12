@@ -58,6 +58,11 @@ public:
 		this->isVisible = isVisible;
 	}
 
+	ivec2 getWindowSize() const
+	{
+		return this->windowSize;
+	}
+
 protected:
 	static bool isWireframe;
 

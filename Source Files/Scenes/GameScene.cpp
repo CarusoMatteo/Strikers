@@ -39,8 +39,9 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 
 Background *GameScene::createBackground(ivec2 windowSize)
 {
-	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
-	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
+	string vertex = ".\\Shader Files\\Background\\BackgroundVertex.glsl";
+	// string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
+	string fragment = ".\\Shader Files\\Background\\STBackgroundFragment.glsl";
 
 	fvec3 position = fvec3(0, 0, 0);
 	fvec3 scaleVector = fvec3(windowSize, 1);
