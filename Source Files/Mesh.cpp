@@ -88,6 +88,6 @@ void Mesh::initUniformReferences()
 
 	this->creationTimeUniformLocation = glGetUniformLocation(this->programId, "creationTime");
 	this->currentTimeUniformLocation = glGetUniformLocation(this->programId, "currentTime");
-	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "windowSize");
+	this->screenSizeUniformLocation = glGetUniformLocation(this->programId, "screenSize");
 	this->isVisibleUniformLocation = glGetUniformLocation(this->programId, "isVisible");
 }
