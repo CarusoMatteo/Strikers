@@ -188,14 +188,14 @@ ProjectileExplosion *GameScene::createProjectileExplosion(ivec2 windowSize, fvec
 
 Enemy *GameScene::createEnemy(ivec2 windowSize, vector<fvec3> enemySpawnPositions)
 {
-	string vertex = ".\\Shader Files\\Default\\DefaultVertex.glsl";
-	string fragment = ".\\Shader Files\\Default\\DefaultFragment.glsl";
+	string vertex = ".\\Shader Files\\Enemy\\EnemyVertex.glsl";
+	string fragment = ".\\Shader Files\\Enemy\\EnemyFragment.glsl";
 
 	int numberOfTriangles = 200;
 
 	fvec3 position = enemySpawnPositions[Random::getRandomInt(0, static_cast<int>(enemySpawnPositions.size()))];
-	float scaleX = Random::getRandomFloat(100, 300);
-	float scaleY = Random::getRandomFloat(100, 300);
+	float scaleX = Random::getRandomFloat(100, 200);
+	float scaleY = Random::getRandomFloat(100, 200);
 	fvec3 scaleVector = fvec3(scaleX, scaleY, 1);
 	float rotationDegrees = 0.0f;
 	// float rotationDegrees = Random::getRandomFloat(0, 360);
