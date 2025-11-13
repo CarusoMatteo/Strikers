@@ -4,7 +4,7 @@
 #include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
-GameGui::GameGui(fvec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
+GameGui::GameGui(fvec3 *clearColorRef, float *scoreRef) : IGui(), clearColorRef(clearColorRef), scoreRef(scoreRef)
 {
 }
 
@@ -19,7 +19,8 @@ void GameGui::drawGui()
 	// Disables the ini file saving/loading.
 	ImGui::GetIO().IniFilename = nullptr;
 
-	settingsWindow(10, 10);
+	//	settingsWindow(10, 10);
+	gameInfoWindow(10, 10);
 
 	// Ends the ImGui frame declaration.
 	ImGui::End();
@@ -45,6 +46,23 @@ void GameGui::settingsWindow(float xpos, float ypos)
 	// Shows mouse coordinates.
 	ImGui::Text("Coordinate Mouse relative alla finestra GLFW: (%.1f, %.1f)", mousePosition->x, mousePosition->y);
 	// Checkbox to toggle wireframe mode.
+	ImGui::Checkbox("Wireframe", Mesh::getIsWireframeRef());
+	ImGui::Checkbox("Bounding Box", MeshBB::shouldDrawBoundingBoxRef());
+	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+}
+
+void GameGui::gameInfoWindow(float xpos, float ypos)
+{
+	// Sets the position for the next window.
+	ImGui::SetNextWindowPos(ImVec2(xpos, ypos));
+
+	ImGui::Begin("Game Info", NULL,
+				 ImGuiWindowFlags_NoResize |
+					 ImGuiWindowFlags_AlwaysAutoResize |
+					 ImGuiWindowFlags_NoMove);
+
+	// Shows the current score.
+	ImGui::Text("Score: %.0f", *this->scoreRef);
 	ImGui::Checkbox("Wireframe", Mesh::getIsWireframeRef());
 	ImGui::Checkbox("Bounding Box", MeshBB::shouldDrawBoundingBoxRef());
 	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);

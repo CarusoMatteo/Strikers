@@ -17,7 +17,7 @@ class IGui;
 class MenuScene : public IScene
 {
 public:
-	MenuScene(ivec2 windowSize, fvec3 *clearColorRef);
+	MenuScene(ivec2 windowSize, fvec3 *clearColorRef, bool *startGame, float bestScore);
 	~MenuScene();
 
 	void updateGameObjects(float deltaTime);

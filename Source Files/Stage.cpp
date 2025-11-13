@@ -9,13 +9,11 @@
 #include "../Header Files/Scenes/MenuScene.h"
 #include "../Header Files/Window.h"
 
-Stage::Stage(SceneType startingScene, fvec3 clearColor, string windowTitle)
+Stage::Stage(SceneType startingScene, fvec3 clearColor, string windowTitle, bool *startGame)
 {
 	this->window = new Window(windowTitle);
 	this->clearColor = clearColor;
-
-	createScenes();
-	this->changeScene(startingScene);
+	this->changeScene(startingScene, startGame);
 }
 
 Stage::~Stage()
@@ -23,29 +21,60 @@ Stage::~Stage()
 	delete this->window;
 }
 
-void Stage::createScenes()
+void Stage::createMenuScene(bool *startGame)
 {
-	this->scenes = Scenes{};
+	this->menuScene = std::make_unique<MenuScene>(this->window->getWindowSize(), &clearColor, startGame, this->bestScore);
+}
 
-	scenes.at(static_cast<size_t>(SceneType::MENU)) =
-		std::make_unique<MenuScene>(this->window->getWindowSize(), &clearColor);
-
-	scenes.at(static_cast<size_t>(SceneType::GAME)) =
-		std::make_unique<GameScene>(this->window->getWindowSize(), &clearColor);
+void Stage::createGameScene(bool *startGame)
+{
+	this->gameScene = std::make_unique<GameScene>(this->window->getWindowSize(), &clearColor, startGame);
 }
 
 void Stage::updateGameObjects(float deltaTime)
 {
-	scenes.at(static_cast<size_t>(currentScene))->updateGameObjects(deltaTime);
+	switch (currentScene)
+	{
+	case SceneType::MENU:
+		static_cast<IScene *>(this->menuScene.get())->updateGameObjects(deltaTime);
+		break;
+	case SceneType::GAME:
+		static_cast<IScene *>(this->gameScene.get())->updateGameObjects(deltaTime);
+		break;
+	}
 }
 
 void Stage::renderCurrentScene(float currentTime)
 {
-	scenes.at(static_cast<size_t>(currentScene))->renderScene(currentTime);
+	switch (currentScene)
+	{
+	case SceneType::MENU:
+		static_cast<IScene *>(this->menuScene.get())->renderScene(currentTime);
+		break;
+	case SceneType::GAME:
+		static_cast<IScene *>(this->gameScene.get())->renderScene(currentTime);
+		break;
+	}
 }
 
-void Stage::changeScene(SceneType nextScene)
+void Stage::changeScene(SceneType nextScene, bool *startGame)
 {
+	switch (nextScene)
+	{
+	case SceneType::MENU:
+	{
+		float score = gameScene ? static_cast<GameScene *>(this->gameScene.get())->getScore() : 0.0f;
+		if (score > this->bestScore)
+		{
+			this->bestScore = score;
+		}
+		this->createMenuScene(startGame);
+	}
+	break;
+	case SceneType::GAME:
+		this->createGameScene(startGame);
+	}
+
 	this->currentScene = nextScene;
 }
 

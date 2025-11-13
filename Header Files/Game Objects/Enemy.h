@@ -33,6 +33,10 @@ public:
 	{
 		return this->mesh;
 	}
+	float getScore() const
+	{
+		return this->score;
+	}
 
 	fvec3 getSizeWorld() const;
 
@@ -45,4 +49,5 @@ private:
 	MeshCurveBB *mesh;
 	float speed = Parameters::enemySpeed;
 	ivec2 windowSize;
+	float score = 100.0f;
 };

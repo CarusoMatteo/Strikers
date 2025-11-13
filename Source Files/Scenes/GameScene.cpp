@@ -15,7 +15,7 @@
 #include "../../Header Files/Random.h"
 #include "../../Header Files/MeshCurveBB.h"
 
-GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(windowSize)
+GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef, bool *startGame) : windowSize(windowSize), startGame(startGame)
 {
 	this->background = GameScene::createBackground(this->windowSize);
 	Heart *heart = GameScene::createHeart(this->windowSize);
@@ -26,7 +26,7 @@ GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(window
 		spaceship};
 	this->temporaryGameObjects = new vector<ITemporaryGameObject *>();
 
-	this->gui = new GameGui(clearColorRef);
+	this->gui = new GameGui(clearColorRef, &this->score);
 
 	this->enemySpawnPositions = {
 		fvec3(windowSize.x * 1.1f, windowSize.y * 0.2f, 0.0f),
@@ -276,7 +276,7 @@ void GameScene::updateGameObjects(float deltaTime)
 		if (!dynamic_cast<GameOverGui *>(this->gui))
 		{
 			IGui *oldGui = this->gui;
-			this->gui = new GameOverGui(oldGui->getClearColorRef());
+			this->gui = new GameOverGui(oldGui->getClearColorRef(), this->startGame);
 			delete oldGui;
 		}
 		return;
@@ -405,6 +405,7 @@ void GameScene::replaceEnemy(size_t position)
 {
 	Enemy *enemy = dynamic_cast<Enemy *>(this->temporaryGameObjects->at(position));
 	this->temporaryGameObjects->at(position) = GameScene::createEnemyExplosion(this->windowSize, enemy->getMesh()->getPosition(), enemy->getSizeWorld());
+	this->score += Parameters::pointMultiplier * enemy->getScore();
 	delete enemy;
 }
 

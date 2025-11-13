@@ -4,7 +4,7 @@
 #include "../../Header Files/MeshBB.h"
 #include "../../Header Files/InputEvents.h"
 
-GameOverGui::GameOverGui(fvec3 *clearColorRef) : IGui(), clearColorRef(clearColorRef)
+GameOverGui::GameOverGui(fvec3 *clearColorRef, bool *startGame) : IGui(), clearColorRef(clearColorRef), startGame(startGame)
 {
 }
 
@@ -19,7 +19,8 @@ void GameOverGui::drawGui()
 	// Disables the ini file saving/loading.
 	ImGui::GetIO().IniFilename = nullptr;
 
-	gameOverWindow(InputEvents::getCurrentWindowSize().x * 0.5f, InputEvents::getCurrentWindowSize().y * 0.5f);
+	// gameOverWindow(InputEvents::getCurrentWindowSize().x * 0.5f, InputEvents::getCurrentWindowSize().y * 0.5f);
+	gameOverWindow(10, 10);
 
 	// Ends the ImGui frame declaration.
 	ImGui::End();
@@ -39,4 +40,8 @@ void GameOverGui::gameOverWindow(float xpos, float ypos)
 					 ImGuiWindowFlags_NoMove);
 
 	ImGui::Text("Game Over!");
+	if (ImGui::Button("Restart Game"))
+	{
+		*(this->startGame) = true;
+	}
 }

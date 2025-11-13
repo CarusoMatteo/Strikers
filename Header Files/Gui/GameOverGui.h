@@ -9,7 +9,7 @@
 class GameOverGui : public IGui
 {
 public:
-	GameOverGui(fvec3 *clearColorRef);
+	GameOverGui(fvec3 *clearColorRef, bool *startGame);
 	void drawGui() override;
 	fvec3 *getClearColorRef() override
 	{
@@ -20,4 +20,5 @@ private:
 	void gameOverWindow(float xpos, float ypos);
 
 	fvec3 *clearColorRef;
+	bool *startGame;
 };

@@ -12,7 +12,7 @@ using glm::fvec3;
 class MenuGui : public IGui
 {
 public:
-	MenuGui(fvec3 *clearColorRef);
+	MenuGui(fvec3 *clearColorRef, bool *changeSceneRef, float bestScore);
 
 	void drawGui() override;
 	fvec3 *getClearColorRef() override
@@ -22,4 +22,8 @@ public:
 
 private:
 	fvec3 *clearColorRef;
+	bool *startGameRef;
+	float bestScore;
+
+	void difficultyWindow(float xpos, float ypos);
 };

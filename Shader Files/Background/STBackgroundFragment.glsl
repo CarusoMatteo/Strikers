@@ -1,6 +1,7 @@
 #version 330 core
 // "Cosmic Streams Two" — flowing particle trails through volumetric space
 // Inspired by "star new" - combines trail rendering with cosmic dust
+// https://www.shadertoy.com/view/tXlfDS
 
 precision highp float;
 
@@ -13,10 +14,7 @@ precision highp float;
 
 uniform vec2 screenSize;
 uniform float currentTime;
-// in vec4 gl_FragCoord;
-in vec4 ourColor;
-// in bool gl_FrontFacing;
-// in vec2 gl_PointCoord;
+// in vec4 gl_FragCoord; Is already included by defaultd
 out vec4 fragColor;
 
 mat2 rot(float a)
@@ -184,9 +182,7 @@ void mainImage(in vec2 fragCoord, out vec4 fragColor)
 
 void main()
 {
-	fragColor = vec4(1.0);
-	// mainImage(gl_FragCoord.xy, fragColor);
-	gl_FragColor = fragColor;
+	mainImage(gl_FragCoord.xy, fragColor);
 }
 
 /** SHADERDATA

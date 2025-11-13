@@ -12,7 +12,7 @@ using glm::fvec3;
 class GameGui : public IGui
 {
 public:
-	GameGui(fvec3 *clearColorRef);
+	GameGui(fvec3 *clearColorRef, float *scoreRef);
 	void drawGui() override;
 	fvec3 *getClearColorRef() override
 	{
@@ -21,6 +21,8 @@ public:
 
 private:
 	void settingsWindow(float xpos, float ypos);
+	void gameInfoWindow(float xpos, float ypos);
 
 	fvec3 *clearColorRef;
+	float *scoreRef;
 };

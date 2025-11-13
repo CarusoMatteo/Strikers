@@ -25,11 +25,16 @@ class IGui;
 class GameScene : public IScene
 {
 public:
-	GameScene(ivec2 windowSize, fvec3 *clearColorRef);
+	GameScene(ivec2 windowSize, fvec3 *clearColorRef, bool *startGame);
 	~GameScene();
 
 	void updateGameObjects(float deltaTime);
 	void renderScene(float currentTime);
+
+	float getScore() const
+	{
+		return this->score;
+	}
 
 private:
 	Background *background;
@@ -39,6 +44,8 @@ private:
 
 	IGui *gui;
 	ivec2 windowSize;
+	bool *startGame;
+	float score = 0.0f;
 
 	const fvec2 enemySpawnIntervalRange = fvec2(0.5f, 2.5f);
 	float enemySpawnInterval = 1.0f;

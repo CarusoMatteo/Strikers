@@ -4,10 +4,10 @@
 #include "../../Header Files/Gui/MenuGui.h"
 #include "../../Header Files/ShapeMaker.h"
 
-MenuScene::MenuScene(ivec2 windowSize, fvec3 *clearColorRef) : windowSize(windowSize)
+MenuScene::MenuScene(ivec2 windowSize, fvec3 *clearColorRef, bool *startGame, float bestScore) : windowSize(windowSize)
 {
 	this->background = MenuScene::createBackground(this->windowSize);
-	this->gui = new MenuGui(clearColorRef);
+	this->gui = new MenuGui(clearColorRef, startGame, bestScore);
 }
 
 MenuScene::~MenuScene()
@@ -19,8 +19,8 @@ MenuScene::~MenuScene()
 Background *MenuScene::createBackground(ivec2 windowSize)
 {
 	string vertex = ".\\Shader Files\\Background\\BackgroundVertex.glsl";
-	// string fragment = ".\\Shader Files\\Background\\STBackgroundFragment.glsl";
-	string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
+	string fragment = ".\\Shader Files\\Background\\STBackgroundFragment.glsl";
+	// string fragment = ".\\Shader Files\\Background\\BackgroundFragment.glsl";
 
 	fvec3 position = fvec3(0, 0, 0);
 	fvec3 scaleVector = fvec3(windowSize, 1);
