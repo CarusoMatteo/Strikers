@@ -226,6 +226,7 @@
     <None Include="Shader Files\Spaceship\SpaceshipVertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Curves\enemy.txt" />
     <Text Include="Curves\projectile.txt" />
     <Text Include="Curves\spaceship.txt" />
   </ItemGroup>

@@ -340,6 +340,11 @@
     <Text Include="Curves\projectile.txt">
       <Filter>Curves</Filter>
     </Text>
-    <Text Include="Curves\spaceship.txt" />
+    <Text Include="Curves\enemy.txt">
+      <Filter>Curves</Filter>
+    </Text>
+    <Text Include="Curves\spaceship.txt">
+      <Filter>Curves</Filter>
+    </Text>
   </ItemGroup>
 </Project>
