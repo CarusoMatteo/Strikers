@@ -1,6 +1,7 @@
 #include "../../Header Files/Game Objects/Heart.h"
 
 #include "../../Header Files/MeshBB.h"
+#include "../../Header Files/Parameters.h"
 
 Heart::Heart(
 	string vertexName,
@@ -8,7 +9,8 @@ Heart::Heart(
 	Shape shape,
 	fvec3 position,
 	fvec3 scaleVector,
-	ivec2 windowSize)
+	ivec2 windowSize,
+	float *healthRef) : healthRef(healthRef)
 {
 	this->mesh = new Mesh(
 		vertexName,
@@ -29,6 +31,8 @@ Heart::~Heart()
 
 void Heart::update(float deltaTime)
 {
+	float missingHealthPercentage = 1.0f - *this->healthRef / Parameters::spaceshipMaxHealth;
+	this->mesh->setCreationTime(missingHealthPercentage);
 }
 
 void Heart::render(float currentTime)

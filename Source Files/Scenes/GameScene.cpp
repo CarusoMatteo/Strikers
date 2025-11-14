@@ -18,8 +18,8 @@
 GameScene::GameScene(ivec2 windowSize, fvec3 *clearColorRef, bool *startGame) : windowSize(windowSize), startGame(startGame)
 {
 	this->background = GameScene::createBackground(this->windowSize);
-	Heart *heart = GameScene::createHeart(this->windowSize);
 	this->spaceship = GameScene::createSpaceship(this->windowSize);
+	Heart *heart = GameScene::createHeart(this->windowSize, this->spaceship->getHealthRef());
 
 	this->gameObjects = new vector<IGameObject *>{
 		heart,
@@ -66,7 +66,7 @@ Background *GameScene::createBackground(ivec2 windowSize)
 		windowSize);
 }
 
-Heart *GameScene::createHeart(ivec2 windowSize)
+Heart *GameScene::createHeart(ivec2 windowSize, float *spaceshipHealthRef)
 {
 	string vertex = ".\\Shader Files\\Heart\\HeartVertex.glsl";
 	string fragment = ".\\Shader Files\\Heart\\HeartFragment.glsl";
@@ -74,7 +74,7 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 	int numberOfTriangles = 100;
 	fvec2 radius = fvec2(1, 1);
 
-	fvec3 position = fvec3(windowSize.x * 0.1, windowSize.y / 3.0, 0.0);
+	fvec3 position = fvec3(windowSize.x * 0.9f, windowSize.y * 0.9f, 0.0);
 	fvec3 scaleVector = fvec3(5, 5, 1);
 
 	fvec4 colorCenter = fvec4(1, 0, 0, 1);
@@ -93,7 +93,8 @@ Heart *GameScene::createHeart(ivec2 windowSize)
 		shapeData,
 		position,
 		scaleVector,
-		windowSize);
+		windowSize,
+		spaceshipHealthRef);
 }
 
 Spaceship *GameScene::createSpaceship(ivec2 windowSize)
@@ -279,6 +280,12 @@ void GameScene::updateGameObjects(float deltaTime)
 			this->gui = new GameOverGui(oldGui->getClearColorRef(), this->startGame);
 			delete oldGui;
 		}
+		// Update for one last time
+		for (auto &&gameObject : *gameObjects)
+		{
+			gameObject->update(deltaTime);
+		}
+
 		return;
 	}
 

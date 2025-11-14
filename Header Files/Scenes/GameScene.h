@@ -53,7 +53,7 @@ private:
 	float timeSinceLastEnemySpawn = 0.0f;
 
 	static Background *createBackground(ivec2 windowSize);
-	static Heart *createHeart(ivec2 windowSize);
+	static Heart *createHeart(ivec2 windowSize, float *spaceshipHealthRef);
 	static Spaceship *createSpaceship(ivec2 windowSize);
 	static Projectile *createProjectile(ivec2 windowSize, fvec3 spaceshipPosition);
 	static ProjectileExplosion *createProjectileExplosion(ivec2 windowSize, fvec3 spawnPosition);

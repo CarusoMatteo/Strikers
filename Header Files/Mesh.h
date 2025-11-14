@@ -53,6 +53,10 @@ public:
 	{
 		this->position = newPosition;
 	}
+	void setCreationTime(float creationTime)
+	{
+		this->creationTime = creationTime;
+	}
 	void setIsVisible(bool isVisible)
 	{
 		this->isVisible = isVisible;

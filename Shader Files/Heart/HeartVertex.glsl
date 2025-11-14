@@ -10,6 +10,7 @@ out vec4 ourColor;
 // Uniform, stays the same for every vertex of the primitive 
 uniform mat4 projectionMatrix;
 uniform mat4 modelMatrix;
+uniform float creationTime; // Used as pulse speed
 uniform float currentTime;
 
 float oscillate(float minVal, float maxVal, float speed)
@@ -27,7 +28,14 @@ void main()
 	 * and subsequently projected into the cube centered at the origin with side length 2,
 	 * with x, y, z ranging from -1 to 1 (premultiplication by the Projection matrix)
 	 */
-	vec3 scaleVector = vec3(abs(oscillate(0.9, 1.1, 5)));
+	float oscillationSpeed = creationTime * 25.0 + 5.0; // Creation time used as "missingHealthPercentage", always between 0..1
+	float minScale = 0.9;
+	float maxScale = 1.1;
+	vec3 scaleVector = vec3(abs(oscillate(minScale, maxScale, oscillationSpeed))) + 1.0 * creationTime;
 	gl_Position = projectionMatrix * modelMatrix * vec4(aPos * scaleVector, 1.0);
-	ourColor = aColor; // set ourColor to the input color we got from the vertex data
+
+	vec3 interpolatedColor = mix(aColor.rgb, vec3(0.5), creationTime);
+	ourColor.rgb = interpolatedColor; // set ourColor to the input color we got from the vertex data
+	// ourColor = aColor;
+	ourColor.a = creationTime == 1 ? 0.0 : aColor.a;
 }

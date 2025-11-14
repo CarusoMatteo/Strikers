@@ -38,6 +38,10 @@ public:
 	{
 		return this->health > 0.0f;
 	}
+	float *getHealthRef()
+	{
+		return &this->health;
+	}
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;

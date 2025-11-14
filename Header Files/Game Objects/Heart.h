@@ -24,7 +24,8 @@ public:
 		Shape shape,
 		fvec3 position,
 		fvec3 scaleVector,
-		ivec2 windowSize);
+		ivec2 windowSize,
+		float *healthRef);
 	~Heart() override;
 
 	void update(float deltaTime) override;
@@ -32,4 +33,5 @@ public:
 
 private:
 	Mesh *mesh;
+	float *healthRef;
 };

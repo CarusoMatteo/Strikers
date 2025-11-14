@@ -5,8 +5,8 @@
 
 precision highp float;
 
-#define iterations 15
-#define volsteps 18
+#define iterations 10
+#define volsteps 10
 #define stepsize 0.15
 #define brightness 0.002
 #define distfading 0.78
