@@ -24,6 +24,7 @@
     <ProjectGuid>{bb1068f9-9b35-4d9e-bbd3-a58ea5e58a56}</ProjectGuid>
     <RootNamespace>Shooter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Strikers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
