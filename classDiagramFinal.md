@@ -98,7 +98,7 @@ class Background
 class Enemy {
 	score: float
 }
-class Hearth
+class Heart
 class Projectile
 class Spaceship {
 	- health: float
@@ -116,7 +116,7 @@ class ProjectileExplosion {
 }
 
 IGameObject <|-- Background
-IGameObject <|-- Hearth
+IGameObject <|-- Heart
 IGameObject <|-- Spaceship
 IGameObject <|-- ITemporaryGameObject
 ITemporaryGameObject <|-- Projectile
@@ -129,7 +129,7 @@ Enemy o-- MeshCurveBB
 %% Enemy <-- Parameters: uses parameters from
 EnemyExplosion o-- Mesh: meshTop
 EnemyExplosion o-- Mesh: meshBottom
-Hearth o-- Mesh
+Heart o-- Mesh
 Projectile o-- MeshBB
 ProjectileExplosion o-- Mesh
 Spaceship o-- MeshCurveBB

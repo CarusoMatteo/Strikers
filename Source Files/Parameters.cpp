@@ -8,7 +8,7 @@ using namespace std;
 float Parameters::spaceshipMaxHealth = 0.0f;
 float Parameters::spaceshipSpeed = 0.0f;
 float Parameters::spaceshipIvincibilityTime = 0.0f;
-int Parameters::spaceshipInvincibleBlinkFrequencyHz = 0.0f;
+int Parameters::spaceshipInvincibleBlinkFrequencyHz = 0;
 
 // Enemy
 float Parameters::enemySpeed = 0.0f;
