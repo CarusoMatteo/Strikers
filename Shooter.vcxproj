@@ -202,7 +202,7 @@
     <ClInclude Include="Header Files\Renderer.h" />
     <ClInclude Include="Header Files\Scenes\GameScene.h" />
     <ClInclude Include="Header Files\Scenes\MenuScene.h" />
-    <ClInclude Include="Header Files\Scenes\Scene.h" />
+    <ClInclude Include="Header Files\Scenes\IScene.h" />
     <ClInclude Include="Header Files\Scenes\SceneType.h" />
     <ClInclude Include="Header Files\ShaderBuilder.h" />
     <ClInclude Include="Header Files\Shape.h" />

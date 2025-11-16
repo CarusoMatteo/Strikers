@@ -281,7 +281,7 @@
     <ClInclude Include="Header Files\MeshCurve.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Scenes\Scene.h">
+    <ClInclude Include="Header Files\Scenes\IScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\Scenes\SceneType.h">

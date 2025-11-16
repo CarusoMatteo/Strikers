@@ -13,6 +13,7 @@ using std::string;
 using std::vector;
 using namespace glm;
 
+// Warning: unused and incomplete
 class MeshCurve : public Mesh
 {
 public:
