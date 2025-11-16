@@ -2,6 +2,8 @@
 #include "../Header Files/Renderer.h"
 #include "../Header Files/earcut.hpp"
 
+// Warning: unused and incomplete
+
 using Point2D = array<float, 2>;
 
 MeshCurve::MeshCurve(

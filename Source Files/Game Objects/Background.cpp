@@ -1,6 +1,5 @@
 #include "../../Header Files/Game Objects/Background.h"
 
-#include "../../Header Files/ShapeMaker.h"
 #include "../../Header Files/Mesh.h"
 #include "../../Header Files/InputEvents.h"
 
