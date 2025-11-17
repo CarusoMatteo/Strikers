@@ -17,6 +17,9 @@ using std::vector;
 
 class Mesh;
 
+/**
+ * @brief Represents an projectile explosion gameObject in the game.
+ */
 class ProjectileExplosion : public ITemporaryGameObject
 {
 public:

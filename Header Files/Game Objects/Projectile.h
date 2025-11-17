@@ -15,6 +15,10 @@ using std::vector;
 
 class MeshCurveBB;
 
+/**
+ * @brief Represents a projectile gameObject in the game.
+ * Has a Bounding Box.
+ */
 class Projectile : public ITemporaryGameObject
 {
 public:

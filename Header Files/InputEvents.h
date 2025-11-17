@@ -10,8 +10,12 @@
 
 using namespace glm;
 using std::array;
+/// @brief Array for storing button states, one for each InputEventsType.
 using ButtonStates = array<bool, static_cast<size_t>(InputEventsType::count)>;
 
+/**
+ * Static class to handle input events from GLFW with input callbacks.
+ */
 class InputEvents
 {
 public:

@@ -20,9 +20,20 @@ using std::vector;
 
 class Curve;
 
+/**
+ * Static class to read and create Hermite curves from files.
+ */
 class HermiteCurveMaker
 {
 public:
+	/**
+	 * @brief Returns a vector of Shapes representing Hermite curves read from a file.
+	 * @param fileName The name of the file containing the Hermite curve definition.
+	 * @param numberOfTriangles The number of triangles to use to triangulate the curve.
+	 * @param colorTop The color at the border of the curve.
+	 * @param colorBottom The color at the center of the curve.
+	 * @return
+	 */
 	static vector<Shape> makeHermiteCurve(
 		string fileName,
 		int numberOfTriangles,

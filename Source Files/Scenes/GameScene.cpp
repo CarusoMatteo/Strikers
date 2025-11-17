@@ -309,7 +309,7 @@ void GameScene::renderScene(float currentTime)
 {
 	this->background->render(currentTime);
 	this->renderGameObjects(currentTime);
-	this->renderGui();
+	this->gui->drawGui();
 }
 
 void GameScene::spawnProjectile()
@@ -367,11 +367,6 @@ void GameScene::renderGameObjects(float currentTime)
 	}
 }
 
-void GameScene::renderGui()
-{
-	this->gui->drawGui();
-}
-
 void GameScene::checkCollisions()
 {
 	// Check collision of player vs enemies
@@ -384,6 +379,7 @@ void GameScene::checkCollisions()
 			this->temporaryGameObjects->erase(this->temporaryGameObjects->begin() + i);
 			delete enemy;
 			continue;
+			// If an object is deleted, do not increment i.
 		}
 		i++;
 	}

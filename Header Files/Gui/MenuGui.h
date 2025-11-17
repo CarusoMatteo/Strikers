@@ -9,6 +9,9 @@
 
 using glm::fvec3;
 
+/**
+ * @brief Represents the main menu GUI of the application.
+ */
 class MenuGui : public IGui
 {
 public:

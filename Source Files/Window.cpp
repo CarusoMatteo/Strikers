@@ -64,7 +64,7 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 	this->windowWidth = 1920;
 	this->windowHeight = 1080;
 
-	// Create a window and its OpenGL context
+	// Create a window and its OpenGL context with the fixed dimensions.
 	this->window = glfwCreateWindow(this->windowWidth, this->windowHeight, windowTitle.c_str(), NULL, NULL);
 
 	if (!window)
@@ -99,7 +99,7 @@ void Window::initializeWindow(string windowTitle, double monitorPercentageWidth,
 
 	glViewport(0, 0, newWidth, newHeight);
 
-	// Enable V-Sync
+	// Enable V-Sync (Frame rate is capped to monitor refresh rate).
 	glfwSwapInterval(1);
 }
 

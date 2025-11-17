@@ -16,6 +16,10 @@ using std::vector;
 
 class MeshCurveBB;
 
+/**
+ * @brief Represents an enemy gameObject in the game.
+ * Has a Bounding Box.
+ */
 class Enemy : public ITemporaryGameObject
 {
 public:

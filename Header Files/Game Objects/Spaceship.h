@@ -16,6 +16,9 @@ using std::vector;
 
 class MeshCurveBB;
 
+/**
+ * @brief Represents the player's spaceship gameObject in the game.
+ */
 class Spaceship : public IGameObject
 {
 public:
@@ -29,6 +32,9 @@ public:
 	~Spaceship() override;
 
 	fvec3 getPosition() const;
+	/**
+	 * @brief Calculates the projectile spawn position based on the spaceship's current position and orientation.
+	 */
 	fvec3 getProjectileSpawnPosition() const;
 	MeshCurveBB *getMesh() const
 	{
@@ -45,6 +51,7 @@ public:
 
 	void update(float deltaTime) override;
 	void render(float currentTime) override;
+
 	void takeDamage(int amount = 1);
 
 private:

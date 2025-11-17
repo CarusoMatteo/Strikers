@@ -6,6 +6,9 @@
 
 #include "IGui.h"
 
+/**
+ * @brief The Gui that's shown when the player runs out of health.
+ */
 class GameOverGui : public IGui
 {
 public:

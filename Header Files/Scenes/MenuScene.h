@@ -14,6 +14,10 @@ using std::vector;
 class Background;
 class IGui;
 
+/**
+ * @brief Represents the menu scene of the game.
+ * It only contains the background and the MenuGui.
+ */
 class MenuScene : public IScene
 {
 public:

@@ -5,6 +5,9 @@ using std::string;
 using std::vector;
 using namespace glm;
 
+/**
+ * @brief Class representing a mesh with a bounding box for collision detection.
+ */
 class MeshBB : public Mesh
 {
 public:
@@ -28,8 +31,13 @@ public:
 	{
 		return MeshBB::drawBoundingBox;
 	}
+	/// @brief Checks for collision between two MeshBB objects using AABB method.
 	static bool checkCollision(MeshBB *meshA, MeshBB *meshB);
 
+	/**
+	 * @brief Gets the size of the bounding box in world coordinates. This provides a good approximation of the mesh size in world space.
+	 * @return fvec3 representing the size of the bounding box in world coordinates.
+	 */
 	fvec3 getSizeWorld()
 	{
 		return fvec3(
@@ -38,7 +46,9 @@ public:
 			this->getBoundingBoxMaxWorld().z - this->getBoundingBoxMinWorld().z);
 	}
 
+	/// @brief Gets the center of the bounding box in world coordinates.
 	fvec3 getBBCenter();
+	/// @brief Gets the rightmost point of the bounding box in world coordinates.
 	fvec3 getBBRight();
 	void render(float currentTime) override;
 

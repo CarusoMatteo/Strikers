@@ -10,6 +10,9 @@ using std::string;
 using std::vector;
 using namespace glm;
 
+/**
+ * @brief Class representing a mesh with a shader associated to it.
+ */
 class Mesh
 {
 public:
@@ -26,6 +29,8 @@ public:
 		ivec2 windowSize);
 	~Mesh();
 
+	/// @brief Renders the mesh using the static Renderer class.
+	virtual void render(float currentTime);
 	static void setProjectionMatrix(fmat4 projection)
 	{
 		Mesh::projectionMatrix = projection;
@@ -38,13 +43,10 @@ public:
 	{
 		return isWireframe;
 	}
-
-	virtual void render(float currentTime);
 	void updateScreenSize(ivec2 newScreenSize)
 	{
 		this->windowSize = newScreenSize;
 	}
-
 	fvec3 getPosition() const
 	{
 		return this->position;
@@ -61,7 +63,6 @@ public:
 	{
 		this->isVisible = isVisible;
 	}
-
 	ivec2 getWindowSize() const
 	{
 		return this->windowSize;
@@ -83,27 +84,41 @@ protected:
 	GLenum drawMode;
 	ivec2 windowSize;
 
-	/// @brief Projection matrix to place object in world space.
+	/// @brief Projection matrix to place object in world space. The same for all meshes.
 	static fmat4 projectionMatrix;
 	GLuint projectionMatrixUniformLocation;
 
+	/// @brief Model matrix of this mesh.
 	fmat4 modelMatrix;
 	GLuint modelMatrixUniformLocation;
 
+	/// @brief Position of this mesh in world space.
 	fvec3 position;
+	/// @brief Rotation of this mesh in degrees.
 	float rotationDegrees;
+	/// @brief Scale vector of this mesh.
 	fvec3 scaleVector;
 
+	/// @brief Time of creation of mesh. Used for some animation.
 	float creationTime;
 	GLuint creationTimeUniformLocation;
+	/// @brief Whether the mesh is visible or not. Used for toggling visibility in shaders.
 	bool isVisible = true;
 	GLuint isVisibleUniformLocation;
 
 	GLuint currentTimeUniformLocation;
 	GLuint screenSizeUniformLocation;
 
+	/**
+	 * @brief Builds the shader program from vertex and fragment shader files.
+	 * @param vertexShaderName Name of the vertex shader file.
+	 * @param fragmentShaderName Name of the fragment shader file.
+	 */
 	void buildShader(string vertexShaderName, string fragmentShaderName);
+	///@brief Initializes the VAO for this mesh.
 	void initVao();
+	/// @brief Initializes the VBOs for this mesh.
 	void initVbos();
+	/// @brief Initializes the uniform references locations for this mesh.
 	void initUniformReferences();
 };

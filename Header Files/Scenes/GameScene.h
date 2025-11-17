@@ -22,6 +22,9 @@ class IGameObject;
 class ITemporaryGameObject;
 class IGui;
 
+/**
+ * @brief Represents the game scene.
+ */
 class GameScene : public IScene
 {
 public:
@@ -38,8 +41,11 @@ public:
 
 private:
 	Background *background;
+	/// @brief All persistent game objects in the scene.
 	vector<IGameObject *> *gameObjects;
+	/// @brief All temporary game objects in the scene.
 	vector<ITemporaryGameObject *> *temporaryGameObjects;
+	/// @brief The player's spaceship. It is also contained in gameObjects, but it is useful to have a separate reference.
 	Spaceship *spaceship;
 
 	IGui *gui;
@@ -47,9 +53,15 @@ private:
 	bool *startGame;
 	float score = 0.0f;
 
+	/**
+	 * The time in between enemy spawn is random, chosen between these two values.
+	 */
 	const fvec2 enemySpawnIntervalRange = fvec2(0.5f, 2.5f);
+	/// @brief The current interval for enemy spawning.
 	float enemySpawnInterval = 1.0f;
+	/// @brief Possible enemy spawn positions.
 	vector<fvec3> enemySpawnPositions;
+	/// @brief Time since the last enemy spawn.
 	float timeSinceLastEnemySpawn = 0.0f;
 
 	static Background *createBackground(ivec2 windowSize);
@@ -62,11 +74,16 @@ private:
 
 	void spawnProjectile();
 	void spawnEnemy(float deltaTime);
+	/// @brief Performs cleanup of temporary game objects that should be deleted.
 	void deleteTemporaryGameObjects();
 	void renderGameObjects(float currentTime);
-	void renderGui();
+	/// @brief Checks for collisions between game objects and handles them.
 	void checkCollisions();
 
+	/// @brief Substitutes an enemy at the given position with an enemyExplosion.
+	/// @param position The position where to spawn the enemy explosion.
 	void replaceEnemy(size_t position);
+	/// @brief Substitutes a projectile at the given position with a projectileExplosion.
+	/// @param position The position where to spawn the projectile explosion.
 	void replaceProjectile(size_t position);
 };

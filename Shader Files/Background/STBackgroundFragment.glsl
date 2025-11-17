@@ -3,6 +3,13 @@
 // Inspired by "star new" - combines trail rendering with cosmic dust
 // https://www.shadertoy.com/view/tXlfDS
 
+/** SHADERDATA
+{
+  "title": "Cosmic Streams",
+  "description": "Flowing particle trails through volumetric fractal space with animated sparkles",
+}
+*/
+
 precision highp float;
 
 #define iterations 10
@@ -14,7 +21,6 @@ precision highp float;
 
 uniform vec2 screenSize;
 uniform float currentTime;
-// in vec4 gl_FragCoord; Is already included by defaultd
 out vec4 fragColor;
 
 mat2 rot(float a)
@@ -184,10 +190,3 @@ void main()
 {
 	mainImage(gl_FragCoord.xy, fragColor);
 }
-
-/** SHADERDATA
-{
-  "title": "Cosmic Streams",
-  "description": "Flowing particle trails through volumetric fractal space with animated sparkles",
-}
-*/

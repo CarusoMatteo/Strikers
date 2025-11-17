@@ -17,6 +17,10 @@ using std::vector;
 
 class Mesh;
 
+/**
+ * @brief Represents an enemy explosion gameObject in the game.
+ * Has two parts (top and bottom) without Bounding Box.
+ */
 class EnemyExplosion : public ITemporaryGameObject
 {
 public:

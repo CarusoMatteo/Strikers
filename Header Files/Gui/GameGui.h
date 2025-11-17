@@ -9,6 +9,9 @@
 
 using glm::fvec3;
 
+/**
+ * @brief Represents the in-game GUI of the application.
+ */
 class GameGui : public IGui
 {
 public:

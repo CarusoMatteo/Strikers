@@ -13,6 +13,9 @@ using std::string;
 using std::vector;
 using namespace glm;
 
+/**
+ * @brief Class representing a Hermite Curve Mesh with a bounding box for collision detection.
+ */
 class MeshCurveBB : public MeshBB
 {
 public:
@@ -27,6 +30,7 @@ public:
 		GLenum drawMode,
 		ivec2 windowSize);
 
+	/// @brief Triangulates the given control points into vertices and colors for rendering the curve.
 	void triangulate(
 		vector<fvec3> *vertices,
 		vector<fvec4> *colors);
@@ -36,7 +40,9 @@ public:
 private:
 	vector<unsigned int> indices;
 
-	GLuint indicesEboAddress; // Element Buffer Object for the vertices indices
+	/// @brief Element Buffer Object for the vertices indices
+	GLuint indicesEboAddress;
 
+	/// @brief Initializes vertices VBO, colors VBO and indices EBO for this mesh.
 	void initVbos();
 };

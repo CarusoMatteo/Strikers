@@ -15,6 +15,9 @@ using std::vector;
 
 class Mesh;
 
+/**
+ * @brief Heart GameObject to display player's health.
+ */
 class Heart : public IGameObject
 {
 public:

@@ -13,15 +13,24 @@ using glm::fmat4;
 using glm::ivec2;
 using std::string;
 
+/**
+ * @brief Abstraction for a GLFW window with OpenGL context and ImGui integration.
+ */
 class Window
 {
 public:
+	/// @brief Creates a window with the specified title.
+	/// @param windowTitle the title of the window.
 	Window(string windowTitle);
 	~Window();
 
+	/// @returns if the window should close.
 	bool shouldWindowClose();
+	/// @brief Swaps the front and back buffers of the window.
 	void swapBuffers();
+	/// @brief Polls for and processes events.
 	void pollEvents();
+
 	ivec2 getWindowSize()
 	{
 		int currentWidth, currentHeight;
@@ -38,5 +47,6 @@ private:
 	void initInputEvents();
 	void initializeGui();
 	void initOpenGL();
+	/// @brief Creates a projection matrix based on the window dimensions.
 	static fmat4 createProjectionMatrix(int windowWidth, int windowHeight);
 };

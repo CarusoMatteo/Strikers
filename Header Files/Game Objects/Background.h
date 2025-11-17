@@ -15,6 +15,10 @@ using std::vector;
 
 class Mesh;
 
+/**
+ * @brief Represents a background gameObject in the game.
+ * Doesn't have a Bounding Box.
+ */
 class Background : public IGameObject
 {
 public:

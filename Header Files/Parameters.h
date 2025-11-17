@@ -1,8 +1,14 @@
 #pragma once
 
+/**
+ * @brief Static class that holds all adjustable parameters for the game.
+ * This includes parameters for the spaceship, enemies, projectiles, and explosions.
+ * The parameters can be adjusted based on difficulty levels: Easy, Medium, and Hard by calling the appropriate method when the game starts.
+ */
 class Parameters
 {
 public:
+	// Currently active parameters that other classes will reference.
 #pragma region Active
 	// Spaceship
 	static float spaceshipMaxHealth;
@@ -23,14 +29,18 @@ public:
 	// - Projectile Explosion (none)
 #pragma endregion Active
 
+	/// @brief Apply Easy difficulty parameters.
 	static void applyEasy();
+	/// @brief Apply Medium difficulty parameters.
 	static void applyMedium();
+	/// @brief Apply Hard difficulty parameters.
 	static void applyHard();
 
 private:
 	Parameters() = default;
 	~Parameters() = default;
 
+	// Parameters for each difficulty level, this are constant and edited in Parameters.cpp by the developer.
 #pragma region Easy
 	// Spaceship
 	static const float spaceshipMaxHealthEasy;
